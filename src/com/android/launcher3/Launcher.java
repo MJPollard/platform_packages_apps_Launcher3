@@ -181,6 +181,10 @@ public class Launcher extends Activity
     public static final String ACTION_APPWIDGET_HOST_RESET =
             "com.android.launcher3.intent.ACTION_APPWIDGET_HOST_RESET";
 
+    //Intent broadcasted when the device screen switches to idle(home screen)
+    public static final String CAT_IDLE_SCREEN_ACTION =
+            "org.codeaurora.action.stk.idle_screen";
+
     // Type: int
     private static final String RUNTIME_STATE_CURRENT_SCREEN = "launcher.current_screen";
     // Type: int
@@ -1059,6 +1063,13 @@ public class Launcher extends Activity
         if (mLauncherCallbacks != null) {
             mLauncherCallbacks.onResume();
         }
+
+        // Notify that Home or Idle Screen is being started or resumed
+        Intent idleScreenIntent = new Intent(CAT_IDLE_SCREEN_ACTION);
+        idleScreenIntent.putExtra("SCREEN_IDLE",true);
+        Log.d(TAG,"Broadcasting Home Idle Screen Intent ...");
+        sendBroadcast(idleScreenIntent);
+
     }
 
     @Override
