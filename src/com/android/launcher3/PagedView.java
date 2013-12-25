@@ -788,7 +788,7 @@ public abstract class PagedView extends ViewGroup implements ViewGroup.OnHierarc
         DisplayMetrics dm = getResources().getDisplayMetrics();
         int maxSize = Math.max(dm.widthPixels, dm.heightPixels + mInsets.top + mInsets.bottom);
 
-        int parentWidthSize, parentHeightSize;
+        int parentWidthSize = 0, parentHeightSize = 0;
         int scaledWidthSize, scaledHeightSize;
         if (mUseMinScale) {
             parentWidthSize = (int) (1.5f * maxSize);
