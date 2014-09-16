@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "70c53b78_595203f4",
+        "filename": "Android.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1022968
+      },
+      "writtenOn": "2014-09-16T10:07:52Z",
+      "side": 1,
+      "message": "may as well remove this line, since the build rule would (should) have added this library anyway.",
+      "revId": "943e532f95e2b01943023a6567f40f09326b2aa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
