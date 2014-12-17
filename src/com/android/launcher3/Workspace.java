@@ -3158,7 +3158,7 @@ public class Workspace extends SmoothPagedView
                 public void run() {
                     mAnimatingViewIntoPlace = false;
                     updateChildrenLayersEnabled(false);
-                    if (finalResizeRunnable != null) {
+                    if (finalResizeRunnable != null && mState == State.NORMAL) {
                         finalResizeRunnable.run();
                     }
                 }
