@@ -17,6 +17,7 @@
  package launcher_backup;
 
 option java_package = "com.android.launcher3.backup";
+option javanano_use_deprecated_package = true;
 option java_outer_classname = "BackupProtos";
 
 message Key {
