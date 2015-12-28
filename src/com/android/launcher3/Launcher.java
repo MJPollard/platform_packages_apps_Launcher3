@@ -2447,12 +2447,7 @@ public class Launcher extends Activity
         } else if (mWorkspace.isInOverviewMode()) {
             showWorkspace(true);
         } else if (mWorkspace.getOpenFolder() != null) {
-            Folder openFolder = mWorkspace.getOpenFolder();
-            if (openFolder.isEditingName()) {
-                openFolder.dismissEditingName();
-            } else {
-                closeFolder();
-            }
+	    closeFolder();
         } else {
             mWorkspace.exitWidgetResizeMode();
 
