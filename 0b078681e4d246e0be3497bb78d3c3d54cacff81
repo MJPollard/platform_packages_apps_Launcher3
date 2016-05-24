@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5c8ed7f0_d86c63f8",
+        "filename": "src/com/android/launcher3/LauncherProvider.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 749,
+      "author": {
+        "id": 1060398
+      },
+      "writtenOn": "2016-05-24T05:40:35Z",
+      "side": 1,
+      "message": "How about wrapping these three statements in a transaction?",
+      "range": {
+        "startLine": 745,
+        "startChar": 12,
+        "endLine": 749,
+        "endChar": 25
+      },
+      "revId": "0b078681e4d246e0be3497bb78d3c3d54cacff81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
