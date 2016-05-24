@@ -68,6 +68,7 @@ public class LauncherProvider extends ContentProvider {
     private static final String TAG = "LauncherProvider";
     private static final boolean LOGD = false;
 
+    private static final int INITIAL_DATABASE_VERSION = 0;
     private static final int DATABASE_VERSION = 26;
 
     public static final String AUTHORITY = ProviderConfig.AUTHORITY;
@@ -743,6 +744,8 @@ public class LauncherProvider extends ContentProvider {
         public void createEmptyDB(SQLiteDatabase db) {
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_FAVORITES);
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_WORKSPACE_SCREENS);
+            // clear all data for restart,including database version
+            db.setVersion(INITIAL_DATABASE_VERSION);
             onCreate(db);
         }
 
