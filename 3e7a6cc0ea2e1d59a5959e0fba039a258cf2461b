@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1991c0c1_956c177e",
+        "filename": "src/com/android/launcher3/Launcher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1138138
+      },
+      "writtenOn": "2017-07-07T23:56:17Z",
+      "side": 1,
+      "message": "change to android.intent.action.stk.idle_screen to match with others",
+      "range": {
+        "startLine": 185,
+        "startChar": 32,
+        "endLine": 185,
+        "endChar": 53
+      },
+      "revId": "3e7a6cc0ea2e1d59a5959e0fba039a258cf2461b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
