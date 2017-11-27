@@ -133,6 +133,10 @@ public class DefaultLayoutParser extends AutoInstallsLayout {
             if (intent == null) {
                 return -1;
             }
+            /// Handle different Intent case when gallery launched from "all apps list"
+            if ("com.android.gallery3d".equals(info.packageName)) {
+                intent.setPackage(null);
+            }
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
                     Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
 
