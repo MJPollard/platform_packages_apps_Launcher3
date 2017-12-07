@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "171bdc76_0a0de8e0",
+        "filename": "src/com/android/launcher3/SettingsActivity.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1081223
+      },
+      "writtenOn": "2017-12-07T22:18:43Z",
+      "side": 1,
+      "message": "nit\nfinal ActivityManager am \u003d activity.getSystemService(ActivityManager.class)",
+      "range": {
+        "startLine": 79,
+        "startChar": 39,
+        "endLine": 80,
+        "endChar": 46
+      },
+      "revId": "0239744b8a37636928125d7f1f4dfeef79389dca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
