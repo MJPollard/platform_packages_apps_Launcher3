@@ -17,6 +17,7 @@
 package com.android.launcher3;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -74,7 +75,10 @@ public class SettingsActivity extends Activity {
             getPreferenceManager().setSharedPreferencesName(LauncherFiles.SHARED_PREFERENCES_KEY);
             addPreferencesFromResource(R.xml.launcher_preferences);
 
-            ContentResolver resolver = getActivity().getContentResolver();
+            final Activity activity = getActivity();
+            final ActivityManager am = (ActivityManager) activity.getSystemService(
+                    Context.ACTIVITY_SERVICE);
+            ContentResolver resolver = activity.getContentResolver();
 
             // Setup allow rotation preference
             Preference rotationPref = findPreference(Utilities.ALLOW_ROTATION_PREFERENCE_KEY);
@@ -89,7 +93,7 @@ public class SettingsActivity extends Activity {
                 mRotationLockObserver.register(Settings.System.ACCELEROMETER_ROTATION);
 
                 // Initialize the UI once
-                rotationPref.setDefaultValue(Utilities.getAllowRotationDefaultValue(getActivity()));
+                rotationPref.setDefaultValue(Utilities.getAllowRotationDefaultValue(activity));
             }
 
             ButtonPreference iconBadgingPref =
@@ -98,7 +102,8 @@ public class SettingsActivity extends Activity {
                 getPreferenceScreen().removePreference(
                         findPreference(SessionCommitReceiver.ADD_ICON_PREFERENCE_KEY));
                 getPreferenceScreen().removePreference(iconBadgingPref);
-            } else if (!getResources().getBoolean(R.bool.notification_badging_enabled)) {
+            } else if (!getResources().getBoolean(R.bool.notification_badging_enabled)
+                    || am.isLowRamDevice()) {
                 getPreferenceScreen().removePreference(iconBadgingPref);
             } else {
                 // Listen to system notification badge settings while this UI is active.
@@ -109,7 +114,7 @@ public class SettingsActivity extends Activity {
 
             Preference iconShapeOverride = findPreference(IconShapeOverride.KEY_PREFERENCE);
             if (iconShapeOverride != null) {
-                if (IconShapeOverride.isSupported(getActivity())) {
+                if (IconShapeOverride.isSupported(activity)) {
                     IconShapeOverride.handlePreferenceUi((ListPreference) iconShapeOverride);
                 } else {
                     getPreferenceScreen().removePreference(iconShapeOverride);
