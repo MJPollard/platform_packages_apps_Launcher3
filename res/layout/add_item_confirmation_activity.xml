@@ -31,15 +31,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="20dp"
-                android:paddingLeft="24dp"
-                android:paddingRight="24dp"
-                android:paddingTop="4dp"
-                android:text="@string/add_item_request_drag_hint" />
-
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

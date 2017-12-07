@@ -115,7 +115,6 @@ public class AddItemActivity extends BaseActivity implements OnLongClickListener
         }
 
         mWidgetCell.setOnTouchListener(this);
-        mWidgetCell.setOnLongClickListener(this);
 
         // savedInstanceState is null when the activity is created the first time (i.e., avoids
         // duplicate logging during rotation)
