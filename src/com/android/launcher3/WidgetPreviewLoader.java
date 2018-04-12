@@ -317,14 +317,8 @@ public class WidgetPreviewLoader {
 
         Drawable drawable = null;
         if (info.previewImage != 0) {
-            try {
-                drawable = info.loadPreviewImage(mContext, 0);
-            } catch (OutOfMemoryError e) {
-                Log.w(TAG, "Error loading widget preview for: " + info.provider, e);
-                // During OutOfMemoryError, the previous heap stack is not affected. Catching
-                // an OOM error here should be safe & not affect other parts of launcher.
-                drawable = null;
-            }
+            drawable = getWidgetPreviewDrawable(info);
+
             if (drawable != null) {
                 drawable = mutateOnMainThread(drawable);
             } else {
@@ -360,8 +354,8 @@ public class WidgetPreviewLoader {
             scale = maxPreviewWidth / (float) (previewWidth);
         }
         if (scale != 1f) {
-            previewWidth = (int) (scale * previewWidth);
-            previewHeight = (int) (scale * previewHeight);
+            previewWidth = Math.max((int)(scale * previewWidth), 1);
+            previewHeight = Math.max((int)(scale * previewHeight), 1);
         }
 
         // If a bitmap is passed in, we use it; otherwise, we create a bitmap of the right size
@@ -428,6 +422,27 @@ public class WidgetPreviewLoader {
             c.setBitmap(null);
         }
         return preview;
+    }
+
+    @Nullable
+    private Drawable getWidgetPreviewDrawable(final LauncherAppWidgetProviderInfo info) {
+        Drawable drawable;
+        try {
+            drawable = info.loadPreviewImage(mContext, 0);
+        } catch (OutOfMemoryError e) {
+            Log.w(TAG, "Error loading widget preview for: " + info.provider, e);
+            // During OutOfMemoryError, the previous heap stack is not affected. Catching
+            // an OOM error here should be safe & not affect other parts of launcher.
+            drawable = null;
+        }
+
+        // Check that the intrinsic size is large enough.
+        // Some drawables like color drawables have no intrinsic size (their intrinsic width and height are both -1).
+        if (drawable != null && drawable.getIntrinsicWidth() > 0 && drawable.getIntrinsicHeight() > 0) {
+            return drawable;
+        }
+
+        return null;
     }
 
     private RectF drawBoxWithShadow(Canvas c, int width, int height) {
