@@ -22,6 +22,30 @@
       "revId": "594b291c8f7261e3ba0d953c639087197d01ec60",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "100d0125_0f2e8ad0",
+        "filename": "src/com/android/launcher3/WidgetPreviewLoader.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1004882
+      },
+      "writtenOn": "2018-04-25T13:21:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cd672a9_d3b56749",
+      "range": {
+        "startLine": 337,
+        "startChar": 12,
+        "endLine": 337,
+        "endChar": 31
+      },
+      "revId": "594b291c8f7261e3ba0d953c639087197d01ec60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
