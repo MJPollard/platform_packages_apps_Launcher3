@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d02fa8ce_9f97f0f4",
+        "filename": "src/com/android/launcher3/Launcher.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1055,
+      "author": {
+        "id": 1319058
+      },
+      "writtenOn": "2018-05-12T09:20:49Z",
+      "side": 1,
+      "message": "It is better to move this flag judge in method shouldShowDiscoveryBounce(). Because other place may invoke this method and forget add the flag \"FeatureFlags.LAUNCHER3_ALL_APPS_PULL_UP\"",
+      "range": {
+        "startLine": 1055,
+        "startChar": 12,
+        "endLine": 1055,
+        "endChar": 51
+      },
+      "revId": "074e30bc07ac58e4ba9dbd3421471d20b39a102c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
