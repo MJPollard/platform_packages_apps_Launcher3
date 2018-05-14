@@ -43,9 +43,23 @@ public class QsbWidgetHostView extends AppWidgetHostView {
     public void updateAppWidget(RemoteViews remoteViews) {
         // Store the orientation in which the widget was inflated
         mPreviousOrientation = getResources().getConfiguration().orientation;
+
+        if (remoteViews == null) {
+          // on first callback, removeViews have not been initialized yet,
+          // add a dummy handler that will launch search so that qsb is responsive
+          this.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              Launcher.getLauncher(view.getContext()).startSearch("", false, null, true);
+            }
+          });
+        } else {
+          // removeViews have been initialized, pass click control back to qsb
+          this.setOnClickListener(null);
+        }
+
         super.updateAppWidget(remoteViews);
     }
-
 
     public boolean isReinflateRequired(int orientation) {
         // Re-inflate is required if the orientation has changed since last inflation.
