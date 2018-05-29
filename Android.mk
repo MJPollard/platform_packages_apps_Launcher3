@@ -21,6 +21,9 @@ LOCAL_PATH := $(call my-dir)
 #
 include $(CLEAR_VARS)
 
+# In AOSP, don't use AAPT2.
+LOCAL_USE_AAPT2 := false
+
 LOCAL_MODULE_TAGS := optional
 
 LOCAL_STATIC_JAVA_LIBRARIES := \
