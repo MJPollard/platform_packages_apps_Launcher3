@@ -21,6 +21,9 @@ LOCAL_PATH := $(call my-dir)
 #
 include $(CLEAR_VARS)
 
+# XXX
+LOCAL_USE_AAPT2 := false
+
 LOCAL_MODULE_TAGS := optional
 
 LOCAL_STATIC_JAVA_LIBRARIES := \
