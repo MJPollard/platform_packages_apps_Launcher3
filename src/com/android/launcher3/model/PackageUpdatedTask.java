@@ -213,27 +213,24 @@ public class PackageUpdatedTask extends BaseModelUpdateTask {
                             }
 
                             if (si.isPromise() && isNewApkAvailable) {
-                                if (si.hasStatusFlag(ShortcutInfo.FLAG_AUTOINSTALL_ICON)) {
-                                    // Auto install icon
-                                    LauncherAppsCompat launcherApps
-                                            = LauncherAppsCompat.getInstance(context);
-                                    if (!launcherApps.isActivityEnabledForProfile(cn, mUser)) {
-                                        // Try to find the best match activity.
-                                        Intent intent = new PackageManagerHelper(context)
-                                                .getAppLaunchIntent(cn.getPackageName(), mUser);
-                                        if (intent != null) {
-                                            cn = intent.getComponent();
-                                            appInfo = addedOrUpdatedApps.get(cn);
-                                        }
+                                if (si.hasStatusFlag(ShortcutInfo.FLAG_AUTOINSTALL_ICON)
+                                        && !LauncherAppsCompat.getInstance(context)
+                                            .isActivityEnabledForProfile(cn, mUser)) {
+                                    // Try to find the best match activity.
+                                    Intent intent = new PackageManagerHelper(context)
+                                            .getAppLaunchIntent(cn.getPackageName(), mUser);
+                                    if (intent != null) {
+                                        cn = intent.getComponent();
+                                        appInfo = addedOrUpdatedApps.get(cn);
+                                    }
 
-                                        if (intent != null && appInfo != null) {
-                                            si.intent = intent;
-                                            si.status = ShortcutInfo.DEFAULT;
-                                            infoUpdated = true;
-                                        } else if (si.hasPromiseIconUi()) {
-                                            removedShortcuts.put(si.id, true);
-                                            continue;
-                                        }
+                                    if (intent != null && appInfo != null) {
+                                        si.intent = intent;
+                                        si.status = ShortcutInfo.DEFAULT;
+                                        infoUpdated = true;
+                                    } else if (si.hasPromiseIconUi()) {
+                                        removedShortcuts.put(si.id, true);
+                                        continue;
                                     }
                                 } else {
                                     si.status = ShortcutInfo.DEFAULT;
