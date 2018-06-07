@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c3f4ece3_1f62ebbf",
+        "filename": "tests/AndroidManifest.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1060398
+      },
+      "writtenOn": "2018-06-07T23:29:37Z",
+      "side": 1,
+      "message": "nit:tab",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 5
+      },
+      "revId": "223b763784e67358981d6c529163bc01b8ca7be5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
