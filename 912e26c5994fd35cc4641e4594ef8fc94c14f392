@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7804d338_4d400a41",
+        "filename": "src/com/android/launcher3/compat/WallpaperManagerCompatVL.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1086523
+      },
+      "writtenOn": "2018-07-09T16:18:09Z",
+      "side": 1,
+      "message": "I think the functionality is already provided by android.content.Context?",
+      "revId": "912e26c5994fd35cc4641e4594ef8fc94c14f392",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa0dc1fc_3a9d129a",
+        "filename": "src/com/android/launcher3/compat/WallpaperManagerCompatVL.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1086523
+      },
+      "writtenOn": "2018-07-09T16:18:09Z",
+      "side": 1,
+      "message": "Can this be done with mContext.checkSelfPermission( ?",
+      "range": {
+        "startLine": 218,
+        "startChar": 23,
+        "endLine": 218,
+        "endChar": 56
+      },
+      "revId": "912e26c5994fd35cc4641e4594ef8fc94c14f392",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
