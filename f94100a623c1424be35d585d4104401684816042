@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "63402625_dd3c1f86",
+        "filename": "src/com/android/launcher3/Utilities.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1060398
+      },
+      "writtenOn": "2018-08-16T17:14:57Z",
+      "side": 1,
+      "message": "nit:fix line wrapping",
+      "range": {
+        "startLine": 112,
+        "startChar": 50,
+        "endLine": 113,
+        "endChar": 65
+      },
+      "revId": "f94100a623c1424be35d585d4104401684816042",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
