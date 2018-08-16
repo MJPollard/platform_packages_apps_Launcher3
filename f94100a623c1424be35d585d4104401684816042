@@ -22,6 +22,30 @@
       "revId": "f94100a623c1424be35d585d4104401684816042",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d44209d0_b55ff048",
+        "filename": "src/com/android/launcher3/Utilities.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1004882
+      },
+      "writtenOn": "2018-08-16T20:17:37Z",
+      "side": 1,
+      "message": "Whoops! Done.",
+      "parentUuid": "63402625_dd3c1f86",
+      "range": {
+        "startLine": 112,
+        "startChar": 50,
+        "endLine": 113,
+        "endChar": 65
+      },
+      "revId": "f94100a623c1424be35d585d4104401684816042",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
