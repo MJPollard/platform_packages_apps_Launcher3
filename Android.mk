@@ -29,6 +29,18 @@ LOCAL_SDK_VERSION := current
 include $(BUILD_PREBUILT)
 
 #
+# libLauncherClient
+#
+include $(CLEAR_VARS)
+LOCAL_MODULE := libLauncherClient
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_SRC_FILES := quickstep/libs/launcher_client.jar
+LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SDK_VERSION := current
+include $(BUILD_PREBUILT)
+
+#
 # Build rule for Launcher3 app.
 #
 include $(CLEAR_VARS)
@@ -36,7 +48,8 @@ include $(CLEAR_VARS)
 LOCAL_MODULE_TAGS := optional
 
 LOCAL_STATIC_JAVA_LIBRARIES := \
-    android-support-annotations
+    android-support-annotations \
+    libLauncherClient
 
 LOCAL_STATIC_ANDROID_LIBRARIES := \
     android-support-compat \
@@ -85,7 +98,8 @@ include $(CLEAR_VARS)
 LOCAL_MODULE_TAGS := optional
 
 LOCAL_STATIC_JAVA_LIBRARIES := \
-    android-support-annotations
+    android-support-annotations  \
+    libLauncherClient
 
 LOCAL_STATIC_ANDROID_LIBRARIES := \
     android-support-compat \
@@ -119,7 +133,7 @@ LOCAL_SDK_VERSION := current
 LOCAL_MIN_SDK_VERSION := 21
 LOCAL_PACKAGE_NAME := Launcher3Go
 LOCAL_PRIVILEGED_MODULE := true
-LOCAL_OVERRIDES_PACKAGES := Home Launcher2 Launcher3
+LOCAL_OVERRIDES_PACKAGES := Home Launcher2 Launcher3 Launcher3QuickStep
 
 LOCAL_FULL_LIBS_MANIFEST_FILES := \
     $(LOCAL_PATH)/AndroidManifest.xml \
@@ -140,7 +154,8 @@ LOCAL_MODULE_TAGS := optional
 
 LOCAL_STATIC_JAVA_LIBRARIES := \
     android-support-annotations \
-    libSharedSystemUI
+    libSharedSystemUI \
+    libLauncherClient
 
 LOCAL_STATIC_ANDROID_LIBRARIES := \
     android-support-compat \
@@ -196,7 +211,8 @@ LOCAL_STATIC_JAVA_LIBRARIES := \
     android-support-v4 \
     android-support-v7-recyclerview \
     android-support-dynamic-animation \
-    libSharedSystemUI
+    libSharedSystemUI \
+    libLauncherClient
 
 LOCAL_SRC_FILES := \
     $(call all-java-files-under, src) \
@@ -225,7 +241,7 @@ LOCAL_SDK_VERSION := system_current
 LOCAL_MIN_SDK_VERSION := 26
 LOCAL_PACKAGE_NAME := Launcher3QuickStepGo
 LOCAL_PRIVILEGED_MODULE := true
-LOCAL_OVERRIDES_PACKAGES := Home Launcher2 Launcher3
+LOCAL_OVERRIDES_PACKAGES := Home Launcher2 Launcher3 Launcher3QuickStep
 
 LOCAL_FULL_LIBS_MANIFEST_FILES := \
     $(LOCAL_PATH)/go/AndroidManifest.xml \

@@ -131,6 +131,8 @@ import com.android.launcher3.widget.WidgetHostViewLoader;
 import com.android.launcher3.widget.WidgetListRowEntry;
 import com.android.launcher3.widget.WidgetsFullSheet;
 import com.android.launcher3.widget.custom.CustomWidgetParser;
+import com.google.android.libraries.gsa.launcherclient.LauncherClient;
+import com.google.android.libraries.gsa.launcherclient.LauncherClientCallbacks;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -247,9 +249,20 @@ public class Launcher extends BaseDraggingActivity implements LauncherExterns,
 
     private RotationHelper mRotationHelper;
 
+    private final SearchLauncherCallbacks mCallbacks;
 
     private final Handler mHandler = new Handler();
     private final Runnable mLogOnDelayedResume = this::logOnDelayedResume;
+
+    public Launcher() {
+        Log.i(TAG, "LUYIFANDEBUG Ctor");
+        mCallbacks = new SearchLauncherCallbacks(this);
+        setLauncherCallbacks(mCallbacks);
+    }
+
+    public SearchLauncherCallbacks getCallbacks() {
+        return mCallbacks;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -2420,5 +2433,237 @@ public class Launcher extends BaseDraggingActivity implements LauncherExterns,
     public interface OnResumeCallback {
 
         void onLauncherResume();
+    }
+
+    class OverlayCallbackImpl implements LauncherOverlay, LauncherClientCallbacks {
+
+        private final Launcher mLauncher;
+
+        private LauncherClient mClient;
+        private LauncherOverlayCallbacks mLauncherOverlayCallbacks;
+        private boolean mWasOverlayAttached = false;
+
+        public OverlayCallbackImpl(Launcher launcher) {
+            Log.i(TAG, "OverlayCallbackImpl Ctor");
+            mLauncher = launcher;
+        }
+
+        public void setClient(LauncherClient client) {
+            Log.i(TAG, "OverlayCallbackImpl setClient");
+            mClient = client;
+        }
+
+        @Override
+        public void onServiceStateChanged(boolean overlayAttached, boolean hotwordActive) {
+            Log.i(TAG, "OverlayCallbackImpl onServiceStateChanged");
+            if (overlayAttached != mWasOverlayAttached) {
+                mWasOverlayAttached = overlayAttached;
+                mLauncher.setLauncherOverlay(overlayAttached ? this : null);
+            }
+        }
+
+        @Override
+        public void onOverlayScrollChanged(float progress) {
+            Log.i(TAG, "OverlayCallbackImpl onOverlayScrollChanged");
+            if (mLauncherOverlayCallbacks != null) {
+                mLauncherOverlayCallbacks.onScrollChanged(progress);
+            }
+        }
+
+        @Override
+        public void onScrollInteractionBegin() {
+            Log.i(TAG, "OverlayCallbackImpl onScrollInteractionBegin");
+            mClient.startMove();
+        }
+
+        @Override
+        public void onScrollInteractionEnd() {
+            Log.i(TAG, "OverlayCallbackImpl onScrollInteractionEnd");
+            mClient.endMove();
+        }
+
+        @Override
+        public void onScrollChange(float progress, boolean rtl) {
+            Log.i(TAG, "OverlayCallbackImpl onScrollChange");
+            mClient.updateMove(progress);
+        }
+
+        @Override
+        public void setOverlayCallbacks(LauncherOverlayCallbacks callbacks) {
+            Log.i(TAG, "OverlayCallbackImpl setOverlayCallbacks");
+            mLauncherOverlayCallbacks = callbacks;
+        }
+    }
+
+    class SearchLauncherCallbacks implements LauncherCallbacks {
+
+        private final Launcher mLauncher;
+
+        private OverlayCallbackImpl mOverlayCallbacks;
+        private LauncherClient mLauncherClient;
+        private boolean mDeferCallbacks;
+
+        public SearchLauncherCallbacks(Launcher launcher) {
+            Log.i(TAG, "SearchLauncherCallbacks Ctor");
+            mLauncher = launcher;
+        }
+
+        public void deferCallbacksUntilNextResumeOrStop() {
+            mDeferCallbacks = true;
+        }
+
+        public LauncherClient getLauncherClient() {
+            Log.i(TAG, "SearchLauncherCallbacks getLauncherClient");
+            return mLauncherClient;
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            Log.i(TAG, "SearchLauncherCallbacks onCreate");
+            SharedPreferences prefs = Utilities.getPrefs(mLauncher);
+            mOverlayCallbacks = new OverlayCallbackImpl(mLauncher);
+            mLauncherClient = new LauncherClient(mLauncher, mOverlayCallbacks, getClientOptions(prefs));
+            mOverlayCallbacks.setClient(mLauncherClient);
+        }
+
+        @Override
+        public void onDetachedFromWindow() {
+            Log.i(TAG, "SearchLauncherCallbacks onDetachedFromWindow");
+            mLauncherClient.onDetachedFromWindow();
+        }
+
+        @Override
+        public void onAttachedToWindow() {
+            Log.i(TAG, "SearchLauncherCallbacks onAttachedToWindow");
+            mLauncherClient.onAttachedToWindow();
+        }
+
+        @Override
+        public void onHomeIntent(boolean internalStateHandled) {
+            Log.i(TAG, "SearchLauncherCallbacks onHomeIntent");
+            mLauncherClient.hideOverlay(mLauncher.isStarted() && !mLauncher.isForceInvisible());
+        }
+
+        @Override
+        public void onResume() {
+            Log.i(TAG, "SearchLauncherCallbacks onResume");
+            Handler handler = mLauncher.getDragLayer().getHandler();
+            if (mDeferCallbacks) {
+                if (handler == null) {
+                    // Finish defer if we are not attached to window.
+                    checkIfStillDeferred();
+                } else {
+                    // Wait one frame before checking as we can get multiple resume-pause events
+                    // in the same frame.
+                    handler.post(this::checkIfStillDeferred);
+                }
+            } else {
+                mLauncherClient.onResume();
+            }
+
+        }
+
+        @Override
+        public void onPause() {
+            Log.i(TAG, "SearchLauncherCallbacks onPause");
+            if (!mDeferCallbacks) {
+                mLauncherClient.onPause();
+            }
+        }
+
+        @Override
+        public void onStart() {
+            Log.i(TAG, "SearchLauncherCallbacks onStart");
+            if (!mDeferCallbacks) {
+                mLauncherClient.onStart();
+            }
+        }
+
+        @Override
+        public void onStop() {
+            Log.i(TAG, "SearchLauncherCallbacks onStop");
+            if (mDeferCallbacks) {
+                checkIfStillDeferred();
+            } else {
+                mLauncherClient.onStop();
+            }
+        }
+
+        private void checkIfStillDeferred() {
+            Log.i(TAG, "SearchLauncherCallbacks checkIfStillDeferred");
+            if (!mDeferCallbacks) {
+                return;
+            }
+            if (!mLauncher.hasBeenResumed() && mLauncher.isStarted()) {
+                return;
+            }
+            mDeferCallbacks = false;
+
+            // Move the client to the correct state. Calling the same method twice is no-op.
+            if (mLauncher.isStarted()) {
+                mLauncherClient.onStart();
+            }
+            if (mLauncher.hasBeenResumed()) {
+                mLauncherClient.onResume();
+            } else {
+                mLauncherClient.onPause();
+            }
+            if (!mLauncher.isStarted()) {
+                mLauncherClient.onStop();
+            }
+        }
+
+        @Override
+        public void onDestroy() {
+            Log.i(TAG, "SearchLauncherCallbacks onDestroy");
+            mLauncherClient.onDestroy();
+        }
+
+        @Override
+        public void onSaveInstanceState(Bundle outState) { }
+
+        @Override
+        public void onActivityResult(int requestCode, int resultCode, Intent data) { }
+
+        @Override
+        public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) { }
+
+        @Override
+        public void dump(String prefix, FileDescriptor fd, PrintWriter w, String[] args) {
+            mLauncherClient.dump(prefix, w);
+        }
+
+        @Override
+        public boolean handleBackPressed() {
+            return false;
+        }
+
+        @Override
+        public void onTrimMemory(int level) { }
+
+        @Override
+        public void onLauncherProviderChange() { }
+
+        @Override
+        public void bindAllApplications(ArrayList<AppInfo> apps) { }
+
+        @Override
+        public boolean hasSettings() {
+            return false;
+        }
+
+        @Override
+        public boolean startSearch(String initialQuery, boolean selectInitialQuery, Bundle appSearchData) {
+            return false;
+        }
+
+        private LauncherClient.ClientOptions getClientOptions(SharedPreferences prefs) {
+            Log.i(TAG, "SearchLauncherCallbacks getClientOptions");
+            return new LauncherClient.ClientOptions(
+                true,
+                true, /* enableHotword */
+                true /* enablePrewarming */
+            );
+        }
     }
 }
