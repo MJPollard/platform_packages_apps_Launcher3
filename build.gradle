@@ -31,6 +31,11 @@ android {
         debug {
             minifyEnabled false
         }
+        optimized {
+            initWith debug
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard.flags'
+        }
     }
 
     compileOptions {
@@ -79,6 +84,10 @@ android {
         }
 
         debug {
+            manifest.srcFile "AndroidManifest.xml"
+        }
+
+        optimized {
             manifest.srcFile "AndroidManifest.xml"
         }
 
