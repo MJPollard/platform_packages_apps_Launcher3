@@ -1,4 +1,4 @@
-package com.android.launcher3;
+package com.android.launcher3a;
 
 import android.content.ComponentName;
 import android.content.ContentValues;
@@ -29,18 +29,18 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.util.LongSparseArray;
 
-import com.android.launcher3.compat.AppWidgetManagerCompat;
-import com.android.launcher3.compat.ShortcutConfigActivityInfo;
-import com.android.launcher3.compat.UserManagerCompat;
-import com.android.launcher3.graphics.LauncherIcons;
-import com.android.launcher3.graphics.ShadowGenerator;
-import com.android.launcher3.model.WidgetItem;
-import com.android.launcher3.util.ComponentKey;
-import com.android.launcher3.util.PackageUserKey;
-import com.android.launcher3.util.Preconditions;
-import com.android.launcher3.util.SQLiteCacheHelper;
-import com.android.launcher3.util.Thunk;
-import com.android.launcher3.widget.WidgetCell;
+import com.android.launcher3a.compat.AppWidgetManagerCompat;
+import com.android.launcher3a.compat.ShortcutConfigActivityInfo;
+import com.android.launcher3a.compat.UserManagerCompat;
+import com.android.launcher3a.graphics.LauncherIcons;
+import com.android.launcher3a.graphics.ShadowGenerator;
+import com.android.launcher3a.model.WidgetItem;
+import com.android.launcher3a.util.ComponentKey;
+import com.android.launcher3a.util.PackageUserKey;
+import com.android.launcher3a.util.Preconditions;
+import com.android.launcher3a.util.SQLiteCacheHelper;
+import com.android.launcher3a.util.Thunk;
+import com.android.launcher3a.widget.WidgetCell;
 
 import java.util.ArrayList;
 import java.util.Collections;

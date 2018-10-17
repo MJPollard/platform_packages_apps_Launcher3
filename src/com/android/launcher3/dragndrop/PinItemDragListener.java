@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.dragndrop;
+package com.android.launcher3a.dragndrop;
 
 import android.annotation.TargetApi;
 import android.appwidget.AppWidgetManager;
@@ -27,17 +27,17 @@ import android.view.DragEvent;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import com.android.launcher3.DragSource;
-import com.android.launcher3.ItemInfo;
-import com.android.launcher3.Launcher;
-import com.android.launcher3.LauncherAppWidgetProviderInfo;
-import com.android.launcher3.PendingAddItemInfo;
-import com.android.launcher3.uioverrides.UiFactory;
-import com.android.launcher3.userevent.nano.LauncherLogProto;
-import com.android.launcher3.widget.PendingAddShortcutInfo;
-import com.android.launcher3.widget.PendingAddWidgetInfo;
-import com.android.launcher3.widget.PendingItemDragHelper;
-import com.android.launcher3.widget.WidgetAddFlowHandler;
+import com.android.launcher3a.DragSource;
+import com.android.launcher3a.ItemInfo;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.LauncherAppWidgetProviderInfo;
+import com.android.launcher3a.PendingAddItemInfo;
+import com.android.launcher3a.uioverrides.UiFactory;
+import com.android.launcher3a.userevent.nano.LauncherLogProto;
+import com.android.launcher3a.widget.PendingAddShortcutInfo;
+import com.android.launcher3a.widget.PendingAddWidgetInfo;
+import com.android.launcher3a.widget.PendingItemDragHelper;
+import com.android.launcher3a.widget.WidgetAddFlowHandler;
 
 /**
  * {@link DragSource} for handling drop from a different window. This object is initialized

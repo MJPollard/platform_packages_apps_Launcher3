@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package com.android.launcher3;
+package com.android.launcher3a;
 
 import static android.content.pm.ActivityInfo.CONFIG_ORIENTATION;
 import static android.content.pm.ActivityInfo.CONFIG_SCREEN_SIZE;
 
-import static com.android.launcher3.LauncherAnimUtils.SPRING_LOADED_EXIT_DELAY;
-import static com.android.launcher3.LauncherState.ALL_APPS;
-import static com.android.launcher3.LauncherState.NORMAL;
-import static com.android.launcher3.dragndrop.DragLayer.ALPHA_INDEX_LAUNCHER_LOAD;
-import static com.android.launcher3.logging.LoggerUtils.newContainerTarget;
-import static com.android.launcher3.logging.LoggerUtils.newTarget;
+import static com.android.launcher3a.LauncherAnimUtils.SPRING_LOADED_EXIT_DELAY;
+import static com.android.launcher3a.LauncherState.ALL_APPS;
+import static com.android.launcher3a.LauncherState.NORMAL;
+import static com.android.launcher3a.dragndrop.DragLayer.ALPHA_INDEX_LAUNCHER_LOAD;
+import static com.android.launcher3a.logging.LoggerUtils.newContainerTarget;
+import static com.android.launcher3a.logging.LoggerUtils.newTarget;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -73,64 +73,64 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.animation.OvershootInterpolator;
 import android.widget.Toast;
 
-import com.android.launcher3.DropTarget.DragObject;
-import com.android.launcher3.Workspace.ItemOperator;
-import com.android.launcher3.accessibility.LauncherAccessibilityDelegate;
-import com.android.launcher3.allapps.AllAppsContainerView;
-import com.android.launcher3.allapps.AllAppsTransitionController;
-import com.android.launcher3.allapps.DiscoveryBounce;
-import com.android.launcher3.badge.BadgeInfo;
-import com.android.launcher3.compat.AppWidgetManagerCompat;
-import com.android.launcher3.compat.LauncherAppsCompatVO;
-import com.android.launcher3.config.FeatureFlags;
-import com.android.launcher3.dragndrop.DragController;
-import com.android.launcher3.dragndrop.DragLayer;
-import com.android.launcher3.dragndrop.DragView;
-import com.android.launcher3.folder.FolderIcon;
-import com.android.launcher3.folder.FolderIconPreviewVerifier;
-import com.android.launcher3.keyboard.CustomActionsPopup;
-import com.android.launcher3.keyboard.ViewGroupFocusHelper;
-import com.android.launcher3.logging.FileLog;
-import com.android.launcher3.logging.UserEventDispatcher;
-import com.android.launcher3.logging.UserEventDispatcher.UserEventDelegate;
-import com.android.launcher3.model.ModelWriter;
-import com.android.launcher3.notification.NotificationListener;
-import com.android.launcher3.popup.PopupContainerWithArrow;
-import com.android.launcher3.popup.PopupDataProvider;
-import com.android.launcher3.shortcuts.DeepShortcutManager;
-import com.android.launcher3.states.InternalStateHandler;
-import com.android.launcher3.states.RotationHelper;
-import com.android.launcher3.touch.ItemClickHandler;
-import com.android.launcher3.uioverrides.UiFactory;
-import com.android.launcher3.userevent.nano.LauncherLogProto;
-import com.android.launcher3.userevent.nano.LauncherLogProto.Action;
-import com.android.launcher3.userevent.nano.LauncherLogProto.ContainerType;
-import com.android.launcher3.userevent.nano.LauncherLogProto.Target;
-import com.android.launcher3.util.ActivityResultInfo;
-import com.android.launcher3.util.ComponentKey;
-import com.android.launcher3.util.ItemInfoMatcher;
-import com.android.launcher3.util.MultiHashMap;
-import com.android.launcher3.util.MultiValueAlpha;
-import com.android.launcher3.util.MultiValueAlpha.AlphaProperty;
-import com.android.launcher3.util.PackageManagerHelper;
-import com.android.launcher3.util.PackageUserKey;
-import com.android.launcher3.util.PendingRequestArgs;
-import com.android.launcher3.util.SystemUiController;
-import com.android.launcher3.util.Themes;
-import com.android.launcher3.util.Thunk;
-import com.android.launcher3.util.TraceHelper;
-import com.android.launcher3.util.UiThreadHelper;
-import com.android.launcher3.util.ViewOnDrawExecutor;
-import com.android.launcher3.views.OptionsPopupView;
-import com.android.launcher3.widget.LauncherAppWidgetHostView;
-import com.android.launcher3.widget.PendingAddShortcutInfo;
-import com.android.launcher3.widget.PendingAddWidgetInfo;
-import com.android.launcher3.widget.PendingAppWidgetHostView;
-import com.android.launcher3.widget.WidgetAddFlowHandler;
-import com.android.launcher3.widget.WidgetHostViewLoader;
-import com.android.launcher3.widget.WidgetListRowEntry;
-import com.android.launcher3.widget.WidgetsFullSheet;
-import com.android.launcher3.widget.custom.CustomWidgetParser;
+import com.android.launcher3a.DropTarget.DragObject;
+import com.android.launcher3a.Workspace.ItemOperator;
+import com.android.launcher3a.accessibility.LauncherAccessibilityDelegate;
+import com.android.launcher3a.allapps.AllAppsContainerView;
+import com.android.launcher3a.allapps.AllAppsTransitionController;
+import com.android.launcher3a.allapps.DiscoveryBounce;
+import com.android.launcher3a.badge.BadgeInfo;
+import com.android.launcher3a.compat.AppWidgetManagerCompat;
+import com.android.launcher3a.compat.LauncherAppsCompatVO;
+import com.android.launcher3a.config.FeatureFlags;
+import com.android.launcher3a.dragndrop.DragController;
+import com.android.launcher3a.dragndrop.DragLayer;
+import com.android.launcher3a.dragndrop.DragView;
+import com.android.launcher3a.folder.FolderIcon;
+import com.android.launcher3a.folder.FolderIconPreviewVerifier;
+import com.android.launcher3a.keyboard.CustomActionsPopup;
+import com.android.launcher3a.keyboard.ViewGroupFocusHelper;
+import com.android.launcher3a.logging.FileLog;
+import com.android.launcher3a.logging.UserEventDispatcher;
+import com.android.launcher3a.logging.UserEventDispatcher.UserEventDelegate;
+import com.android.launcher3a.model.ModelWriter;
+import com.android.launcher3a.notification.NotificationListener;
+import com.android.launcher3a.popup.PopupContainerWithArrow;
+import com.android.launcher3a.popup.PopupDataProvider;
+import com.android.launcher3a.shortcuts.DeepShortcutManager;
+import com.android.launcher3a.states.InternalStateHandler;
+import com.android.launcher3a.states.RotationHelper;
+import com.android.launcher3a.touch.ItemClickHandler;
+import com.android.launcher3a.uioverrides.UiFactory;
+import com.android.launcher3a.userevent.nano.LauncherLogProto;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.Action;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.ContainerType;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.Target;
+import com.android.launcher3a.util.ActivityResultInfo;
+import com.android.launcher3a.util.ComponentKey;
+import com.android.launcher3a.util.ItemInfoMatcher;
+import com.android.launcher3a.util.MultiHashMap;
+import com.android.launcher3a.util.MultiValueAlpha;
+import com.android.launcher3a.util.MultiValueAlpha.AlphaProperty;
+import com.android.launcher3a.util.PackageManagerHelper;
+import com.android.launcher3a.util.PackageUserKey;
+import com.android.launcher3a.util.PendingRequestArgs;
+import com.android.launcher3a.util.SystemUiController;
+import com.android.launcher3a.util.Themes;
+import com.android.launcher3a.util.Thunk;
+import com.android.launcher3a.util.TraceHelper;
+import com.android.launcher3a.util.UiThreadHelper;
+import com.android.launcher3a.util.ViewOnDrawExecutor;
+import com.android.launcher3a.views.OptionsPopupView;
+import com.android.launcher3a.widget.LauncherAppWidgetHostView;
+import com.android.launcher3a.widget.PendingAddShortcutInfo;
+import com.android.launcher3a.widget.PendingAddWidgetInfo;
+import com.android.launcher3a.widget.PendingAppWidgetHostView;
+import com.android.launcher3a.widget.WidgetAddFlowHandler;
+import com.android.launcher3a.widget.WidgetHostViewLoader;
+import com.android.launcher3a.widget.WidgetListRowEntry;
+import com.android.launcher3a.widget.WidgetsFullSheet;
+import com.android.launcher3a.widget.custom.CustomWidgetParser;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -2276,7 +2276,7 @@ public class Launcher extends BaseDraggingActivity implements LauncherExterns,
     }
 
     /**
-     * $ adb shell dumpsys activity com.android.launcher3.Launcher [--all]
+     * $ adb shell dumpsys activity com.android.launcher3a.Launcher [--all]
      */
     @Override
     public void dump(String prefix, FileDescriptor fd, PrintWriter writer, String[] args) {

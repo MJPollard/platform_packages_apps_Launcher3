@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.launcher3.widget;
+package com.android.launcher3a.widget;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -27,13 +27,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 
-import com.android.launcher3.Insettable;
-import com.android.launcher3.Launcher;
-import com.android.launcher3.LauncherAppState;
-import com.android.launcher3.LauncherAppWidgetHost.ProviderChangedListener;
-import com.android.launcher3.R;
-import com.android.launcher3.views.RecyclerViewFastScroller;
-import com.android.launcher3.views.TopRoundedCornerView;
+import com.android.launcher3a.Insettable;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.LauncherAppState;
+import com.android.launcher3a.LauncherAppWidgetHost.ProviderChangedListener;
+import com.android.launcher3a.R;
+import com.android.launcher3a.views.RecyclerViewFastScroller;
+import com.android.launcher3a.views.TopRoundedCornerView;
 
 /**
  * Popup for showing the full list of available widgets

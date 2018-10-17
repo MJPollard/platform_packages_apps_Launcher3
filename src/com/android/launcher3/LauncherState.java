@@ -13,24 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.launcher3;
+package com.android.launcher3a;
 
 import static android.view.View.IMPORTANT_FOR_ACCESSIBILITY_AUTO;
 import static android.view.View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS;
 import static android.view.accessibility.AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED;
 
-import static com.android.launcher3.anim.Interpolators.ACCEL_2;
-import static com.android.launcher3.states.RotationHelper.REQUEST_NONE;
+import static com.android.launcher3a.anim.Interpolators.ACCEL_2;
+import static com.android.launcher3a.states.RotationHelper.REQUEST_NONE;
 
 import android.graphics.Rect;
 import android.view.animation.Interpolator;
 
-import com.android.launcher3.states.SpringLoadedState;
-import com.android.launcher3.uioverrides.AllAppsState;
-import com.android.launcher3.uioverrides.FastOverviewState;
-import com.android.launcher3.uioverrides.OverviewState;
-import com.android.launcher3.uioverrides.UiFactory;
-import com.android.launcher3.userevent.nano.LauncherLogProto.ContainerType;
+import com.android.launcher3a.states.SpringLoadedState;
+import com.android.launcher3a.uioverrides.AllAppsState;
+import com.android.launcher3a.uioverrides.FastOverviewState;
+import com.android.launcher3a.uioverrides.OverviewState;
+import com.android.launcher3a.uioverrides.UiFactory;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.ContainerType;
 
 import java.util.Arrays;
 
@@ -94,7 +94,7 @@ public class LauncherState {
     public final int ordinal;
 
     /**
-     * Used for containerType in {@link com.android.launcher3.logging.UserEventDispatcher}
+     * Used for containerType in {@link com.android.launcher3a.logging.UserEventDispatcher}
      */
     public final int containerType;
 
@@ -206,7 +206,7 @@ public class LauncherState {
     /**
      * Fraction shift in the vertical translation UI and related properties
      *
-     * @see com.android.launcher3.allapps.AllAppsTransitionController
+     * @see com.android.launcher3a.allapps.AllAppsTransitionController
      */
     public float getVerticalProgress(Launcher launcher) {
         return 1f;

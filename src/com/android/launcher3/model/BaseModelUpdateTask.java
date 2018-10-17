@@ -13,22 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.launcher3.model;
+package com.android.launcher3a.model;
 
 import android.os.UserHandle;
 import android.util.Log;
 
-import com.android.launcher3.AllAppsList;
-import com.android.launcher3.LauncherAppState;
-import com.android.launcher3.LauncherModel;
-import com.android.launcher3.LauncherModel.ModelUpdateTask;
-import com.android.launcher3.LauncherModel.CallbackTask;
-import com.android.launcher3.LauncherModel.Callbacks;
-import com.android.launcher3.ShortcutInfo;
-import com.android.launcher3.util.ComponentKey;
-import com.android.launcher3.util.ItemInfoMatcher;
-import com.android.launcher3.util.MultiHashMap;
-import com.android.launcher3.widget.WidgetListRowEntry;
+import com.android.launcher3a.AllAppsList;
+import com.android.launcher3a.LauncherAppState;
+import com.android.launcher3a.LauncherModel;
+import com.android.launcher3a.LauncherModel.ModelUpdateTask;
+import com.android.launcher3a.LauncherModel.CallbackTask;
+import com.android.launcher3a.LauncherModel.Callbacks;
+import com.android.launcher3a.ShortcutInfo;
+import com.android.launcher3a.util.ComponentKey;
+import com.android.launcher3a.util.ItemInfoMatcher;
+import com.android.launcher3a.util.MultiHashMap;
+import com.android.launcher3a.widget.WidgetListRowEntry;
 
 import java.util.ArrayList;
 import java.util.concurrent.Executor;

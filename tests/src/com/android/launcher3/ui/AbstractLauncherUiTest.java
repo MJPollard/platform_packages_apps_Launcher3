@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.android.launcher3.ui;
+package com.android.launcher3a.ui;
 
 import android.app.Instrumentation;
 import android.content.BroadcastReceiver;
@@ -35,16 +35,16 @@ import android.support.test.uiautomator.UiObject2;
 import android.support.test.uiautomator.Until;
 import android.view.MotionEvent;
 
-import com.android.launcher3.LauncherAppState;
-import com.android.launcher3.LauncherAppWidgetProviderInfo;
-import com.android.launcher3.LauncherSettings;
-import com.android.launcher3.MainThreadExecutor;
-import com.android.launcher3.R;
-import com.android.launcher3.compat.AppWidgetManagerCompat;
-import com.android.launcher3.compat.LauncherAppsCompat;
-import com.android.launcher3.config.FeatureFlags;
-import com.android.launcher3.testcomponent.AppWidgetNoConfig;
-import com.android.launcher3.testcomponent.AppWidgetWithConfig;
+import com.android.launcher3a.LauncherAppState;
+import com.android.launcher3a.LauncherAppWidgetProviderInfo;
+import com.android.launcher3a.LauncherSettings;
+import com.android.launcher3a.MainThreadExecutor;
+import com.android.launcher3a.R;
+import com.android.launcher3a.compat.AppWidgetManagerCompat;
+import com.android.launcher3a.compat.LauncherAppsCompat;
+import com.android.launcher3a.config.FeatureFlags;
+import com.android.launcher3a.testcomponent.AppWidgetNoConfig;
+import com.android.launcher3a.testcomponent.AppWidgetWithConfig;
 
 import org.junit.Before;
 

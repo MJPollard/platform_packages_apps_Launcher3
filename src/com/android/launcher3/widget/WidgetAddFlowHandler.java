@@ -13,18 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.launcher3.widget;
+package com.android.launcher3a.widget;
 
 import android.appwidget.AppWidgetProviderInfo;
 import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.android.launcher3.ItemInfo;
-import com.android.launcher3.Launcher;
-import com.android.launcher3.LauncherAppWidgetInfo;
-import com.android.launcher3.LauncherAppWidgetProviderInfo;
-import com.android.launcher3.util.PendingRequestArgs;
+import com.android.launcher3a.ItemInfo;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.LauncherAppWidgetInfo;
+import com.android.launcher3a.LauncherAppWidgetProviderInfo;
+import com.android.launcher3a.util.PendingRequestArgs;
 
 /**
  * Utility class to handle app widget add flow.

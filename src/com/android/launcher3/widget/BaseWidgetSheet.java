@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.launcher3.widget;
+package com.android.launcher3a.widget;
 
-import static com.android.launcher3.logging.LoggerUtils.newContainerTarget;
+import static com.android.launcher3a.logging.LoggerUtils.newContainerTarget;
 
 import android.content.Context;
 import android.graphics.Point;
@@ -25,19 +25,19 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.widget.Toast;
 
-import com.android.launcher3.DragSource;
-import com.android.launcher3.DropTarget.DragObject;
-import com.android.launcher3.ItemInfo;
-import com.android.launcher3.R;
-import com.android.launcher3.Utilities;
-import com.android.launcher3.dragndrop.DragOptions;
-import com.android.launcher3.graphics.ColorScrim;
-import com.android.launcher3.touch.ItemLongClickListener;
-import com.android.launcher3.userevent.nano.LauncherLogProto.ContainerType;
-import com.android.launcher3.userevent.nano.LauncherLogProto.Target;
-import com.android.launcher3.util.SystemUiController;
-import com.android.launcher3.util.Themes;
-import com.android.launcher3.views.AbstractSlideInView;
+import com.android.launcher3a.DragSource;
+import com.android.launcher3a.DropTarget.DragObject;
+import com.android.launcher3a.ItemInfo;
+import com.android.launcher3a.R;
+import com.android.launcher3a.Utilities;
+import com.android.launcher3a.dragndrop.DragOptions;
+import com.android.launcher3a.graphics.ColorScrim;
+import com.android.launcher3a.touch.ItemLongClickListener;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.ContainerType;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.Target;
+import com.android.launcher3a.util.SystemUiController;
+import com.android.launcher3a.util.Themes;
+import com.android.launcher3a.views.AbstractSlideInView;
 
 /**
  * Base class for various widgets popup

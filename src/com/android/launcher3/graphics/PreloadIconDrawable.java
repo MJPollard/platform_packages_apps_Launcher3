@@ -15,7 +15,7 @@
  */
 
 
-package com.android.launcher3.graphics;
+package com.android.launcher3a.graphics;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -31,9 +31,9 @@ import android.graphics.Rect;
 import android.util.Property;
 import android.util.SparseArray;
 
-import com.android.launcher3.FastBitmapDrawable;
-import com.android.launcher3.ItemInfoWithIcon;
-import com.android.launcher3.anim.Interpolators;
+import com.android.launcher3a.FastBitmapDrawable;
+import com.android.launcher3a.ItemInfoWithIcon;
+import com.android.launcher3a.anim.Interpolators;
 
 import java.lang.ref.WeakReference;
 

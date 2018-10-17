@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.widget;
+package com.android.launcher3a.widget;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -29,14 +29,14 @@ import android.view.ViewPropertyAnimator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.android.launcher3.BaseActivity;
-import com.android.launcher3.DeviceProfile;
-import com.android.launcher3.R;
-import com.android.launcher3.SimpleOnStylusPressListener;
-import com.android.launcher3.StylusEventHelper;
-import com.android.launcher3.WidgetPreviewLoader;
-import com.android.launcher3.graphics.DrawableFactory;
-import com.android.launcher3.model.WidgetItem;
+import com.android.launcher3a.BaseActivity;
+import com.android.launcher3a.DeviceProfile;
+import com.android.launcher3a.R;
+import com.android.launcher3a.SimpleOnStylusPressListener;
+import com.android.launcher3a.StylusEventHelper;
+import com.android.launcher3a.WidgetPreviewLoader;
+import com.android.launcher3a.graphics.DrawableFactory;
+import com.android.launcher3a.model.WidgetItem;
 
 /**
  * Represents the individual cell of the widget inside the widget tray. The preview is drawn

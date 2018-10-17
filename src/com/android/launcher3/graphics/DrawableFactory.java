@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.graphics;
+package com.android.launcher3a.graphics;
 
 import android.content.Context;
 import android.content.pm.ActivityInfo;
@@ -31,11 +31,11 @@ import android.os.UserHandle;
 import android.support.annotation.UiThread;
 import android.util.ArrayMap;
 import android.util.Log;
-import com.android.launcher3.FastBitmapDrawable;
-import com.android.launcher3.ItemInfoWithIcon;
-import com.android.launcher3.R;
-import com.android.launcher3.Utilities;
-import com.android.launcher3.allapps.AllAppsBackgroundDrawable;
+import com.android.launcher3a.FastBitmapDrawable;
+import com.android.launcher3a.ItemInfoWithIcon;
+import com.android.launcher3a.R;
+import com.android.launcher3a.Utilities;
+import com.android.launcher3a.allapps.AllAppsBackgroundDrawable;
 
 /**
  * Factory for creating new drawables.

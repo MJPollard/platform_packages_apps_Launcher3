@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.provider;
+package com.android.launcher3a.provider;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -23,9 +23,9 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.android.launcher3.LauncherAppState;
-import com.android.launcher3.LauncherSettings.Favorites;
-import com.android.launcher3.LauncherSettings.WorkspaceScreens;
+import com.android.launcher3a.LauncherAppState;
+import com.android.launcher3a.LauncherSettings.Favorites;
+import com.android.launcher3a.LauncherSettings.WorkspaceScreens;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3;
+package com.android.launcher3a;
 
 import android.appwidget.AppWidgetHostView;
 import android.content.ComponentName;
@@ -28,9 +28,9 @@ import android.util.DisplayMetrics;
 import android.view.Surface;
 import android.view.WindowManager;
 
-import com.android.launcher3.CellLayout.ContainerType;
-import com.android.launcher3.badge.BadgeRenderer;
-import com.android.launcher3.graphics.IconNormalizer;
+import com.android.launcher3a.CellLayout.ContainerType;
+import com.android.launcher3a.badge.BadgeRenderer;
+import com.android.launcher3a.graphics.IconNormalizer;
 
 public class DeviceProfile {
 

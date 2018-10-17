@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.util;
+package com.android.launcher3a.util;
 
 import android.content.ComponentName;
 import android.os.UserHandle;
 import android.util.SparseLongArray;
 
-import com.android.launcher3.FolderInfo;
-import com.android.launcher3.ItemInfo;
-import com.android.launcher3.LauncherAppWidgetInfo;
-import com.android.launcher3.LauncherSettings.Favorites;
-import com.android.launcher3.ShortcutInfo;
-import com.android.launcher3.shortcuts.ShortcutKey;
+import com.android.launcher3a.FolderInfo;
+import com.android.launcher3a.ItemInfo;
+import com.android.launcher3a.LauncherAppWidgetInfo;
+import com.android.launcher3a.LauncherSettings.Favorites;
+import com.android.launcher3a.ShortcutInfo;
+import com.android.launcher3a.shortcuts.ShortcutKey;
 
 import java.util.HashSet;
 

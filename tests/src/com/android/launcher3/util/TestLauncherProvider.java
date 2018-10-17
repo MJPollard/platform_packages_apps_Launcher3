@@ -1,10 +1,10 @@
-package com.android.launcher3.util;
+package com.android.launcher3a.util;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.android.launcher3.LauncherProvider;
+import com.android.launcher3a.LauncherProvider;
 
 /**
  * An extension of LauncherProvider backed up by in-memory database.

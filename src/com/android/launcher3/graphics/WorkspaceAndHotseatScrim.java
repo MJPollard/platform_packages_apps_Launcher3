@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.graphics;
+package com.android.launcher3a.graphics;
 
 import static android.content.Intent.ACTION_SCREEN_OFF;
 import static android.content.Intent.ACTION_USER_PRESENT;
@@ -39,13 +39,13 @@ import android.util.DisplayMetrics;
 import android.util.Property;
 import android.view.View;
 
-import com.android.launcher3.CellLayout;
-import com.android.launcher3.Launcher;
-import com.android.launcher3.R;
-import com.android.launcher3.Utilities;
-import com.android.launcher3.Workspace;
-import com.android.launcher3.uioverrides.WallpaperColorInfo;
-import com.android.launcher3.util.Themes;
+import com.android.launcher3a.CellLayout;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.R;
+import com.android.launcher3a.Utilities;
+import com.android.launcher3a.Workspace;
+import com.android.launcher3a.uioverrides.WallpaperColorInfo;
+import com.android.launcher3a.util.Themes;
 
 /**
  * View scrim which draws behind hotseat and workspace

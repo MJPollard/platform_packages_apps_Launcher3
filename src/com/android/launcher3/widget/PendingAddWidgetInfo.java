@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.launcher3.widget;
+package com.android.launcher3a.widget;
 
 import android.appwidget.AppWidgetHostView;
 import android.os.Bundle;
 
-import com.android.launcher3.LauncherAppWidgetProviderInfo;
-import com.android.launcher3.LauncherSettings;
-import com.android.launcher3.PendingAddItemInfo;
+import com.android.launcher3a.LauncherAppWidgetProviderInfo;
+import com.android.launcher3a.LauncherSettings;
+import com.android.launcher3a.PendingAddItemInfo;
 
 /**
  * Meta data used for late binding of {@link LauncherAppWidgetProviderInfo}.

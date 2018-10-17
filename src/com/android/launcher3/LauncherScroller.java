@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3;
+package com.android.launcher3a;
 
 import android.animation.TimeInterpolator;
 import android.content.Context;

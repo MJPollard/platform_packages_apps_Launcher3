@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.model;
+package com.android.launcher3a.model;
 
 import android.content.ComponentName;
 import android.content.ContentValues;
@@ -32,24 +32,24 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.LongSparseArray;
 
-import com.android.launcher3.AppInfo;
-import com.android.launcher3.IconCache;
-import com.android.launcher3.InvariantDeviceProfile;
-import com.android.launcher3.ItemInfo;
-import com.android.launcher3.LauncherAppState;
-import com.android.launcher3.LauncherSettings;
-import com.android.launcher3.ShortcutInfo;
-import com.android.launcher3.Utilities;
-import com.android.launcher3.Workspace;
-import com.android.launcher3.compat.LauncherAppsCompat;
-import com.android.launcher3.compat.UserManagerCompat;
-import com.android.launcher3.config.FeatureFlags;
-import com.android.launcher3.graphics.BitmapInfo;
-import com.android.launcher3.graphics.LauncherIcons;
-import com.android.launcher3.logging.FileLog;
-import com.android.launcher3.util.ContentWriter;
-import com.android.launcher3.util.GridOccupancy;
-import com.android.launcher3.util.LongArrayMap;
+import com.android.launcher3a.AppInfo;
+import com.android.launcher3a.IconCache;
+import com.android.launcher3a.InvariantDeviceProfile;
+import com.android.launcher3a.ItemInfo;
+import com.android.launcher3a.LauncherAppState;
+import com.android.launcher3a.LauncherSettings;
+import com.android.launcher3a.ShortcutInfo;
+import com.android.launcher3a.Utilities;
+import com.android.launcher3a.Workspace;
+import com.android.launcher3a.compat.LauncherAppsCompat;
+import com.android.launcher3a.compat.UserManagerCompat;
+import com.android.launcher3a.config.FeatureFlags;
+import com.android.launcher3a.graphics.BitmapInfo;
+import com.android.launcher3a.graphics.LauncherIcons;
+import com.android.launcher3a.logging.FileLog;
+import com.android.launcher3a.util.ContentWriter;
+import com.android.launcher3a.util.GridOccupancy;
+import com.android.launcher3a.util.LongArrayMap;
 
 import java.net.URISyntaxException;
 import java.security.InvalidParameterException;

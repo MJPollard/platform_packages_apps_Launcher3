@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.android.launcher3;
+package com.android.launcher3a;
 
-import static com.android.launcher3.compat.AccessibilityManagerCompat.isAccessibilityEnabled;
-import static com.android.launcher3.compat.AccessibilityManagerCompat.isObservedEventType;
+import static com.android.launcher3a.compat.AccessibilityManagerCompat.isAccessibilityEnabled;
+import static com.android.launcher3a.compat.AccessibilityManagerCompat.isObservedEventType;
 
 import android.animation.LayoutTransition;
 import android.animation.TimeInterpolator;
@@ -44,11 +44,11 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.animation.Interpolator;
 import android.widget.ScrollView;
 
-import com.android.launcher3.anim.Interpolators;
-import com.android.launcher3.config.FeatureFlags;
-import com.android.launcher3.pageindicators.PageIndicator;
-import com.android.launcher3.touch.OverScroll;
-import com.android.launcher3.util.Thunk;
+import com.android.launcher3a.anim.Interpolators;
+import com.android.launcher3a.config.FeatureFlags;
+import com.android.launcher3a.pageindicators.PageIndicator;
+import com.android.launcher3a.touch.OverScroll;
+import com.android.launcher3a.util.Thunk;
 
 import java.util.ArrayList;
 

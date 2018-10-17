@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.dragndrop;
+package com.android.launcher3a.dragndrop;
 
-import com.android.launcher3.Alarm;
-import com.android.launcher3.CellLayout;
-import com.android.launcher3.Launcher;
-import com.android.launcher3.OnAlarmListener;
-import com.android.launcher3.Workspace;
+import com.android.launcher3a.Alarm;
+import com.android.launcher3a.CellLayout;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.OnAlarmListener;
+import com.android.launcher3a.Workspace;
 
 public class SpringLoadedDragController implements OnAlarmListener {
     // how long the user must hover over a mini-screen before it unshrinks

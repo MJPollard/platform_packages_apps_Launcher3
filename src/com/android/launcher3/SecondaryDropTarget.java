@@ -1,13 +1,13 @@
-package com.android.launcher3;
+package com.android.launcher3a;
 
 import static android.appwidget.AppWidgetManager.INVALID_APPWIDGET_ID;
 import static android.appwidget.AppWidgetProviderInfo.WIDGET_FEATURE_RECONFIGURABLE;
 
-import static com.android.launcher3.ItemInfoWithIcon.FLAG_SYSTEM_MASK;
-import static com.android.launcher3.ItemInfoWithIcon.FLAG_SYSTEM_NO;
-import static com.android.launcher3.LauncherSettings.Favorites.CONTAINER_DESKTOP;
-import static com.android.launcher3.accessibility.LauncherAccessibilityDelegate.RECONFIGURE;
-import static com.android.launcher3.accessibility.LauncherAccessibilityDelegate.UNINSTALL;
+import static com.android.launcher3a.ItemInfoWithIcon.FLAG_SYSTEM_MASK;
+import static com.android.launcher3a.ItemInfoWithIcon.FLAG_SYSTEM_NO;
+import static com.android.launcher3a.LauncherSettings.Favorites.CONTAINER_DESKTOP;
+import static com.android.launcher3a.accessibility.LauncherAccessibilityDelegate.RECONFIGURE;
+import static com.android.launcher3a.accessibility.LauncherAccessibilityDelegate.UNINSTALL;
 
 import android.appwidget.AppWidgetHostView;
 import android.appwidget.AppWidgetManager;
@@ -28,13 +28,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.android.launcher3.Launcher.OnResumeCallback;
-import com.android.launcher3.compat.LauncherAppsCompat;
-import com.android.launcher3.dragndrop.DragOptions;
-import com.android.launcher3.logging.LoggerUtils;
-import com.android.launcher3.userevent.nano.LauncherLogProto.ControlType;
-import com.android.launcher3.userevent.nano.LauncherLogProto.Target;
-import com.android.launcher3.util.Themes;
+import com.android.launcher3a.Launcher.OnResumeCallback;
+import com.android.launcher3a.compat.LauncherAppsCompat;
+import com.android.launcher3a.dragndrop.DragOptions;
+import com.android.launcher3a.logging.LoggerUtils;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.ControlType;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.Target;
+import com.android.launcher3a.util.Themes;
 
 import java.net.URISyntaxException;
 

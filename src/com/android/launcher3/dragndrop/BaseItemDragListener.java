@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.dragndrop;
+package com.android.launcher3a.dragndrop;
 
-import static com.android.launcher3.LauncherState.NORMAL;
-import static com.android.launcher3.states.RotationHelper.REQUEST_LOCK;
-import static com.android.launcher3.states.RotationHelper.REQUEST_NONE;
+import static com.android.launcher3a.LauncherState.NORMAL;
+import static com.android.launcher3a.states.RotationHelper.REQUEST_LOCK;
+import static com.android.launcher3a.states.RotationHelper.REQUEST_NONE;
 
 import android.content.ClipDescription;
 import android.content.Intent;
@@ -31,13 +31,13 @@ import android.util.Log;
 import android.view.DragEvent;
 import android.view.View;
 
-import com.android.launcher3.AbstractFloatingView;
-import com.android.launcher3.DragSource;
-import com.android.launcher3.DropTarget.DragObject;
-import com.android.launcher3.Launcher;
-import com.android.launcher3.R;
-import com.android.launcher3.states.InternalStateHandler;
-import com.android.launcher3.widget.PendingItemDragHelper;
+import com.android.launcher3a.AbstractFloatingView;
+import com.android.launcher3a.DragSource;
+import com.android.launcher3a.DropTarget.DragObject;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.R;
+import com.android.launcher3a.states.InternalStateHandler;
+import com.android.launcher3a.widget.PendingItemDragHelper;
 
 import java.util.UUID;
 
@@ -49,7 +49,7 @@ public abstract class BaseItemDragListener extends InternalStateHandler implemen
 
     private static final String TAG = "BaseItemDragListener";
 
-    private static final String MIME_TYPE_PREFIX = "com.android.launcher3.drag_and_drop/";
+    private static final String MIME_TYPE_PREFIX = "com.android.launcher3a.drag_and_drop/";
     public static final String EXTRA_PIN_ITEM_DRAG_LISTENER = "pin_item_drag_listener";
 
     // Position of preview relative to the touch location

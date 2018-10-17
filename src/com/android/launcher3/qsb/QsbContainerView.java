@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.qsb;
+package com.android.launcher3a.qsb;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -34,12 +34,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.android.launcher3.AppWidgetResizeFrame;
-import com.android.launcher3.InvariantDeviceProfile;
-import com.android.launcher3.LauncherAppState;
-import com.android.launcher3.R;
-import com.android.launcher3.Utilities;
-import com.android.launcher3.config.FeatureFlags;
+import com.android.launcher3a.AppWidgetResizeFrame;
+import com.android.launcher3a.InvariantDeviceProfile;
+import com.android.launcher3a.LauncherAppState;
+import com.android.launcher3a.R;
+import com.android.launcher3a.Utilities;
+import com.android.launcher3a.config.FeatureFlags;
 
 /**
  * A frame layout which contains a QSB. This internally uses fragment to bind the view, which

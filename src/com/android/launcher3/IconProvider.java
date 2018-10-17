@@ -1,4 +1,4 @@
-package com.android.launcher3;
+package com.android.launcher3a;
 
 import android.content.Context;
 import android.content.pm.LauncherActivityInfo;

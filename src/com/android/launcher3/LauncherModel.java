@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.android.launcher3;
+package com.android.launcher3a;
 
-import static com.android.launcher3.LauncherAppState.ACTION_FORCE_ROLOAD;
-import static com.android.launcher3.config.FeatureFlags.IS_DOGFOOD_BUILD;
+import static com.android.launcher3a.LauncherAppState.ACTION_FORCE_ROLOAD;
+import static com.android.launcher3a.config.FeatureFlags.IS_DOGFOOD_BUILD;
 
 import android.content.BroadcastReceiver;
 import android.content.ContentProviderOperation;
@@ -36,33 +36,33 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 
-import com.android.launcher3.compat.LauncherAppsCompat;
-import com.android.launcher3.compat.PackageInstallerCompat.PackageInstallInfo;
-import com.android.launcher3.compat.UserManagerCompat;
-import com.android.launcher3.graphics.LauncherIcons;
-import com.android.launcher3.model.AddWorkspaceItemsTask;
-import com.android.launcher3.model.BaseModelUpdateTask;
-import com.android.launcher3.model.BgDataModel;
-import com.android.launcher3.model.CacheDataUpdatedTask;
-import com.android.launcher3.model.LoaderResults;
-import com.android.launcher3.model.LoaderTask;
-import com.android.launcher3.model.ModelWriter;
-import com.android.launcher3.model.PackageInstallStateChangedTask;
-import com.android.launcher3.model.PackageUpdatedTask;
-import com.android.launcher3.model.ShortcutsChangedTask;
-import com.android.launcher3.model.UserLockStateChangedTask;
-import com.android.launcher3.provider.LauncherDbUtils;
-import com.android.launcher3.shortcuts.DeepShortcutManager;
-import com.android.launcher3.shortcuts.ShortcutInfoCompat;
-import com.android.launcher3.util.ComponentKey;
-import com.android.launcher3.util.ItemInfoMatcher;
-import com.android.launcher3.util.MultiHashMap;
-import com.android.launcher3.util.PackageUserKey;
-import com.android.launcher3.util.Preconditions;
-import com.android.launcher3.util.Provider;
-import com.android.launcher3.util.Thunk;
-import com.android.launcher3.util.ViewOnDrawExecutor;
-import com.android.launcher3.widget.WidgetListRowEntry;
+import com.android.launcher3a.compat.LauncherAppsCompat;
+import com.android.launcher3a.compat.PackageInstallerCompat.PackageInstallInfo;
+import com.android.launcher3a.compat.UserManagerCompat;
+import com.android.launcher3a.graphics.LauncherIcons;
+import com.android.launcher3a.model.AddWorkspaceItemsTask;
+import com.android.launcher3a.model.BaseModelUpdateTask;
+import com.android.launcher3a.model.BgDataModel;
+import com.android.launcher3a.model.CacheDataUpdatedTask;
+import com.android.launcher3a.model.LoaderResults;
+import com.android.launcher3a.model.LoaderTask;
+import com.android.launcher3a.model.ModelWriter;
+import com.android.launcher3a.model.PackageInstallStateChangedTask;
+import com.android.launcher3a.model.PackageUpdatedTask;
+import com.android.launcher3a.model.ShortcutsChangedTask;
+import com.android.launcher3a.model.UserLockStateChangedTask;
+import com.android.launcher3a.provider.LauncherDbUtils;
+import com.android.launcher3a.shortcuts.DeepShortcutManager;
+import com.android.launcher3a.shortcuts.ShortcutInfoCompat;
+import com.android.launcher3a.util.ComponentKey;
+import com.android.launcher3a.util.ItemInfoMatcher;
+import com.android.launcher3a.util.MultiHashMap;
+import com.android.launcher3a.util.PackageUserKey;
+import com.android.launcher3a.util.Preconditions;
+import com.android.launcher3a.util.Provider;
+import com.android.launcher3a.util.Thunk;
+import com.android.launcher3a.util.ViewOnDrawExecutor;
+import com.android.launcher3a.widget.WidgetListRowEntry;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;

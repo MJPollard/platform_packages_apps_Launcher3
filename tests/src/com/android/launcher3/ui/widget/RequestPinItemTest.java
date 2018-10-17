@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.android.launcher3.ui.widget;
+package com.android.launcher3a.ui.widget;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -26,23 +26,23 @@ import android.support.test.uiautomator.UiObject2;
 import android.support.test.uiautomator.Until;
 import android.view.View;
 
-import com.android.launcher3.ItemInfo;
-import com.android.launcher3.LauncherAppWidgetInfo;
-import com.android.launcher3.LauncherSettings.Favorites;
-import com.android.launcher3.R;
-import com.android.launcher3.ShortcutInfo;
-import com.android.launcher3.Utilities;
-import com.android.launcher3.Workspace.ItemOperator;
-import com.android.launcher3.shortcuts.ShortcutKey;
-import com.android.launcher3.testcomponent.AppWidgetNoConfig;
-import com.android.launcher3.testcomponent.AppWidgetWithConfig;
-import com.android.launcher3.testcomponent.RequestPinItemActivity;
-import com.android.launcher3.ui.AbstractLauncherUiTest;
-import com.android.launcher3.util.Condition;
-import com.android.launcher3.util.Wait;
-import com.android.launcher3.util.rule.LauncherActivityRule;
-import com.android.launcher3.util.rule.ShellCommandRule;
-import com.android.launcher3.widget.WidgetCell;
+import com.android.launcher3a.ItemInfo;
+import com.android.launcher3a.LauncherAppWidgetInfo;
+import com.android.launcher3a.LauncherSettings.Favorites;
+import com.android.launcher3a.R;
+import com.android.launcher3a.ShortcutInfo;
+import com.android.launcher3a.Utilities;
+import com.android.launcher3a.Workspace.ItemOperator;
+import com.android.launcher3a.shortcuts.ShortcutKey;
+import com.android.launcher3a.testcomponent.AppWidgetNoConfig;
+import com.android.launcher3a.testcomponent.AppWidgetWithConfig;
+import com.android.launcher3a.testcomponent.RequestPinItemActivity;
+import com.android.launcher3a.ui.AbstractLauncherUiTest;
+import com.android.launcher3a.util.Condition;
+import com.android.launcher3a.util.Wait;
+import com.android.launcher3a.util.rule.LauncherActivityRule;
+import com.android.launcher3a.util.rule.ShellCommandRule;
+import com.android.launcher3a.widget.WidgetCell;
 
 import org.junit.Before;
 import org.junit.Rule;

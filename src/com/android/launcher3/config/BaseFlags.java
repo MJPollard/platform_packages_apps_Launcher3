@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.config;
+package com.android.launcher3a.config;
 
 /**
  * Defines a set of flags used to control various launcher behaviors.
@@ -29,7 +29,7 @@ abstract class BaseFlags {
     BaseFlags() {}
 
     public static final boolean IS_DOGFOOD_BUILD = false;
-    public static final String AUTHORITY = "com.android.launcher3.settings".intern();
+    public static final String AUTHORITY = "com.android.launcher3a.settings".intern();
 
     // When enabled allows to use any point on the fast scrollbar to start dragging.
     public static final boolean LAUNCHER3_DIRECT_SCROLL = true;
@@ -46,7 +46,7 @@ abstract class BaseFlags {
     // When true, custom widgets are loaded using CustomWidgetParser.
     public static final boolean ENABLE_CUSTOM_WIDGETS = false;
 
-    // Features to control Launcher3Go behavior
+    // Features to control Launcher3aGo behavior
     public static final boolean GO_DISABLE_WIDGETS = false;
 
     // When enabled shows a work profile tab in all apps

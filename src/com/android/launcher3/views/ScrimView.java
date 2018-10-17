@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.launcher3.views;
+package com.android.launcher3a.views;
 
 import static android.content.Context.ACCESSIBILITY_SERVICE;
 import static android.support.v4.graphics.ColorUtils.compositeColors;
 import static android.support.v4.graphics.ColorUtils.setAlphaComponent;
 import static android.view.MotionEvent.ACTION_DOWN;
 
-import static com.android.launcher3.LauncherState.ALL_APPS;
-import static com.android.launcher3.LauncherState.NORMAL;
-import static com.android.launcher3.anim.Interpolators.ACCEL;
-import static com.android.launcher3.anim.Interpolators.DEACCEL;
+import static com.android.launcher3a.LauncherState.ALL_APPS;
+import static com.android.launcher3a.LauncherState.NORMAL;
+import static com.android.launcher3a.anim.Interpolators.ACCEL;
+import static com.android.launcher3a.anim.Interpolators.DEACCEL;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -52,19 +52,19 @@ import android.view.View;
 import android.view.accessibility.AccessibilityManager;
 import android.view.accessibility.AccessibilityManager.AccessibilityStateChangeListener;
 
-import com.android.launcher3.DeviceProfile;
-import com.android.launcher3.Insettable;
-import com.android.launcher3.Launcher;
-import com.android.launcher3.LauncherState;
-import com.android.launcher3.LauncherStateManager;
-import com.android.launcher3.LauncherStateManager.StateListener;
-import com.android.launcher3.R;
-import com.android.launcher3.Utilities;
-import com.android.launcher3.uioverrides.WallpaperColorInfo;
-import com.android.launcher3.uioverrides.WallpaperColorInfo.OnChangeListener;
-import com.android.launcher3.userevent.nano.LauncherLogProto.Action;
-import com.android.launcher3.userevent.nano.LauncherLogProto.ControlType;
-import com.android.launcher3.util.Themes;
+import com.android.launcher3a.DeviceProfile;
+import com.android.launcher3a.Insettable;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.LauncherState;
+import com.android.launcher3a.LauncherStateManager;
+import com.android.launcher3a.LauncherStateManager.StateListener;
+import com.android.launcher3a.R;
+import com.android.launcher3a.Utilities;
+import com.android.launcher3a.uioverrides.WallpaperColorInfo;
+import com.android.launcher3a.uioverrides.WallpaperColorInfo.OnChangeListener;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.Action;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.ControlType;
+import com.android.launcher3a.util.Themes;
 
 import java.util.List;
 

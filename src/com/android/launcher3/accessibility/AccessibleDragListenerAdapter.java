@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.accessibility;
+package com.android.launcher3a.accessibility;
 
 import android.view.ViewGroup;
 
-import com.android.launcher3.CellLayout;
-import com.android.launcher3.DropTarget.DragObject;
-import com.android.launcher3.Launcher;
-import com.android.launcher3.dragndrop.DragController.DragListener;
-import com.android.launcher3.dragndrop.DragOptions;
+import com.android.launcher3a.CellLayout;
+import com.android.launcher3a.DropTarget.DragObject;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.dragndrop.DragController.DragListener;
+import com.android.launcher3a.dragndrop.DragOptions;
 
 /**
  * Utility listener to enable/disable accessibility drag flags for a ViewGroup

@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.android.launcher3.ui.widget;
+package com.android.launcher3a.ui.widget;
 
 import android.appwidget.AppWidgetHost;
 import android.appwidget.AppWidgetManager;
@@ -29,23 +29,23 @@ import android.support.test.filters.LargeTest;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.test.uiautomator.UiSelector;
 
-import com.android.launcher3.LauncherAppWidgetHost;
-import com.android.launcher3.widget.LauncherAppWidgetHostView;
-import com.android.launcher3.LauncherAppWidgetInfo;
-import com.android.launcher3.LauncherAppWidgetProviderInfo;
-import com.android.launcher3.LauncherModel;
-import com.android.launcher3.LauncherSettings;
-import com.android.launcher3.widget.PendingAppWidgetHostView;
-import com.android.launcher3.Workspace;
-import com.android.launcher3.compat.AppWidgetManagerCompat;
-import com.android.launcher3.compat.PackageInstallerCompat;
-import com.android.launcher3.ui.AbstractLauncherUiTest;
-import com.android.launcher3.util.ContentWriter;
-import com.android.launcher3.util.LooperExecutor;
-import com.android.launcher3.util.rule.LauncherActivityRule;
-import com.android.launcher3.util.rule.ShellCommandRule;
-import com.android.launcher3.widget.PendingAddWidgetInfo;
-import com.android.launcher3.widget.WidgetHostViewLoader;
+import com.android.launcher3a.LauncherAppWidgetHost;
+import com.android.launcher3a.widget.LauncherAppWidgetHostView;
+import com.android.launcher3a.LauncherAppWidgetInfo;
+import com.android.launcher3a.LauncherAppWidgetProviderInfo;
+import com.android.launcher3a.LauncherModel;
+import com.android.launcher3a.LauncherSettings;
+import com.android.launcher3a.widget.PendingAppWidgetHostView;
+import com.android.launcher3a.Workspace;
+import com.android.launcher3a.compat.AppWidgetManagerCompat;
+import com.android.launcher3a.compat.PackageInstallerCompat;
+import com.android.launcher3a.ui.AbstractLauncherUiTest;
+import com.android.launcher3a.util.ContentWriter;
+import com.android.launcher3a.util.LooperExecutor;
+import com.android.launcher3a.util.rule.LauncherActivityRule;
+import com.android.launcher3a.util.rule.ShellCommandRule;
+import com.android.launcher3a.widget.PendingAddWidgetInfo;
+import com.android.launcher3a.widget.WidgetHostViewLoader;
 
 import org.junit.After;
 import org.junit.Before;

@@ -1,17 +1,17 @@
-package com.android.launcher3.uioverrides;
+package com.android.launcher3a.uioverrides;
 
-import static com.android.launcher3.LauncherState.ALL_APPS;
-import static com.android.launcher3.LauncherState.NORMAL;
+import static com.android.launcher3a.LauncherState.ALL_APPS;
+import static com.android.launcher3a.LauncherState.NORMAL;
 
 import android.view.MotionEvent;
 
-import com.android.launcher3.AbstractFloatingView;
-import com.android.launcher3.Launcher;
-import com.android.launcher3.LauncherState;
-import com.android.launcher3.LauncherStateManager.AnimationComponents;
-import com.android.launcher3.touch.AbstractStateChangeTouchController;
-import com.android.launcher3.touch.SwipeDetector;
-import com.android.launcher3.userevent.nano.LauncherLogProto.ContainerType;
+import com.android.launcher3a.AbstractFloatingView;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.LauncherState;
+import com.android.launcher3a.LauncherStateManager.AnimationComponents;
+import com.android.launcher3a.touch.AbstractStateChangeTouchController;
+import com.android.launcher3a.touch.SwipeDetector;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.ContainerType;
 
 /**
  * TouchController to switch between NORMAL and ALL_APPS state.

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.config;
+package com.android.launcher3a.config;
 
 /**
  * Defines a set of flags used to control various launcher behaviors
@@ -23,7 +23,7 @@ public final class FeatureFlags extends BaseFlags {
 
     private FeatureFlags() {}
 
-    // Features to control Launcher3Go behavior
+    // Features to control Launcher3aGo behavior
     public static final boolean GO_DISABLE_WIDGETS = true;
     public static final boolean LAUNCHER3_SPRING_ICONS = false;
 }

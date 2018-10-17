@@ -13,23 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.launcher3.model;
+package com.android.launcher3a.model;
 
 import android.content.Context;
 import android.os.UserHandle;
 
-import com.android.launcher3.AllAppsList;
-import com.android.launcher3.ItemInfo;
-import com.android.launcher3.LauncherAppState;
-import com.android.launcher3.LauncherSettings;
-import com.android.launcher3.ShortcutInfo;
-import com.android.launcher3.graphics.LauncherIcons;
-import com.android.launcher3.shortcuts.DeepShortcutManager;
-import com.android.launcher3.shortcuts.ShortcutInfoCompat;
-import com.android.launcher3.shortcuts.ShortcutKey;
-import com.android.launcher3.util.ItemInfoMatcher;
-import com.android.launcher3.util.MultiHashMap;
-import com.android.launcher3.util.Provider;
+import com.android.launcher3a.AllAppsList;
+import com.android.launcher3a.ItemInfo;
+import com.android.launcher3a.LauncherAppState;
+import com.android.launcher3a.LauncherSettings;
+import com.android.launcher3a.ShortcutInfo;
+import com.android.launcher3a.graphics.LauncherIcons;
+import com.android.launcher3a.shortcuts.DeepShortcutManager;
+import com.android.launcher3a.shortcuts.ShortcutInfoCompat;
+import com.android.launcher3a.shortcuts.ShortcutKey;
+import com.android.launcher3a.util.ItemInfoMatcher;
+import com.android.launcher3a.util.MultiHashMap;
+import com.android.launcher3a.util.Provider;
 
 import java.util.ArrayList;
 import java.util.HashSet;

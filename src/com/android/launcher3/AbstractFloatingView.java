@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.android.launcher3;
+package com.android.launcher3a;
 
 import static android.view.accessibility.AccessibilityEvent.TYPE_VIEW_FOCUSED;
 import static android.view.accessibility.AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED;
 import static android.view.accessibility.AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED;
 
-import static com.android.launcher3.compat.AccessibilityManagerCompat.isAccessibilityEnabled;
-import static com.android.launcher3.compat.AccessibilityManagerCompat.sendCustomAccessibilityEvent;
+import static com.android.launcher3a.compat.AccessibilityManagerCompat.isAccessibilityEnabled;
+import static com.android.launcher3a.compat.AccessibilityManagerCompat.sendCustomAccessibilityEvent;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -32,9 +32,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.android.launcher3.userevent.nano.LauncherLogProto.Action;
-import com.android.launcher3.util.TouchController;
-import com.android.launcher3.views.BaseDragLayer;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.Action;
+import com.android.launcher3a.util.TouchController;
+import com.android.launcher3a.views.BaseDragLayer;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

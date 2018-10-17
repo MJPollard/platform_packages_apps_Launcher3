@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.compat;
+package com.android.launcher3a.compat;
 
 import android.content.ComponentName;
 import android.content.Context;

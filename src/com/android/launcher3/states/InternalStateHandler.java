@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.launcher3.states;
+package com.android.launcher3a.states;
 
 import android.content.Intent;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
 
-import com.android.launcher3.Launcher;
-import com.android.launcher3.LauncherAppState;
-import com.android.launcher3.LauncherModel.Callbacks;
-import com.android.launcher3.MainThreadExecutor;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.LauncherAppState;
+import com.android.launcher3a.LauncherModel.Callbacks;
+import com.android.launcher3a.MainThreadExecutor;
 
 import java.lang.ref.WeakReference;
 

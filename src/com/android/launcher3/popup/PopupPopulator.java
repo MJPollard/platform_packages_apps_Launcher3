@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.popup;
+package com.android.launcher3a.popup;
 
 import android.content.ComponentName;
 import android.os.Handler;
@@ -23,16 +23,16 @@ import android.service.notification.StatusBarNotification;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
 
-import com.android.launcher3.ItemInfo;
-import com.android.launcher3.Launcher;
-import com.android.launcher3.ShortcutInfo;
-import com.android.launcher3.graphics.LauncherIcons;
-import com.android.launcher3.notification.NotificationInfo;
-import com.android.launcher3.notification.NotificationKeyData;
-import com.android.launcher3.shortcuts.DeepShortcutManager;
-import com.android.launcher3.shortcuts.DeepShortcutView;
-import com.android.launcher3.shortcuts.ShortcutInfoCompat;
-import com.android.launcher3.util.PackageUserKey;
+import com.android.launcher3a.ItemInfo;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.ShortcutInfo;
+import com.android.launcher3a.graphics.LauncherIcons;
+import com.android.launcher3a.notification.NotificationInfo;
+import com.android.launcher3a.notification.NotificationKeyData;
+import com.android.launcher3a.shortcuts.DeepShortcutManager;
+import com.android.launcher3a.shortcuts.DeepShortcutView;
+import com.android.launcher3a.shortcuts.ShortcutInfoCompat;
+import com.android.launcher3a.util.PackageUserKey;
 
 import java.util.ArrayList;
 import java.util.Collections;

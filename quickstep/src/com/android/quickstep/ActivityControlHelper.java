@@ -15,11 +15,11 @@
  */
 package com.android.quickstep;
 
-import static com.android.launcher3.LauncherAnimUtils.OVERVIEW_TRANSITION_MS;
-import static com.android.launcher3.LauncherState.FAST_OVERVIEW;
-import static com.android.launcher3.LauncherState.OVERVIEW;
-import static com.android.launcher3.allapps.AllAppsTransitionController.ALL_APPS_PROGRESS;
-import static com.android.launcher3.anim.Interpolators.LINEAR;
+import static com.android.launcher3a.LauncherAnimUtils.OVERVIEW_TRANSITION_MS;
+import static com.android.launcher3a.LauncherState.FAST_OVERVIEW;
+import static com.android.launcher3a.LauncherState.OVERVIEW;
+import static com.android.launcher3a.allapps.AllAppsTransitionController.ALL_APPS_PROGRESS;
+import static com.android.launcher3a.anim.Interpolators.LINEAR;
 import static com.android.quickstep.TouchConsumer.INTERACTION_NORMAL;
 import static com.android.quickstep.TouchConsumer.INTERACTION_QUICK_SCRUB;
 import static com.android.systemui.shared.system.NavigationBarCompat.HIT_TARGET_BACK;
@@ -40,20 +40,20 @@ import android.support.annotation.Nullable;
 import android.support.annotation.UiThread;
 import android.view.View;
 
-import com.android.launcher3.BaseDraggingActivity;
-import com.android.launcher3.DeviceProfile;
-import com.android.launcher3.Launcher;
-import com.android.launcher3.LauncherAppState;
-import com.android.launcher3.LauncherInitListener;
-import com.android.launcher3.LauncherState;
-import com.android.launcher3.R;
-import com.android.launcher3.allapps.AllAppsTransitionController;
-import com.android.launcher3.allapps.DiscoveryBounce;
-import com.android.launcher3.anim.AnimatorPlaybackController;
-import com.android.launcher3.dragndrop.DragLayer;
-import com.android.launcher3.uioverrides.FastOverviewState;
-import com.android.launcher3.userevent.nano.LauncherLogProto;
-import com.android.launcher3.util.MultiValueAlpha.AlphaProperty;
+import com.android.launcher3a.BaseDraggingActivity;
+import com.android.launcher3a.DeviceProfile;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.LauncherAppState;
+import com.android.launcher3a.LauncherInitListener;
+import com.android.launcher3a.LauncherState;
+import com.android.launcher3a.R;
+import com.android.launcher3a.allapps.AllAppsTransitionController;
+import com.android.launcher3a.allapps.DiscoveryBounce;
+import com.android.launcher3a.anim.AnimatorPlaybackController;
+import com.android.launcher3a.dragndrop.DragLayer;
+import com.android.launcher3a.uioverrides.FastOverviewState;
+import com.android.launcher3a.userevent.nano.LauncherLogProto;
+import com.android.launcher3a.util.MultiValueAlpha.AlphaProperty;
 import com.android.quickstep.TouchConsumer.InteractionType;
 import com.android.quickstep.util.LayoutUtils;
 import com.android.quickstep.util.TransformedRect;
@@ -130,7 +130,7 @@ public interface ActivityControlHelper<T extends BaseDraggingActivity> {
     LongSwipeHelper getLongSwipeController(T activity, RemoteAnimationTargetSet targetSet);
 
     /**
-     * Used for containerType in {@link com.android.launcher3.logging.UserEventDispatcher}
+     * Used for containerType in {@link com.android.launcher3a.logging.UserEventDispatcher}
      */
     int getContainerType();
 

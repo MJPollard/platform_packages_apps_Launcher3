@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.launcher3.allapps;
+package com.android.launcher3a.allapps;
 
 import android.content.Context;
 import android.content.Intent;
@@ -32,15 +32,15 @@ import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.TextView;
 
-import com.android.launcher3.AppInfo;
-import com.android.launcher3.BubbleTextView;
-import com.android.launcher3.Launcher;
-import com.android.launcher3.R;
-import com.android.launcher3.allapps.AlphabeticalAppsList.AdapterItem;
-import com.android.launcher3.compat.UserManagerCompat;
-import com.android.launcher3.touch.ItemClickHandler;
-import com.android.launcher3.touch.ItemLongClickListener;
-import com.android.launcher3.util.PackageManagerHelper;
+import com.android.launcher3a.AppInfo;
+import com.android.launcher3a.BubbleTextView;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.R;
+import com.android.launcher3a.allapps.AlphabeticalAppsList.AdapterItem;
+import com.android.launcher3a.compat.UserManagerCompat;
+import com.android.launcher3a.touch.ItemClickHandler;
+import com.android.launcher3a.touch.ItemLongClickListener;
+import com.android.launcher3a.util.PackageManagerHelper;
 
 import java.util.List;
 

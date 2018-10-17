@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.provider;
+package com.android.launcher3a.provider;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.android.launcher3.LauncherAppWidgetInfo;
-import com.android.launcher3.LauncherProvider.DatabaseHelper;
-import com.android.launcher3.LauncherSettings.Favorites;
-import com.android.launcher3.ShortcutInfo;
-import com.android.launcher3.Utilities;
-import com.android.launcher3.logging.FileLog;
-import com.android.launcher3.provider.LauncherDbUtils.SQLiteTransaction;
-import com.android.launcher3.util.LogConfig;
+import com.android.launcher3a.LauncherAppWidgetInfo;
+import com.android.launcher3a.LauncherProvider.DatabaseHelper;
+import com.android.launcher3a.LauncherSettings.Favorites;
+import com.android.launcher3a.ShortcutInfo;
+import com.android.launcher3a.Utilities;
+import com.android.launcher3a.logging.FileLog;
+import com.android.launcher3a.provider.LauncherDbUtils.SQLiteTransaction;
+import com.android.launcher3a.util.LogConfig;
 
 import java.io.InvalidObjectException;
 

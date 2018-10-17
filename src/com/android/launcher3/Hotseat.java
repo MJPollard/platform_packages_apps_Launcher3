@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.android.launcher3;
+package com.android.launcher3a;
 
-import static com.android.launcher3.LauncherState.ALL_APPS;
+import static com.android.launcher3a.LauncherState.ALL_APPS;
 
 import android.content.Context;
 import android.graphics.Rect;
@@ -31,12 +31,12 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.android.launcher3.config.FeatureFlags;
-import com.android.launcher3.logging.UserEventDispatcher.LogContainerProvider;
-import com.android.launcher3.userevent.nano.LauncherLogProto.Action;
-import com.android.launcher3.userevent.nano.LauncherLogProto.ContainerType;
-import com.android.launcher3.userevent.nano.LauncherLogProto.ControlType;
-import com.android.launcher3.userevent.nano.LauncherLogProto.Target;
+import com.android.launcher3a.config.FeatureFlags;
+import com.android.launcher3a.logging.UserEventDispatcher.LogContainerProvider;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.Action;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.ContainerType;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.ControlType;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.Target;
 
 public class Hotseat extends FrameLayout implements LogContainerProvider, Insettable {
 

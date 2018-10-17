@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3;
+package com.android.launcher3a;
 
 import android.annotation.TargetApi;
 import android.appwidget.AppWidgetHost;
@@ -48,19 +48,19 @@ import android.os.UserManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.launcher3.AutoInstallsLayout.LayoutParserCallback;
-import com.android.launcher3.LauncherSettings.Favorites;
-import com.android.launcher3.LauncherSettings.WorkspaceScreens;
-import com.android.launcher3.compat.UserManagerCompat;
-import com.android.launcher3.config.FeatureFlags;
-import com.android.launcher3.logging.FileLog;
-import com.android.launcher3.model.DbDowngradeHelper;
-import com.android.launcher3.provider.LauncherDbUtils;
-import com.android.launcher3.provider.LauncherDbUtils.SQLiteTransaction;
-import com.android.launcher3.provider.RestoreDbTask;
-import com.android.launcher3.util.NoLocaleSQLiteHelper;
-import com.android.launcher3.util.Preconditions;
-import com.android.launcher3.util.Thunk;
+import com.android.launcher3a.AutoInstallsLayout.LayoutParserCallback;
+import com.android.launcher3a.LauncherSettings.Favorites;
+import com.android.launcher3a.LauncherSettings.WorkspaceScreens;
+import com.android.launcher3a.compat.UserManagerCompat;
+import com.android.launcher3a.config.FeatureFlags;
+import com.android.launcher3a.logging.FileLog;
+import com.android.launcher3a.model.DbDowngradeHelper;
+import com.android.launcher3a.provider.LauncherDbUtils;
+import com.android.launcher3a.provider.LauncherDbUtils.SQLiteTransaction;
+import com.android.launcher3a.provider.RestoreDbTask;
+import com.android.launcher3a.util.NoLocaleSQLiteHelper;
+import com.android.launcher3a.util.Preconditions;
+import com.android.launcher3a.util.Thunk;
 
 import java.io.File;
 import java.io.FileDescriptor;
@@ -94,7 +94,7 @@ public class LauncherProvider extends ContentProvider {
     protected DatabaseHelper mOpenHelper;
 
     /**
-     * $ adb shell dumpsys activity provider com.android.launcher3
+     * $ adb shell dumpsys activity provider com.android.launcher3a
      */
     @Override
     public void dump(FileDescriptor fd, PrintWriter writer, String[] args) {
@@ -706,7 +706,7 @@ public class LauncherProvider extends ContentProvider {
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             if (LOGD) Log.d(TAG, "onUpgrade triggered: " + oldVersion);
             switch (oldVersion) {
-                // The version cannot be lower that 12, as Launcher3 never supported a lower
+                // The version cannot be lower that 12, as Launcher3a never supported a lower
                 // version of the DB.
                 case 12: {
                     // With the new shrink-wrapped and re-orderable workspaces, it makes sense

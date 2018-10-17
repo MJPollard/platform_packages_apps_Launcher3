@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.launcher3.touch;
+package com.android.launcher3a.touch;
 
-import static com.android.launcher3.LauncherAnimUtils.MIN_PROGRESS_TO_ALL_APPS;
-import static com.android.launcher3.LauncherState.ALL_APPS;
-import static com.android.launcher3.LauncherState.NORMAL;
-import static com.android.launcher3.LauncherState.OVERVIEW;
-import static com.android.launcher3.LauncherStateManager.ANIM_ALL;
-import static com.android.launcher3.LauncherStateManager.ATOMIC_COMPONENT;
-import static com.android.launcher3.LauncherStateManager.NON_ATOMIC_COMPONENT;
-import static com.android.launcher3.Utilities.SINGLE_FRAME_MS;
-import static com.android.launcher3.anim.Interpolators.scrollInterpolatorForVelocity;
+import static com.android.launcher3a.LauncherAnimUtils.MIN_PROGRESS_TO_ALL_APPS;
+import static com.android.launcher3a.LauncherState.ALL_APPS;
+import static com.android.launcher3a.LauncherState.NORMAL;
+import static com.android.launcher3a.LauncherState.OVERVIEW;
+import static com.android.launcher3a.LauncherStateManager.ANIM_ALL;
+import static com.android.launcher3a.LauncherStateManager.ATOMIC_COMPONENT;
+import static com.android.launcher3a.LauncherStateManager.NON_ATOMIC_COMPONENT;
+import static com.android.launcher3a.Utilities.SINGLE_FRAME_MS;
+import static com.android.launcher3a.anim.Interpolators.scrollInterpolatorForVelocity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -32,22 +32,22 @@ import android.animation.ValueAnimator;
 import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 
-import com.android.launcher3.Launcher;
-import com.android.launcher3.LauncherAnimUtils;
-import com.android.launcher3.LauncherState;
-import com.android.launcher3.LauncherStateManager.AnimationComponents;
-import com.android.launcher3.LauncherStateManager.AnimationConfig;
-import com.android.launcher3.LauncherStateManager.StateHandler;
-import com.android.launcher3.Utilities;
-import com.android.launcher3.anim.AnimationSuccessListener;
-import com.android.launcher3.anim.AnimatorPlaybackController;
-import com.android.launcher3.anim.AnimatorSetBuilder;
-import com.android.launcher3.userevent.nano.LauncherLogProto;
-import com.android.launcher3.userevent.nano.LauncherLogProto.Action.Direction;
-import com.android.launcher3.userevent.nano.LauncherLogProto.Action.Touch;
-import com.android.launcher3.util.FlingBlockCheck;
-import com.android.launcher3.util.PendingAnimation;
-import com.android.launcher3.util.TouchController;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.LauncherAnimUtils;
+import com.android.launcher3a.LauncherState;
+import com.android.launcher3a.LauncherStateManager.AnimationComponents;
+import com.android.launcher3a.LauncherStateManager.AnimationConfig;
+import com.android.launcher3a.LauncherStateManager.StateHandler;
+import com.android.launcher3a.Utilities;
+import com.android.launcher3a.anim.AnimationSuccessListener;
+import com.android.launcher3a.anim.AnimatorPlaybackController;
+import com.android.launcher3a.anim.AnimatorSetBuilder;
+import com.android.launcher3a.userevent.nano.LauncherLogProto;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.Action.Direction;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.Action.Touch;
+import com.android.launcher3a.util.FlingBlockCheck;
+import com.android.launcher3a.util.PendingAnimation;
+import com.android.launcher3a.util.TouchController;
 
 /**
  * TouchController for handling state changes

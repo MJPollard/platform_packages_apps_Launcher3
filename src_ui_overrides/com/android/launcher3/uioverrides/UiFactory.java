@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.uioverrides;
+package com.android.launcher3a.uioverrides;
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.CancellationSignal;
 
-import com.android.launcher3.Launcher;
-import com.android.launcher3.LauncherStateManager.StateHandler;
-import com.android.launcher3.util.TouchController;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.LauncherStateManager.StateHandler;
+import com.android.launcher3a.util.TouchController;
 
 import java.io.PrintWriter;
 

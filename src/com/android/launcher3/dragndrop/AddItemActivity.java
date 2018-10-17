@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.dragndrop;
+package com.android.launcher3a.dragndrop;
 
-import static com.android.launcher3.logging.LoggerUtils.newCommandAction;
-import static com.android.launcher3.logging.LoggerUtils.newContainerTarget;
-import static com.android.launcher3.logging.LoggerUtils.newItemTarget;
-import static com.android.launcher3.logging.LoggerUtils.newLauncherEvent;
+import static com.android.launcher3a.logging.LoggerUtils.newCommandAction;
+import static com.android.launcher3a.logging.LoggerUtils.newContainerTarget;
+import static com.android.launcher3a.logging.LoggerUtils.newItemTarget;
+import static com.android.launcher3a.logging.LoggerUtils.newLauncherEvent;
 
 import android.annotation.TargetApi;
 import android.app.ActivityOptions;
@@ -40,24 +40,24 @@ import android.view.View.DragShadowBuilder;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 
-import com.android.launcher3.BaseActivity;
-import com.android.launcher3.InstallShortcutReceiver;
-import com.android.launcher3.InvariantDeviceProfile;
-import com.android.launcher3.LauncherAppState;
-import com.android.launcher3.LauncherAppWidgetHost;
-import com.android.launcher3.LauncherAppWidgetProviderInfo;
-import com.android.launcher3.R;
-import com.android.launcher3.compat.AppWidgetManagerCompat;
-import com.android.launcher3.compat.LauncherAppsCompatVO;
-import com.android.launcher3.model.WidgetItem;
-import com.android.launcher3.shortcuts.ShortcutInfoCompat;
-import com.android.launcher3.userevent.nano.LauncherLogProto.Action;
-import com.android.launcher3.userevent.nano.LauncherLogProto.ContainerType;
-import com.android.launcher3.util.InstantAppResolver;
-import com.android.launcher3.widget.PendingAddShortcutInfo;
-import com.android.launcher3.widget.PendingAddWidgetInfo;
-import com.android.launcher3.widget.WidgetHostViewLoader;
-import com.android.launcher3.widget.WidgetImageView;
+import com.android.launcher3a.BaseActivity;
+import com.android.launcher3a.InstallShortcutReceiver;
+import com.android.launcher3a.InvariantDeviceProfile;
+import com.android.launcher3a.LauncherAppState;
+import com.android.launcher3a.LauncherAppWidgetHost;
+import com.android.launcher3a.LauncherAppWidgetProviderInfo;
+import com.android.launcher3a.R;
+import com.android.launcher3a.compat.AppWidgetManagerCompat;
+import com.android.launcher3a.compat.LauncherAppsCompatVO;
+import com.android.launcher3a.model.WidgetItem;
+import com.android.launcher3a.shortcuts.ShortcutInfoCompat;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.Action;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.ContainerType;
+import com.android.launcher3a.util.InstantAppResolver;
+import com.android.launcher3a.widget.PendingAddShortcutInfo;
+import com.android.launcher3a.widget.PendingAddWidgetInfo;
+import com.android.launcher3a.widget.WidgetHostViewLoader;
+import com.android.launcher3a.widget.WidgetImageView;
 
 @TargetApi(Build.VERSION_CODES.O)
 public class AddItemActivity extends BaseActivity implements OnLongClickListener, OnTouchListener {

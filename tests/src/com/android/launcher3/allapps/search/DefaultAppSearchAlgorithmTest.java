@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.launcher3.allapps.search;
+package com.android.launcher3a.allapps.search;
 
 import android.content.ComponentName;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.android.launcher3.AppInfo;
-import com.android.launcher3.Utilities;
+import com.android.launcher3a.AppInfo;
+import com.android.launcher3a.Utilities;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

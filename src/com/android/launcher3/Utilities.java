@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3;
+package com.android.launcher3a;
 
 import android.app.WallpaperManager;
 import android.content.ComponentName;
@@ -49,7 +49,7 @@ import android.util.Pair;
 import android.util.TypedValue;
 import android.view.View;
 
-import com.android.launcher3.config.FeatureFlags;
+import com.android.launcher3a.config.FeatureFlags;
 
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
@@ -114,7 +114,7 @@ public final class Utilities {
             Build.TYPE.toLowerCase(Locale.ROOT).equals("eng");
 
     // An intent extra to indicate the horizontal scroll of the wallpaper.
-    public static final String EXTRA_WALLPAPER_OFFSET = "com.android.launcher3.WALLPAPER_OFFSET";
+    public static final String EXTRA_WALLPAPER_OFFSET = "com.android.launcher3a.WALLPAPER_OFFSET";
 
     public static final int COLOR_EXTRACTION_JOB_ID = 1;
     public static final int WALLPAPER_COMPAT_JOB_ID = 2;

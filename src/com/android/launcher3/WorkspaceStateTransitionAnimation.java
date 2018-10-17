@@ -14,28 +14,28 @@
  * limitations under the License.
  */
 
-package com.android.launcher3;
+package com.android.launcher3a;
 
-import static com.android.launcher3.LauncherAnimUtils.DRAWABLE_ALPHA;
-import static com.android.launcher3.LauncherAnimUtils.SCALE_PROPERTY;
-import static com.android.launcher3.LauncherState.HOTSEAT_ICONS;
-import static com.android.launcher3.LauncherState.HOTSEAT_SEARCH_BOX;
-import static com.android.launcher3.anim.AnimatorSetBuilder.ANIM_WORKSPACE_FADE;
-import static com.android.launcher3.anim.AnimatorSetBuilder.ANIM_WORKSPACE_SCALE;
-import static com.android.launcher3.anim.Interpolators.LINEAR;
-import static com.android.launcher3.anim.Interpolators.ZOOM_OUT;
-import static com.android.launcher3.anim.PropertySetter.NO_ANIM_PROPERTY_SETTER;
-import static com.android.launcher3.graphics.WorkspaceAndHotseatScrim.SCRIM_PROGRESS;
-import static com.android.launcher3.graphics.WorkspaceAndHotseatScrim.SYSUI_PROGRESS;
+import static com.android.launcher3a.LauncherAnimUtils.DRAWABLE_ALPHA;
+import static com.android.launcher3a.LauncherAnimUtils.SCALE_PROPERTY;
+import static com.android.launcher3a.LauncherState.HOTSEAT_ICONS;
+import static com.android.launcher3a.LauncherState.HOTSEAT_SEARCH_BOX;
+import static com.android.launcher3a.anim.AnimatorSetBuilder.ANIM_WORKSPACE_FADE;
+import static com.android.launcher3a.anim.AnimatorSetBuilder.ANIM_WORKSPACE_SCALE;
+import static com.android.launcher3a.anim.Interpolators.LINEAR;
+import static com.android.launcher3a.anim.Interpolators.ZOOM_OUT;
+import static com.android.launcher3a.anim.PropertySetter.NO_ANIM_PROPERTY_SETTER;
+import static com.android.launcher3a.graphics.WorkspaceAndHotseatScrim.SCRIM_PROGRESS;
+import static com.android.launcher3a.graphics.WorkspaceAndHotseatScrim.SYSUI_PROGRESS;
 
 import android.view.View;
 import android.view.animation.Interpolator;
 
-import com.android.launcher3.LauncherState.PageAlphaProvider;
-import com.android.launcher3.LauncherStateManager.AnimationConfig;
-import com.android.launcher3.anim.AnimatorSetBuilder;
-import com.android.launcher3.anim.PropertySetter;
-import com.android.launcher3.graphics.WorkspaceAndHotseatScrim;
+import com.android.launcher3a.LauncherState.PageAlphaProvider;
+import com.android.launcher3a.LauncherStateManager.AnimationConfig;
+import com.android.launcher3a.anim.AnimatorSetBuilder;
+import com.android.launcher3a.anim.PropertySetter;
+import com.android.launcher3a.graphics.WorkspaceAndHotseatScrim;
 
 /**
  * Manages the animations between each of the workspace states.

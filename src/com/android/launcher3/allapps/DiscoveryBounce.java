@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.allapps;
+package com.android.launcher3a.allapps;
 
-import static com.android.launcher3.LauncherState.NORMAL;
-import static com.android.launcher3.LauncherState.OVERVIEW;
-import static com.android.launcher3.userevent.nano.LauncherLogProto.ContainerType.HOTSEAT;
-import static com.android.launcher3.userevent.nano.LauncherLogProto.ContainerType.PREDICTION;
+import static com.android.launcher3a.LauncherState.NORMAL;
+import static com.android.launcher3a.LauncherState.OVERVIEW;
+import static com.android.launcher3a.userevent.nano.LauncherLogProto.ContainerType.HOTSEAT;
+import static com.android.launcher3a.userevent.nano.LauncherLogProto.ContainerType.PREDICTION;
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
@@ -28,11 +28,11 @@ import android.app.ActivityManager;
 import android.os.Handler;
 import android.view.MotionEvent;
 
-import com.android.launcher3.AbstractFloatingView;
-import com.android.launcher3.Launcher;
-import com.android.launcher3.R;
-import com.android.launcher3.compat.UserManagerCompat;
-import com.android.launcher3.states.InternalStateHandler;
+import com.android.launcher3a.AbstractFloatingView;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.R;
+import com.android.launcher3a.compat.UserManagerCompat;
+import com.android.launcher3a.states.InternalStateHandler;
 
 /**
  * Abstract base class of floating view responsible for showing discovery bounce animation

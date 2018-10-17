@@ -1,12 +1,12 @@
-package com.android.launcher3.model;
+package com.android.launcher3a.model;
 
 import android.support.test.runner.AndroidJUnit4;
 
-import com.android.launcher3.ItemInfo;
-import com.android.launcher3.LauncherAppWidgetInfo;
-import com.android.launcher3.ShortcutInfo;
-import com.android.launcher3.compat.PackageInstallerCompat;
-import com.android.launcher3.compat.PackageInstallerCompat.PackageInstallInfo;
+import com.android.launcher3a.ItemInfo;
+import com.android.launcher3a.LauncherAppWidgetInfo;
+import com.android.launcher3a.ShortcutInfo;
+import com.android.launcher3a.compat.PackageInstallerCompat;
+import com.android.launcher3a.compat.PackageInstallerCompat.PackageInstallInfo;
 
 import org.junit.Before;
 import org.junit.Test;

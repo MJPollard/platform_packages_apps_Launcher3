@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.shortcuts;
+package com.android.launcher3a.shortcuts;
 
 import android.annotation.TargetApi;
 import android.os.Build;

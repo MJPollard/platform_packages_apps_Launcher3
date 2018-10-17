@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.launcher3.allapps;
+package com.android.launcher3a.allapps;
 
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.launcher3.AppInfo;
-import com.android.launcher3.BubbleTextView;
-import com.android.launcher3.ItemInfo;
-import com.android.launcher3.PromiseAppInfo;
-import com.android.launcher3.util.ComponentKey;
-import com.android.launcher3.util.PackageUserKey;
+import com.android.launcher3a.AppInfo;
+import com.android.launcher3a.BubbleTextView;
+import com.android.launcher3a.ItemInfo;
+import com.android.launcher3a.PromiseAppInfo;
+import com.android.launcher3a.util.ComponentKey;
+import com.android.launcher3a.util.PackageUserKey;
 
 import java.util.ArrayList;
 import java.util.Collection;

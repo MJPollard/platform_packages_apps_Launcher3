@@ -1,4 +1,4 @@
-package com.android.launcher3.folder;
+package com.android.launcher3a.folder;
 
 public class ClippedFolderIconLayoutRule {
 

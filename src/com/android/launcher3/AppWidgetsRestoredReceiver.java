@@ -1,4 +1,4 @@
-package com.android.launcher3;
+package com.android.launcher3a;
 
 import android.appwidget.AppWidgetHost;
 import android.appwidget.AppWidgetManager;
@@ -12,11 +12,11 @@ import android.os.Handler;
 import android.support.annotation.WorkerThread;
 import android.util.Log;
 
-import com.android.launcher3.LauncherSettings.Favorites;
-import com.android.launcher3.config.FeatureFlags;
-import com.android.launcher3.model.LoaderTask;
-import com.android.launcher3.provider.RestoreDbTask;
-import com.android.launcher3.util.ContentWriter;
+import com.android.launcher3a.LauncherSettings.Favorites;
+import com.android.launcher3a.config.FeatureFlags;
+import com.android.launcher3a.model.LoaderTask;
+import com.android.launcher3a.provider.RestoreDbTask;
+import com.android.launcher3a.util.ContentWriter;
 
 public class AppWidgetsRestoredReceiver extends BroadcastReceiver {
 

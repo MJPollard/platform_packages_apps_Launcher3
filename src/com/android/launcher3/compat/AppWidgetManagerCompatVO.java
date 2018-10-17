@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.compat;
+package com.android.launcher3a.compat;
 
 import android.appwidget.AppWidgetProviderInfo;
 import android.content.Context;
 import android.support.annotation.Nullable;
 
-import com.android.launcher3.config.FeatureFlags;
-import com.android.launcher3.util.PackageUserKey;
+import com.android.launcher3a.config.FeatureFlags;
+import com.android.launcher3a.util.PackageUserKey;
 
 import java.util.Collections;
 import java.util.List;

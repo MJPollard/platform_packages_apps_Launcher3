@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.launcher3.widget;
+package com.android.launcher3a.widget;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -25,12 +25,12 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 
-import com.android.launcher3.IconCache;
-import com.android.launcher3.R;
-import com.android.launcher3.WidgetPreviewLoader;
-import com.android.launcher3.model.WidgetItem;
-import com.android.launcher3.util.LabelComparator;
-import com.android.launcher3.util.PackageUserKey;
+import com.android.launcher3a.IconCache;
+import com.android.launcher3a.R;
+import com.android.launcher3a.WidgetPreviewLoader;
+import com.android.launcher3a.model.WidgetItem;
+import com.android.launcher3a.util.LabelComparator;
+import com.android.launcher3a.util.PackageUserKey;
 
 import java.util.ArrayList;
 import java.util.Collections;

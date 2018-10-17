@@ -31,15 +31,15 @@ import android.view.ViewOutlineProvider;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.TextView;
 
-import com.android.launcher3.AbstractFloatingView;
-import com.android.launcher3.BaseDraggingActivity;
-import com.android.launcher3.LauncherAnimUtils;
-import com.android.launcher3.R;
-import com.android.launcher3.Utilities;
-import com.android.launcher3.anim.AnimationSuccessListener;
-import com.android.launcher3.anim.RoundedRectRevealOutlineProvider;
-import com.android.launcher3.shortcuts.DeepShortcutView;
-import com.android.launcher3.views.BaseDragLayer;
+import com.android.launcher3a.AbstractFloatingView;
+import com.android.launcher3a.BaseDraggingActivity;
+import com.android.launcher3a.LauncherAnimUtils;
+import com.android.launcher3a.R;
+import com.android.launcher3a.Utilities;
+import com.android.launcher3a.anim.AnimationSuccessListener;
+import com.android.launcher3a.anim.RoundedRectRevealOutlineProvider;
+import com.android.launcher3a.shortcuts.DeepShortcutView;
+import com.android.launcher3a.views.BaseDragLayer;
 import com.android.quickstep.TaskSystemShortcut;
 import com.android.quickstep.TaskUtils;
 

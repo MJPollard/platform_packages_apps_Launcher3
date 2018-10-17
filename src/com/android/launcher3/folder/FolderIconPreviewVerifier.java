@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.folder;
+package com.android.launcher3a.folder;
 
-import com.android.launcher3.FolderInfo;
-import com.android.launcher3.InvariantDeviceProfile;
+import com.android.launcher3a.FolderInfo;
+import com.android.launcher3a.InvariantDeviceProfile;
 
-import static com.android.launcher3.folder.ClippedFolderIconLayoutRule.MAX_NUM_ITEMS_IN_PREVIEW;
+import static com.android.launcher3a.folder.ClippedFolderIconLayoutRule.MAX_NUM_ITEMS_IN_PREVIEW;
 
 /**
  * Verifies whether an item in a Folder is displayed in the FolderIcon preview.

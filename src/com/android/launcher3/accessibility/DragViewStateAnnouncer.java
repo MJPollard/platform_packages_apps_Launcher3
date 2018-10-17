@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.accessibility;
+package com.android.launcher3a.accessibility;
 
-import static com.android.launcher3.compat.AccessibilityManagerCompat.isAccessibilityEnabled;
+import static com.android.launcher3a.compat.AccessibilityManagerCompat.isAccessibilityEnabled;
 
 import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
 
-import com.android.launcher3.Launcher;
+import com.android.launcher3a.Launcher;
 
 /**
  * Periodically sends accessibility events to announce ongoing state changed. Based on the

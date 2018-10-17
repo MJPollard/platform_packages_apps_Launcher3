@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.launcher3.model;
+package com.android.launcher3a.model;
 
 import android.content.Context;
 import android.os.UserHandle;
@@ -21,23 +21,23 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.MutableInt;
 
-import com.android.launcher3.FolderInfo;
-import com.android.launcher3.InstallShortcutReceiver;
-import com.android.launcher3.ItemInfo;
-import com.android.launcher3.LauncherAppWidgetInfo;
-import com.android.launcher3.LauncherSettings;
-import com.android.launcher3.ShortcutInfo;
-import com.android.launcher3.config.FeatureFlags;
-import com.android.launcher3.logging.DumpTargetWrapper;
-import com.android.launcher3.model.nano.LauncherDumpProto;
-import com.android.launcher3.model.nano.LauncherDumpProto.ContainerType;
-import com.android.launcher3.model.nano.LauncherDumpProto.DumpTarget;
-import com.android.launcher3.shortcuts.DeepShortcutManager;
-import com.android.launcher3.shortcuts.ShortcutInfoCompat;
-import com.android.launcher3.shortcuts.ShortcutKey;
-import com.android.launcher3.util.ComponentKey;
-import com.android.launcher3.util.LongArrayMap;
-import com.android.launcher3.util.MultiHashMap;
+import com.android.launcher3a.FolderInfo;
+import com.android.launcher3a.InstallShortcutReceiver;
+import com.android.launcher3a.ItemInfo;
+import com.android.launcher3a.LauncherAppWidgetInfo;
+import com.android.launcher3a.LauncherSettings;
+import com.android.launcher3a.ShortcutInfo;
+import com.android.launcher3a.config.FeatureFlags;
+import com.android.launcher3a.logging.DumpTargetWrapper;
+import com.android.launcher3a.model.nano.LauncherDumpProto;
+import com.android.launcher3a.model.nano.LauncherDumpProto.ContainerType;
+import com.android.launcher3a.model.nano.LauncherDumpProto.DumpTarget;
+import com.android.launcher3a.shortcuts.DeepShortcutManager;
+import com.android.launcher3a.shortcuts.ShortcutInfoCompat;
+import com.android.launcher3a.shortcuts.ShortcutKey;
+import com.android.launcher3a.util.ComponentKey;
+import com.android.launcher3a.util.LongArrayMap;
+import com.android.launcher3a.util.MultiHashMap;
 import com.google.protobuf.nano.MessageNano;
 
 import java.io.FileDescriptor;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.widget;
+package com.android.launcher3a.widget;
 
 import android.animation.PropertyValuesHolder;
 import android.content.Context;
@@ -27,14 +27,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.android.launcher3.Insettable;
-import com.android.launcher3.ItemInfo;
-import com.android.launcher3.LauncherAppState;
-import com.android.launcher3.R;
-import com.android.launcher3.Utilities;
-import com.android.launcher3.anim.Interpolators;
-import com.android.launcher3.model.WidgetItem;
-import com.android.launcher3.util.PackageUserKey;
+import com.android.launcher3a.Insettable;
+import com.android.launcher3a.ItemInfo;
+import com.android.launcher3a.LauncherAppState;
+import com.android.launcher3a.R;
+import com.android.launcher3a.Utilities;
+import com.android.launcher3a.anim.Interpolators;
+import com.android.launcher3a.model.WidgetItem;
+import com.android.launcher3a.util.PackageUserKey;
 
 import java.util.List;
 

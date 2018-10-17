@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.popup;
+package com.android.launcher3a.popup;
 
-import static com.android.launcher3.notification.NotificationMainView.NOTIFICATION_ITEM_INFO;
-import static com.android.launcher3.popup.PopupPopulator.MAX_SHORTCUTS;
-import static com.android.launcher3.popup.PopupPopulator.MAX_SHORTCUTS_IF_NOTIFICATIONS;
-import static com.android.launcher3.userevent.nano.LauncherLogProto.ContainerType;
-import static com.android.launcher3.userevent.nano.LauncherLogProto.ItemType;
-import static com.android.launcher3.userevent.nano.LauncherLogProto.Target;
+import static com.android.launcher3a.notification.NotificationMainView.NOTIFICATION_ITEM_INFO;
+import static com.android.launcher3a.popup.PopupPopulator.MAX_SHORTCUTS;
+import static com.android.launcher3a.popup.PopupPopulator.MAX_SHORTCUTS_IF_NOTIFICATIONS;
+import static com.android.launcher3a.userevent.nano.LauncherLogProto.ContainerType;
+import static com.android.launcher3a.userevent.nano.LauncherLogProto.ItemType;
+import static com.android.launcher3a.userevent.nano.LauncherLogProto.Target;
 
 import android.animation.AnimatorSet;
 import android.animation.LayoutTransition;
@@ -41,32 +41,32 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.android.launcher3.AbstractFloatingView;
-import com.android.launcher3.BubbleTextView;
-import com.android.launcher3.DragSource;
-import com.android.launcher3.DropTarget;
-import com.android.launcher3.DropTarget.DragObject;
-import com.android.launcher3.ItemInfo;
-import com.android.launcher3.ItemInfoWithIcon;
-import com.android.launcher3.Launcher;
-import com.android.launcher3.LauncherModel;
-import com.android.launcher3.R;
-import com.android.launcher3.accessibility.LauncherAccessibilityDelegate;
-import com.android.launcher3.accessibility.ShortcutMenuAccessibilityDelegate;
-import com.android.launcher3.badge.BadgeInfo;
-import com.android.launcher3.dragndrop.DragController;
-import com.android.launcher3.dragndrop.DragLayer;
-import com.android.launcher3.dragndrop.DragOptions;
-import com.android.launcher3.dragndrop.DragView;
-import com.android.launcher3.logging.LoggerUtils;
-import com.android.launcher3.notification.NotificationInfo;
-import com.android.launcher3.notification.NotificationItemView;
-import com.android.launcher3.notification.NotificationKeyData;
-import com.android.launcher3.shortcuts.DeepShortcutManager;
-import com.android.launcher3.shortcuts.DeepShortcutView;
-import com.android.launcher3.shortcuts.ShortcutDragPreviewProvider;
-import com.android.launcher3.touch.ItemLongClickListener;
-import com.android.launcher3.util.PackageUserKey;
+import com.android.launcher3a.AbstractFloatingView;
+import com.android.launcher3a.BubbleTextView;
+import com.android.launcher3a.DragSource;
+import com.android.launcher3a.DropTarget;
+import com.android.launcher3a.DropTarget.DragObject;
+import com.android.launcher3a.ItemInfo;
+import com.android.launcher3a.ItemInfoWithIcon;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.LauncherModel;
+import com.android.launcher3a.R;
+import com.android.launcher3a.accessibility.LauncherAccessibilityDelegate;
+import com.android.launcher3a.accessibility.ShortcutMenuAccessibilityDelegate;
+import com.android.launcher3a.badge.BadgeInfo;
+import com.android.launcher3a.dragndrop.DragController;
+import com.android.launcher3a.dragndrop.DragLayer;
+import com.android.launcher3a.dragndrop.DragOptions;
+import com.android.launcher3a.dragndrop.DragView;
+import com.android.launcher3a.logging.LoggerUtils;
+import com.android.launcher3a.notification.NotificationInfo;
+import com.android.launcher3a.notification.NotificationItemView;
+import com.android.launcher3a.notification.NotificationKeyData;
+import com.android.launcher3a.shortcuts.DeepShortcutManager;
+import com.android.launcher3a.shortcuts.DeepShortcutView;
+import com.android.launcher3a.shortcuts.ShortcutDragPreviewProvider;
+import com.android.launcher3a.touch.ItemLongClickListener;
+import com.android.launcher3a.util.PackageUserKey;
 
 import java.util.ArrayList;
 import java.util.List;

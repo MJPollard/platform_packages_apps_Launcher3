@@ -1,10 +1,10 @@
-package com.android.launcher3.model;
+package com.android.launcher3a.model;
 
 import android.support.test.runner.AndroidJUnit4;
 
-import com.android.launcher3.AppInfo;
-import com.android.launcher3.ItemInfo;
-import com.android.launcher3.ShortcutInfo;
+import com.android.launcher3a.AppInfo;
+import com.android.launcher3a.ItemInfo;
+import com.android.launcher3a.ShortcutInfo;
 
 import org.junit.Before;
 import org.junit.Test;

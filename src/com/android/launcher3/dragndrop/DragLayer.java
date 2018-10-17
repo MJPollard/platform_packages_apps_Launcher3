@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.dragndrop;
+package com.android.launcher3a.dragndrop;
 
-import static com.android.launcher3.compat.AccessibilityManagerCompat.sendCustomAccessibilityEvent;
+import static com.android.launcher3a.compat.AccessibilityManagerCompat.sendCustomAccessibilityEvent;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -37,22 +37,22 @@ import android.view.accessibility.AccessibilityManager;
 import android.view.animation.Interpolator;
 import android.widget.TextView;
 
-import com.android.launcher3.AbstractFloatingView;
-import com.android.launcher3.CellLayout;
-import com.android.launcher3.DropTargetBar;
-import com.android.launcher3.Launcher;
-import com.android.launcher3.R;
-import com.android.launcher3.ShortcutAndWidgetContainer;
-import com.android.launcher3.Workspace;
-import com.android.launcher3.anim.Interpolators;
-import com.android.launcher3.folder.Folder;
-import com.android.launcher3.folder.FolderIcon;
-import com.android.launcher3.graphics.ViewScrim;
-import com.android.launcher3.graphics.WorkspaceAndHotseatScrim;
-import com.android.launcher3.keyboard.ViewGroupFocusHelper;
-import com.android.launcher3.uioverrides.UiFactory;
-import com.android.launcher3.util.Thunk;
-import com.android.launcher3.views.BaseDragLayer;
+import com.android.launcher3a.AbstractFloatingView;
+import com.android.launcher3a.CellLayout;
+import com.android.launcher3a.DropTargetBar;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.R;
+import com.android.launcher3a.ShortcutAndWidgetContainer;
+import com.android.launcher3a.Workspace;
+import com.android.launcher3a.anim.Interpolators;
+import com.android.launcher3a.folder.Folder;
+import com.android.launcher3a.folder.FolderIcon;
+import com.android.launcher3a.graphics.ViewScrim;
+import com.android.launcher3a.graphics.WorkspaceAndHotseatScrim;
+import com.android.launcher3a.keyboard.ViewGroupFocusHelper;
+import com.android.launcher3a.uioverrides.UiFactory;
+import com.android.launcher3a.util.Thunk;
+import com.android.launcher3a.views.BaseDragLayer;
 
 import java.util.ArrayList;
 

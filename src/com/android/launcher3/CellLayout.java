@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3;
+package com.android.launcher3a;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -46,21 +46,21 @@ import android.view.ViewDebug;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 
-import com.android.launcher3.LauncherSettings.Favorites;
-import com.android.launcher3.accessibility.DragAndDropAccessibilityDelegate;
-import com.android.launcher3.accessibility.FolderAccessibilityHelper;
-import com.android.launcher3.accessibility.WorkspaceAccessibilityHelper;
-import com.android.launcher3.anim.Interpolators;
-import com.android.launcher3.anim.PropertyListBuilder;
-import com.android.launcher3.config.FeatureFlags;
-import com.android.launcher3.folder.PreviewBackground;
-import com.android.launcher3.graphics.DragPreviewProvider;
-import com.android.launcher3.util.CellAndSpan;
-import com.android.launcher3.util.GridOccupancy;
-import com.android.launcher3.util.ParcelableSparseArray;
-import com.android.launcher3.util.Themes;
-import com.android.launcher3.util.Thunk;
-import com.android.launcher3.widget.LauncherAppWidgetHostView;
+import com.android.launcher3a.LauncherSettings.Favorites;
+import com.android.launcher3a.accessibility.DragAndDropAccessibilityDelegate;
+import com.android.launcher3a.accessibility.FolderAccessibilityHelper;
+import com.android.launcher3a.accessibility.WorkspaceAccessibilityHelper;
+import com.android.launcher3a.anim.Interpolators;
+import com.android.launcher3a.anim.PropertyListBuilder;
+import com.android.launcher3a.config.FeatureFlags;
+import com.android.launcher3a.folder.PreviewBackground;
+import com.android.launcher3a.graphics.DragPreviewProvider;
+import com.android.launcher3a.util.CellAndSpan;
+import com.android.launcher3a.util.GridOccupancy;
+import com.android.launcher3a.util.ParcelableSparseArray;
+import com.android.launcher3a.util.Themes;
+import com.android.launcher3a.util.Thunk;
+import com.android.launcher3a.widget.LauncherAppWidgetHostView;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

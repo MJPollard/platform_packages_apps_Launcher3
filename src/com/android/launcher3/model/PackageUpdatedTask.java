@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.launcher3.model;
+package com.android.launcher3a.model;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -24,29 +24,29 @@ import android.os.UserHandle;
 import android.util.ArrayMap;
 import android.util.Log;
 
-import com.android.launcher3.AllAppsList;
-import com.android.launcher3.AppInfo;
-import com.android.launcher3.IconCache;
-import com.android.launcher3.InstallShortcutReceiver;
-import com.android.launcher3.ItemInfo;
-import com.android.launcher3.LauncherAppState;
-import com.android.launcher3.LauncherAppWidgetInfo;
-import com.android.launcher3.LauncherModel.CallbackTask;
-import com.android.launcher3.LauncherModel.Callbacks;
-import com.android.launcher3.LauncherSettings.Favorites;
-import com.android.launcher3.SessionCommitReceiver;
-import com.android.launcher3.ShortcutInfo;
-import com.android.launcher3.Utilities;
-import com.android.launcher3.compat.LauncherAppsCompat;
-import com.android.launcher3.compat.UserManagerCompat;
-import com.android.launcher3.config.FeatureFlags;
-import com.android.launcher3.graphics.BitmapInfo;
-import com.android.launcher3.graphics.LauncherIcons;
-import com.android.launcher3.util.FlagOp;
-import com.android.launcher3.util.ItemInfoMatcher;
-import com.android.launcher3.util.LongArrayMap;
-import com.android.launcher3.util.PackageManagerHelper;
-import com.android.launcher3.util.PackageUserKey;
+import com.android.launcher3a.AllAppsList;
+import com.android.launcher3a.AppInfo;
+import com.android.launcher3a.IconCache;
+import com.android.launcher3a.InstallShortcutReceiver;
+import com.android.launcher3a.ItemInfo;
+import com.android.launcher3a.LauncherAppState;
+import com.android.launcher3a.LauncherAppWidgetInfo;
+import com.android.launcher3a.LauncherModel.CallbackTask;
+import com.android.launcher3a.LauncherModel.Callbacks;
+import com.android.launcher3a.LauncherSettings.Favorites;
+import com.android.launcher3a.SessionCommitReceiver;
+import com.android.launcher3a.ShortcutInfo;
+import com.android.launcher3a.Utilities;
+import com.android.launcher3a.compat.LauncherAppsCompat;
+import com.android.launcher3a.compat.UserManagerCompat;
+import com.android.launcher3a.config.FeatureFlags;
+import com.android.launcher3a.graphics.BitmapInfo;
+import com.android.launcher3a.graphics.LauncherIcons;
+import com.android.launcher3a.util.FlagOp;
+import com.android.launcher3a.util.ItemInfoMatcher;
+import com.android.launcher3a.util.LongArrayMap;
+import com.android.launcher3a.util.PackageManagerHelper;
+import com.android.launcher3a.util.PackageUserKey;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.launcher3.allapps.search;
+package com.android.launcher3a.allapps.search;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -25,11 +25,11 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-import com.android.launcher3.ExtendedEditText;
-import com.android.launcher3.Launcher;
-import com.android.launcher3.Utilities;
-import com.android.launcher3.util.ComponentKey;
-import com.android.launcher3.util.PackageManagerHelper;
+import com.android.launcher3a.ExtendedEditText;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.Utilities;
+import com.android.launcher3a.util.ComponentKey;
+import com.android.launcher3a.util.PackageManagerHelper;
 
 import java.util.ArrayList;
 

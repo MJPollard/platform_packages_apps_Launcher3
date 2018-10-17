@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.logging;
+package com.android.launcher3a.logging;
 
-import static com.android.launcher3.logging.LoggerUtils.newAction;
-import static com.android.launcher3.logging.LoggerUtils.newCommandAction;
-import static com.android.launcher3.logging.LoggerUtils.newContainerTarget;
-import static com.android.launcher3.logging.LoggerUtils.newControlTarget;
-import static com.android.launcher3.logging.LoggerUtils.newDropTarget;
-import static com.android.launcher3.logging.LoggerUtils.newItemTarget;
-import static com.android.launcher3.logging.LoggerUtils.newLauncherEvent;
-import static com.android.launcher3.logging.LoggerUtils.newTarget;
-import static com.android.launcher3.logging.LoggerUtils.newTouchAction;
+import static com.android.launcher3a.logging.LoggerUtils.newAction;
+import static com.android.launcher3a.logging.LoggerUtils.newCommandAction;
+import static com.android.launcher3a.logging.LoggerUtils.newContainerTarget;
+import static com.android.launcher3a.logging.LoggerUtils.newControlTarget;
+import static com.android.launcher3a.logging.LoggerUtils.newDropTarget;
+import static com.android.launcher3a.logging.LoggerUtils.newItemTarget;
+import static com.android.launcher3a.logging.LoggerUtils.newLauncherEvent;
+import static com.android.launcher3a.logging.LoggerUtils.newTarget;
+import static com.android.launcher3a.logging.LoggerUtils.newTouchAction;
 
 import android.app.PendingIntent;
 import android.content.ComponentName;
@@ -37,20 +37,20 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewParent;
 
-import com.android.launcher3.DeviceProfile;
-import com.android.launcher3.DropTarget;
-import com.android.launcher3.ItemInfo;
-import com.android.launcher3.R;
-import com.android.launcher3.Utilities;
-import com.android.launcher3.config.FeatureFlags;
-import com.android.launcher3.userevent.nano.LauncherLogProto;
-import com.android.launcher3.userevent.nano.LauncherLogProto.Action;
-import com.android.launcher3.userevent.nano.LauncherLogProto.ContainerType;
-import com.android.launcher3.userevent.nano.LauncherLogProto.LauncherEvent;
-import com.android.launcher3.userevent.nano.LauncherLogProto.Target;
-import com.android.launcher3.util.ComponentKey;
-import com.android.launcher3.util.InstantAppResolver;
-import com.android.launcher3.util.LogConfig;
+import com.android.launcher3a.DeviceProfile;
+import com.android.launcher3a.DropTarget;
+import com.android.launcher3a.ItemInfo;
+import com.android.launcher3a.R;
+import com.android.launcher3a.Utilities;
+import com.android.launcher3a.config.FeatureFlags;
+import com.android.launcher3a.userevent.nano.LauncherLogProto;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.Action;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.ContainerType;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.LauncherEvent;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.Target;
+import com.android.launcher3a.util.ComponentKey;
+import com.android.launcher3a.util.InstantAppResolver;
+import com.android.launcher3a.util.LogConfig;
 
 import java.util.Locale;
 import java.util.UUID;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.graphics;
+package com.android.launcher3a.graphics;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -34,9 +34,9 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import com.android.launcher3.LauncherAppState;
-import com.android.launcher3.Utilities;
-import com.android.launcher3.dragndrop.FolderAdaptiveIcon;
+import com.android.launcher3a.LauncherAppState;
+import com.android.launcher3a.Utilities;
+import com.android.launcher3a.dragndrop.FolderAdaptiveIcon;
 
 import java.nio.ByteBuffer;
 

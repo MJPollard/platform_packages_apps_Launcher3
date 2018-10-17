@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.dragndrop;
+package com.android.launcher3a.dragndrop;
 
 import android.annotation.TargetApi;
 import android.graphics.Bitmap;
@@ -31,13 +31,13 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.Log;
 
-import com.android.launcher3.Launcher;
-import com.android.launcher3.MainThreadExecutor;
-import com.android.launcher3.R;
-import com.android.launcher3.folder.FolderIcon;
-import com.android.launcher3.folder.PreviewBackground;
-import com.android.launcher3.graphics.BitmapRenderer;
-import com.android.launcher3.util.Preconditions;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.MainThreadExecutor;
+import com.android.launcher3a.R;
+import com.android.launcher3a.folder.FolderIcon;
+import com.android.launcher3a.folder.PreviewBackground;
+import com.android.launcher3a.graphics.BitmapRenderer;
+import com.android.launcher3a.util.Preconditions;
 
 /**
  * {@link AdaptiveIconDrawable} representation of a {@link FolderIcon}

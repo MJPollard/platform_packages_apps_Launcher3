@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.launcher3.allapps;
+package com.android.launcher3a.allapps;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -26,11 +26,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.android.launcher3.Launcher;
-import com.android.launcher3.R;
-import com.android.launcher3.Utilities;
-import com.android.launcher3.pageindicators.PageIndicator;
-import com.android.launcher3.util.Themes;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.R;
+import com.android.launcher3a.Utilities;
+import com.android.launcher3a.pageindicators.PageIndicator;
+import com.android.launcher3a.util.Themes;
 
 /**
  * Supports two indicator colors, dedicated for personal and work tabs.

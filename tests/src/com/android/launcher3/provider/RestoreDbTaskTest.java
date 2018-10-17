@@ -1,4 +1,4 @@
-package com.android.launcher3.provider;
+package com.android.launcher3a.provider;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -7,8 +7,8 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.MediumTest;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.android.launcher3.LauncherProvider.DatabaseHelper;
-import com.android.launcher3.LauncherSettings.Favorites;
+import com.android.launcher3a.LauncherProvider.DatabaseHelper;
+import com.android.launcher3a.LauncherSettings.Favorites;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

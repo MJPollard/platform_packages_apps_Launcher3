@@ -1,16 +1,16 @@
-package com.android.launcher3.allapps;
+package com.android.launcher3a.allapps;
 
-import static com.android.launcher3.LauncherState.ALL_APPS_CONTENT;
-import static com.android.launcher3.LauncherState.ALL_APPS_HEADER;
-import static com.android.launcher3.LauncherState.ALL_APPS_HEADER_EXTRA;
-import static com.android.launcher3.LauncherState.OVERVIEW;
-import static com.android.launcher3.LauncherState.VERTICAL_SWIPE_INDICATOR;
-import static com.android.launcher3.anim.AnimatorSetBuilder.ANIM_OVERVIEW_SCALE;
-import static com.android.launcher3.anim.AnimatorSetBuilder.ANIM_VERTICAL_PROGRESS;
-import static com.android.launcher3.anim.Interpolators.FAST_OUT_SLOW_IN;
-import static com.android.launcher3.anim.Interpolators.LINEAR;
-import static com.android.launcher3.anim.PropertySetter.NO_ANIM_PROPERTY_SETTER;
-import static com.android.launcher3.util.SystemUiController.UI_STATE_ALL_APPS;
+import static com.android.launcher3a.LauncherState.ALL_APPS_CONTENT;
+import static com.android.launcher3a.LauncherState.ALL_APPS_HEADER;
+import static com.android.launcher3a.LauncherState.ALL_APPS_HEADER_EXTRA;
+import static com.android.launcher3a.LauncherState.OVERVIEW;
+import static com.android.launcher3a.LauncherState.VERTICAL_SWIPE_INDICATOR;
+import static com.android.launcher3a.anim.AnimatorSetBuilder.ANIM_OVERVIEW_SCALE;
+import static com.android.launcher3a.anim.AnimatorSetBuilder.ANIM_VERTICAL_PROGRESS;
+import static com.android.launcher3a.anim.Interpolators.FAST_OUT_SLOW_IN;
+import static com.android.launcher3a.anim.Interpolators.LINEAR;
+import static com.android.launcher3a.anim.PropertySetter.NO_ANIM_PROPERTY_SETTER;
+import static com.android.launcher3a.util.SystemUiController.UI_STATE_ALL_APPS;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -19,18 +19,18 @@ import android.util.Property;
 import android.view.View;
 import android.view.animation.Interpolator;
 
-import com.android.launcher3.DeviceProfile;
-import com.android.launcher3.DeviceProfile.OnDeviceProfileChangeListener;
-import com.android.launcher3.Launcher;
-import com.android.launcher3.LauncherState;
-import com.android.launcher3.LauncherStateManager.AnimationConfig;
-import com.android.launcher3.LauncherStateManager.StateHandler;
-import com.android.launcher3.R;
-import com.android.launcher3.anim.AnimationSuccessListener;
-import com.android.launcher3.anim.AnimatorSetBuilder;
-import com.android.launcher3.anim.PropertySetter;
-import com.android.launcher3.util.Themes;
-import com.android.launcher3.views.ScrimView;
+import com.android.launcher3a.DeviceProfile;
+import com.android.launcher3a.DeviceProfile.OnDeviceProfileChangeListener;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.LauncherState;
+import com.android.launcher3a.LauncherStateManager.AnimationConfig;
+import com.android.launcher3a.LauncherStateManager.StateHandler;
+import com.android.launcher3a.R;
+import com.android.launcher3a.anim.AnimationSuccessListener;
+import com.android.launcher3a.anim.AnimatorSetBuilder;
+import com.android.launcher3a.anim.PropertySetter;
+import com.android.launcher3a.util.Themes;
+import com.android.launcher3a.views.ScrimView;
 
 /**
  * Handles AllApps view transition.

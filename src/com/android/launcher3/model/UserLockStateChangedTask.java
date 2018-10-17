@@ -13,26 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.launcher3.model;
+package com.android.launcher3a.model;
 
-import static com.android.launcher3.ItemInfoWithIcon.FLAG_DISABLED_LOCKED_USER;
+import static com.android.launcher3a.ItemInfoWithIcon.FLAG_DISABLED_LOCKED_USER;
 
 import android.content.Context;
 import android.os.UserHandle;
 
-import com.android.launcher3.AllAppsList;
-import com.android.launcher3.ItemInfo;
-import com.android.launcher3.LauncherAppState;
-import com.android.launcher3.LauncherSettings;
-import com.android.launcher3.ShortcutInfo;
-import com.android.launcher3.compat.UserManagerCompat;
-import com.android.launcher3.graphics.LauncherIcons;
-import com.android.launcher3.shortcuts.DeepShortcutManager;
-import com.android.launcher3.shortcuts.ShortcutInfoCompat;
-import com.android.launcher3.shortcuts.ShortcutKey;
-import com.android.launcher3.util.ComponentKey;
-import com.android.launcher3.util.ItemInfoMatcher;
-import com.android.launcher3.util.Provider;
+import com.android.launcher3a.AllAppsList;
+import com.android.launcher3a.ItemInfo;
+import com.android.launcher3a.LauncherAppState;
+import com.android.launcher3a.LauncherSettings;
+import com.android.launcher3a.ShortcutInfo;
+import com.android.launcher3a.compat.UserManagerCompat;
+import com.android.launcher3a.graphics.LauncherIcons;
+import com.android.launcher3a.shortcuts.DeepShortcutManager;
+import com.android.launcher3a.shortcuts.ShortcutInfoCompat;
+import com.android.launcher3a.shortcuts.ShortcutKey;
+import com.android.launcher3a.util.ComponentKey;
+import com.android.launcher3a.util.ItemInfoMatcher;
+import com.android.launcher3a.util.Provider;
 
 import java.util.ArrayList;
 import java.util.HashMap;

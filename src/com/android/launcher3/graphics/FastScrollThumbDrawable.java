@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.graphics;
+package com.android.launcher3a.graphics;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;

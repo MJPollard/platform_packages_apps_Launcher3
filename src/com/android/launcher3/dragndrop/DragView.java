@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.dragndrop;
+package com.android.launcher3a.dragndrop;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -44,33 +44,33 @@ import android.support.animation.SpringAnimation;
 import android.support.animation.SpringForce;
 import android.view.View;
 
-import com.android.launcher3.FastBitmapDrawable;
-import com.android.launcher3.ItemInfo;
-import com.android.launcher3.ItemInfoWithIcon;
-import com.android.launcher3.Launcher;
-import com.android.launcher3.LauncherAnimUtils;
-import com.android.launcher3.LauncherAppState;
-import com.android.launcher3.LauncherModel;
-import com.android.launcher3.LauncherSettings;
-import com.android.launcher3.R;
-import com.android.launcher3.Utilities;
-import com.android.launcher3.anim.Interpolators;
-import com.android.launcher3.compat.LauncherAppsCompat;
-import com.android.launcher3.compat.ShortcutConfigActivityInfo;
-import com.android.launcher3.config.FeatureFlags;
-import com.android.launcher3.graphics.IconNormalizer;
-import com.android.launcher3.graphics.LauncherIcons;
-import com.android.launcher3.shortcuts.DeepShortcutManager;
-import com.android.launcher3.shortcuts.ShortcutInfoCompat;
-import com.android.launcher3.shortcuts.ShortcutKey;
-import com.android.launcher3.util.Themes;
-import com.android.launcher3.util.Thunk;
-import com.android.launcher3.widget.PendingAddShortcutInfo;
+import com.android.launcher3a.FastBitmapDrawable;
+import com.android.launcher3a.ItemInfo;
+import com.android.launcher3a.ItemInfoWithIcon;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.LauncherAnimUtils;
+import com.android.launcher3a.LauncherAppState;
+import com.android.launcher3a.LauncherModel;
+import com.android.launcher3a.LauncherSettings;
+import com.android.launcher3a.R;
+import com.android.launcher3a.Utilities;
+import com.android.launcher3a.anim.Interpolators;
+import com.android.launcher3a.compat.LauncherAppsCompat;
+import com.android.launcher3a.compat.ShortcutConfigActivityInfo;
+import com.android.launcher3a.config.FeatureFlags;
+import com.android.launcher3a.graphics.IconNormalizer;
+import com.android.launcher3a.graphics.LauncherIcons;
+import com.android.launcher3a.shortcuts.DeepShortcutManager;
+import com.android.launcher3a.shortcuts.ShortcutInfoCompat;
+import com.android.launcher3a.shortcuts.ShortcutKey;
+import com.android.launcher3a.util.Themes;
+import com.android.launcher3a.util.Thunk;
+import com.android.launcher3a.widget.PendingAddShortcutInfo;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static com.android.launcher3.ItemInfoWithIcon.FLAG_ICON_BADGED;
+import static com.android.launcher3a.ItemInfoWithIcon.FLAG_ICON_BADGED;
 
 public class DragView extends View {
     private static final ColorMatrix sTempMatrix1 = new ColorMatrix();

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.folder;
+package com.android.launcher3a.folder;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -28,24 +28,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewDebug;
 
-import com.android.launcher3.BubbleTextView;
-import com.android.launcher3.CellLayout;
-import com.android.launcher3.DeviceProfile;
-import com.android.launcher3.InvariantDeviceProfile;
-import com.android.launcher3.ItemInfo;
-import com.android.launcher3.Launcher;
-import com.android.launcher3.LauncherAppState;
-import com.android.launcher3.PagedView;
-import com.android.launcher3.R;
-import com.android.launcher3.ShortcutAndWidgetContainer;
-import com.android.launcher3.ShortcutInfo;
-import com.android.launcher3.Utilities;
-import com.android.launcher3.Workspace.ItemOperator;
-import com.android.launcher3.anim.Interpolators;
-import com.android.launcher3.keyboard.ViewGroupFocusHelper;
-import com.android.launcher3.pageindicators.PageIndicatorDots;
-import com.android.launcher3.touch.ItemClickHandler;
-import com.android.launcher3.util.Thunk;
+import com.android.launcher3a.BubbleTextView;
+import com.android.launcher3a.CellLayout;
+import com.android.launcher3a.DeviceProfile;
+import com.android.launcher3a.InvariantDeviceProfile;
+import com.android.launcher3a.ItemInfo;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.LauncherAppState;
+import com.android.launcher3a.PagedView;
+import com.android.launcher3a.R;
+import com.android.launcher3a.ShortcutAndWidgetContainer;
+import com.android.launcher3a.ShortcutInfo;
+import com.android.launcher3a.Utilities;
+import com.android.launcher3a.Workspace.ItemOperator;
+import com.android.launcher3a.anim.Interpolators;
+import com.android.launcher3a.keyboard.ViewGroupFocusHelper;
+import com.android.launcher3a.pageindicators.PageIndicatorDots;
+import com.android.launcher3a.touch.ItemClickHandler;
+import com.android.launcher3a.util.Thunk;
 
 import java.util.ArrayList;
 import java.util.Iterator;

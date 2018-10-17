@@ -13,19 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.launcher3.states;
+package com.android.launcher3a.states;
 
-import static com.android.launcher3.LauncherAnimUtils.SPRING_LOADED_TRANSITION_MS;
-import static com.android.launcher3.states.RotationHelper.REQUEST_LOCK;
+import static com.android.launcher3a.LauncherAnimUtils.SPRING_LOADED_TRANSITION_MS;
+import static com.android.launcher3a.states.RotationHelper.REQUEST_LOCK;
 
 import android.graphics.Rect;
 
-import com.android.launcher3.DeviceProfile;
-import com.android.launcher3.InstallShortcutReceiver;
-import com.android.launcher3.Launcher;
-import com.android.launcher3.LauncherState;
-import com.android.launcher3.Workspace;
-import com.android.launcher3.userevent.nano.LauncherLogProto.ContainerType;
+import com.android.launcher3a.DeviceProfile;
+import com.android.launcher3a.InstallShortcutReceiver;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.LauncherState;
+import com.android.launcher3a.Workspace;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.ContainerType;
 
 /**
  * Definition for spring loaded state used during drag and drop.

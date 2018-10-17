@@ -13,27 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.android.launcher3.model;
+package com.android.launcher3a.model;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.UserHandle;
 import android.util.LongSparseArray;
 import android.util.Pair;
-import com.android.launcher3.AllAppsList;
-import com.android.launcher3.AppInfo;
-import com.android.launcher3.FolderInfo;
-import com.android.launcher3.InvariantDeviceProfile;
-import com.android.launcher3.ItemInfo;
-import com.android.launcher3.LauncherAppState;
-import com.android.launcher3.LauncherAppWidgetInfo;
-import com.android.launcher3.LauncherModel;
-import com.android.launcher3.LauncherModel.CallbackTask;
-import com.android.launcher3.LauncherModel.Callbacks;
-import com.android.launcher3.LauncherSettings;
-import com.android.launcher3.ShortcutInfo;
-import com.android.launcher3.Utilities;
-import com.android.launcher3.util.GridOccupancy;
+import com.android.launcher3a.AllAppsList;
+import com.android.launcher3a.AppInfo;
+import com.android.launcher3a.FolderInfo;
+import com.android.launcher3a.InvariantDeviceProfile;
+import com.android.launcher3a.ItemInfo;
+import com.android.launcher3a.LauncherAppState;
+import com.android.launcher3a.LauncherAppWidgetInfo;
+import com.android.launcher3a.LauncherModel;
+import com.android.launcher3a.LauncherModel.CallbackTask;
+import com.android.launcher3a.LauncherModel.Callbacks;
+import com.android.launcher3a.LauncherSettings;
+import com.android.launcher3a.ShortcutInfo;
+import com.android.launcher3a.Utilities;
+import com.android.launcher3a.util.GridOccupancy;
 import java.util.ArrayList;
 import java.util.List;
 

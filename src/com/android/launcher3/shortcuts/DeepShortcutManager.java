@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.shortcuts;
+package com.android.launcher3a.shortcuts;
 
 import android.annotation.TargetApi;
 import android.content.ComponentName;
@@ -28,9 +28,9 @@ import android.os.Bundle;
 import android.os.UserHandle;
 import android.util.Log;
 
-import com.android.launcher3.ItemInfo;
-import com.android.launcher3.LauncherSettings;
-import com.android.launcher3.Utilities;
+import com.android.launcher3a.ItemInfo;
+import com.android.launcher3a.LauncherSettings;
+import com.android.launcher3a.Utilities;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -65,8 +65,8 @@ public class DeepShortcutManager {
     }
 
     public static boolean supportsShortcuts(ItemInfo info) {
-        boolean isItemPromise = info instanceof com.android.launcher3.ShortcutInfo
-                && ((com.android.launcher3.ShortcutInfo) info).hasPromiseIconUi();
+        boolean isItemPromise = info instanceof com.android.launcher3a.ShortcutInfo
+                && ((com.android.launcher3a.ShortcutInfo) info).hasPromiseIconUi();
         return info.itemType == LauncherSettings.Favorites.ITEM_TYPE_APPLICATION
                 && !info.isDisabled() && !isItemPromise;
     }

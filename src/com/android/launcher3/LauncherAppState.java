@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3;
+package com.android.launcher3a;
 
 import android.content.ComponentName;
 import android.content.ContentProviderClient;
@@ -24,19 +24,19 @@ import android.content.IntentFilter;
 import android.os.Looper;
 import android.util.Log;
 
-import com.android.launcher3.compat.LauncherAppsCompat;
-import com.android.launcher3.compat.PackageInstallerCompat;
-import com.android.launcher3.compat.UserManagerCompat;
-import com.android.launcher3.config.FeatureFlags;
-import com.android.launcher3.notification.NotificationListener;
-import com.android.launcher3.util.ConfigMonitor;
-import com.android.launcher3.util.Preconditions;
-import com.android.launcher3.util.SettingsObserver;
+import com.android.launcher3a.compat.LauncherAppsCompat;
+import com.android.launcher3a.compat.PackageInstallerCompat;
+import com.android.launcher3a.compat.UserManagerCompat;
+import com.android.launcher3a.config.FeatureFlags;
+import com.android.launcher3a.notification.NotificationListener;
+import com.android.launcher3a.util.ConfigMonitor;
+import com.android.launcher3a.util.Preconditions;
+import com.android.launcher3a.util.SettingsObserver;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
-import static com.android.launcher3.SettingsActivity.NOTIFICATION_BADGING;
+import static com.android.launcher3a.SettingsActivity.NOTIFICATION_BADGING;
 
 public class LauncherAppState {
 

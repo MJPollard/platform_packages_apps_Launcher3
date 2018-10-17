@@ -1,19 +1,19 @@
-package com.android.launcher3.uioverrides;
+package com.android.launcher3a.uioverrides;
 
-import static com.android.launcher3.LauncherState.NORMAL;
-import static com.android.launcher3.LauncherState.OVERVIEW;
+import static com.android.launcher3a.LauncherState.NORMAL;
+import static com.android.launcher3a.LauncherState.OVERVIEW;
 import static com.android.quickstep.TouchInteractionService.EDGE_NAV_BAR;
 
 import android.view.MotionEvent;
 
-import com.android.launcher3.AbstractFloatingView;
-import com.android.launcher3.Launcher;
-import com.android.launcher3.LauncherState;
-import com.android.launcher3.LauncherStateManager.AnimationComponents;
-import com.android.launcher3.touch.AbstractStateChangeTouchController;
-import com.android.launcher3.touch.SwipeDetector;
-import com.android.launcher3.userevent.nano.LauncherLogProto;
-import com.android.launcher3.userevent.nano.LauncherLogProto.Action.Direction;
+import com.android.launcher3a.AbstractFloatingView;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.LauncherState;
+import com.android.launcher3a.LauncherStateManager.AnimationComponents;
+import com.android.launcher3a.touch.AbstractStateChangeTouchController;
+import com.android.launcher3a.touch.SwipeDetector;
+import com.android.launcher3a.userevent.nano.LauncherLogProto;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.Action.Direction;
 import com.android.quickstep.RecentsModel;
 
 /**

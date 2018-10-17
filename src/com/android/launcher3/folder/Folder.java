@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.folder;
+package com.android.launcher3a.folder;
 
-import static com.android.launcher3.LauncherAnimUtils.SPRING_LOADED_EXIT_DELAY;
-import static com.android.launcher3.LauncherState.NORMAL;
-import static com.android.launcher3.compat.AccessibilityManagerCompat.sendCustomAccessibilityEvent;
+import static com.android.launcher3a.LauncherAnimUtils.SPRING_LOADED_EXIT_DELAY;
+import static com.android.launcher3a.LauncherState.NORMAL;
+import static com.android.launcher3a.compat.AccessibilityManagerCompat.sendCustomAccessibilityEvent;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -46,38 +46,38 @@ import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
-import com.android.launcher3.AbstractFloatingView;
-import com.android.launcher3.Alarm;
-import com.android.launcher3.AppInfo;
-import com.android.launcher3.BubbleTextView;
-import com.android.launcher3.CellLayout;
-import com.android.launcher3.DeviceProfile;
-import com.android.launcher3.DragSource;
-import com.android.launcher3.DropTarget;
-import com.android.launcher3.ExtendedEditText;
-import com.android.launcher3.FolderInfo;
-import com.android.launcher3.FolderInfo.FolderListener;
-import com.android.launcher3.ItemInfo;
-import com.android.launcher3.Launcher;
-import com.android.launcher3.LauncherSettings;
-import com.android.launcher3.OnAlarmListener;
-import com.android.launcher3.PagedView;
-import com.android.launcher3.R;
-import com.android.launcher3.ShortcutInfo;
-import com.android.launcher3.Utilities;
-import com.android.launcher3.Workspace.ItemOperator;
-import com.android.launcher3.accessibility.AccessibleDragListenerAdapter;
-import com.android.launcher3.config.FeatureFlags;
-import com.android.launcher3.dragndrop.DragController;
-import com.android.launcher3.dragndrop.DragController.DragListener;
-import com.android.launcher3.dragndrop.DragLayer;
-import com.android.launcher3.dragndrop.DragOptions;
-import com.android.launcher3.logging.LoggerUtils;
-import com.android.launcher3.pageindicators.PageIndicatorDots;
-import com.android.launcher3.userevent.nano.LauncherLogProto.ContainerType;
-import com.android.launcher3.userevent.nano.LauncherLogProto.Target;
-import com.android.launcher3.util.Thunk;
-import com.android.launcher3.widget.PendingAddShortcutInfo;
+import com.android.launcher3a.AbstractFloatingView;
+import com.android.launcher3a.Alarm;
+import com.android.launcher3a.AppInfo;
+import com.android.launcher3a.BubbleTextView;
+import com.android.launcher3a.CellLayout;
+import com.android.launcher3a.DeviceProfile;
+import com.android.launcher3a.DragSource;
+import com.android.launcher3a.DropTarget;
+import com.android.launcher3a.ExtendedEditText;
+import com.android.launcher3a.FolderInfo;
+import com.android.launcher3a.FolderInfo.FolderListener;
+import com.android.launcher3a.ItemInfo;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.LauncherSettings;
+import com.android.launcher3a.OnAlarmListener;
+import com.android.launcher3a.PagedView;
+import com.android.launcher3a.R;
+import com.android.launcher3a.ShortcutInfo;
+import com.android.launcher3a.Utilities;
+import com.android.launcher3a.Workspace.ItemOperator;
+import com.android.launcher3a.accessibility.AccessibleDragListenerAdapter;
+import com.android.launcher3a.config.FeatureFlags;
+import com.android.launcher3a.dragndrop.DragController;
+import com.android.launcher3a.dragndrop.DragController.DragListener;
+import com.android.launcher3a.dragndrop.DragLayer;
+import com.android.launcher3a.dragndrop.DragOptions;
+import com.android.launcher3a.logging.LoggerUtils;
+import com.android.launcher3a.pageindicators.PageIndicatorDots;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.ContainerType;
+import com.android.launcher3a.userevent.nano.LauncherLogProto.Target;
+import com.android.launcher3a.util.Thunk;
+import com.android.launcher3a.widget.PendingAddShortcutInfo;
 
 import java.util.ArrayList;
 import java.util.Collections;

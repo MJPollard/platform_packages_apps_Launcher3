@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.uioverrides.dynamicui;
+package com.android.launcher3a.uioverrides.dynamicui;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
 
-import com.android.launcher3.Utilities;
+import com.android.launcher3a.Utilities;
 
 public abstract class WallpaperManagerCompat {
 

@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.android.launcher3;
+package com.android.launcher3a;
 
-import static com.android.launcher3.states.RotationHelper.ALLOW_ROTATION_PREFERENCE_KEY;
-import static com.android.launcher3.states.RotationHelper.getAllowRotationDefaultValue;
+import static com.android.launcher3a.states.RotationHelper.ALLOW_ROTATION_PREFERENCE_KEY;
+import static com.android.launcher3a.states.RotationHelper.getAllowRotationDefaultValue;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -42,11 +42,11 @@ import android.view.View;
 import android.widget.Adapter;
 import android.widget.ListView;
 
-import com.android.launcher3.graphics.IconShapeOverride;
-import com.android.launcher3.notification.NotificationListener;
-import com.android.launcher3.util.ListViewHighlighter;
-import com.android.launcher3.util.SettingsObserver;
-import com.android.launcher3.views.ButtonPreference;
+import com.android.launcher3a.graphics.IconShapeOverride;
+import com.android.launcher3a.notification.NotificationListener;
+import com.android.launcher3a.util.ListViewHighlighter;
+import com.android.launcher3a.util.SettingsObserver;
+import com.android.launcher3a.views.ButtonPreference;
 
 import java.util.Objects;
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.notification;
+package com.android.launcher3a.notification;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -29,12 +29,12 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import com.android.launcher3.LauncherAnimUtils;
-import com.android.launcher3.R;
-import com.android.launcher3.Utilities;
-import com.android.launcher3.anim.PropertyListBuilder;
-import com.android.launcher3.anim.PropertyResetListener;
-import com.android.launcher3.util.Themes;
+import com.android.launcher3a.LauncherAnimUtils;
+import com.android.launcher3a.R;
+import com.android.launcher3a.Utilities;
+import com.android.launcher3a.anim.PropertyListBuilder;
+import com.android.launcher3a.anim.PropertyResetListener;
+import com.android.launcher3a.util.Themes;
 
 import java.util.ArrayList;
 import java.util.Iterator;

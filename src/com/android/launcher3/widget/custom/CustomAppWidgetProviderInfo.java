@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.widget.custom;
+package com.android.launcher3a.widget.custom;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -22,8 +22,8 @@ import android.content.pm.PackageManager;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.android.launcher3.LauncherAppWidgetProviderInfo;
-import com.android.launcher3.Utilities;
+import com.android.launcher3a.LauncherAppWidgetProviderInfo;
+import com.android.launcher3a.Utilities;
 
 /**
  * Custom app widget provider info that can be used as a widget, but provide extra functionality

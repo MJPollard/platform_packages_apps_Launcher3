@@ -1,6 +1,6 @@
-package com.android.launcher3.accessibility;
+package com.android.launcher3a.accessibility;
 
-import static com.android.launcher3.LauncherState.NORMAL;
+import static com.android.launcher3a.LauncherState.NORMAL;
 
 import android.app.AlertDialog;
 import android.appwidget.AppWidgetProviderInfo;
@@ -16,31 +16,31 @@ import android.view.View.AccessibilityDelegate;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.accessibility.AccessibilityNodeInfo.AccessibilityAction;
 
-import com.android.launcher3.AppInfo;
-import com.android.launcher3.AppWidgetResizeFrame;
-import com.android.launcher3.BubbleTextView;
-import com.android.launcher3.ButtonDropTarget;
-import com.android.launcher3.CellLayout;
-import com.android.launcher3.DropTarget.DragObject;
-import com.android.launcher3.FolderInfo;
-import com.android.launcher3.ItemInfo;
-import com.android.launcher3.Launcher;
-import com.android.launcher3.LauncherAppWidgetInfo;
-import com.android.launcher3.LauncherSettings;
-import com.android.launcher3.LauncherSettings.Favorites;
-import com.android.launcher3.PendingAddItemInfo;
-import com.android.launcher3.R;
-import com.android.launcher3.ShortcutInfo;
-import com.android.launcher3.Workspace;
-import com.android.launcher3.dragndrop.DragController.DragListener;
-import com.android.launcher3.dragndrop.DragOptions;
-import com.android.launcher3.folder.Folder;
-import com.android.launcher3.notification.NotificationListener;
-import com.android.launcher3.popup.PopupContainerWithArrow;
-import com.android.launcher3.shortcuts.DeepShortcutManager;
-import com.android.launcher3.touch.ItemLongClickListener;
-import com.android.launcher3.util.Thunk;
-import com.android.launcher3.widget.LauncherAppWidgetHostView;
+import com.android.launcher3a.AppInfo;
+import com.android.launcher3a.AppWidgetResizeFrame;
+import com.android.launcher3a.BubbleTextView;
+import com.android.launcher3a.ButtonDropTarget;
+import com.android.launcher3a.CellLayout;
+import com.android.launcher3a.DropTarget.DragObject;
+import com.android.launcher3a.FolderInfo;
+import com.android.launcher3a.ItemInfo;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.LauncherAppWidgetInfo;
+import com.android.launcher3a.LauncherSettings;
+import com.android.launcher3a.LauncherSettings.Favorites;
+import com.android.launcher3a.PendingAddItemInfo;
+import com.android.launcher3a.R;
+import com.android.launcher3a.ShortcutInfo;
+import com.android.launcher3a.Workspace;
+import com.android.launcher3a.dragndrop.DragController.DragListener;
+import com.android.launcher3a.dragndrop.DragOptions;
+import com.android.launcher3a.folder.Folder;
+import com.android.launcher3a.notification.NotificationListener;
+import com.android.launcher3a.popup.PopupContainerWithArrow;
+import com.android.launcher3a.shortcuts.DeepShortcutManager;
+import com.android.launcher3a.touch.ItemLongClickListener;
+import com.android.launcher3a.util.Thunk;
+import com.android.launcher3a.widget.LauncherAppWidgetHostView;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.android.launcher3.pageindicators;
+package com.android.launcher3a.pageindicators;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -19,12 +19,12 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
 
-import com.android.launcher3.DeviceProfile;
-import com.android.launcher3.Insettable;
-import com.android.launcher3.Launcher;
-import com.android.launcher3.R;
-import com.android.launcher3.Utilities;
-import com.android.launcher3.uioverrides.WallpaperColorInfo;
+import com.android.launcher3a.DeviceProfile;
+import com.android.launcher3a.Insettable;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.R;
+import com.android.launcher3a.Utilities;
+import com.android.launcher3a.uioverrides.WallpaperColorInfo;
 
 /**
  * A PageIndicator that briefly shows a fraction of a line when moving between pages

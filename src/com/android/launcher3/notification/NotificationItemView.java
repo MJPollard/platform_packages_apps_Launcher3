@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.notification;
+package com.android.launcher3a.notification;
 
 import android.app.Notification;
 import android.content.Context;
@@ -25,15 +25,15 @@ import android.view.View;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.TextView;
 
-import com.android.launcher3.R;
-import com.android.launcher3.graphics.IconPalette;
-import com.android.launcher3.popup.PopupContainerWithArrow;
-import com.android.launcher3.touch.SwipeDetector;
-import com.android.launcher3.util.Themes;
+import com.android.launcher3a.R;
+import com.android.launcher3a.graphics.IconPalette;
+import com.android.launcher3a.popup.PopupContainerWithArrow;
+import com.android.launcher3a.touch.SwipeDetector;
+import com.android.launcher3a.util.Themes;
 
 import java.util.List;
 
-import static com.android.launcher3.touch.SwipeDetector.HORIZONTAL;
+import static com.android.launcher3a.touch.SwipeDetector.HORIZONTAL;
 
 /**
  * Utility class to manage notification UI

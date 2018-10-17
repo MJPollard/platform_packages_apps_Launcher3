@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3.widget;
+package com.android.launcher3a.widget;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -32,20 +32,20 @@ import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-import com.android.launcher3.DeviceProfile;
-import com.android.launcher3.FastBitmapDrawable;
-import com.android.launcher3.IconCache;
-import com.android.launcher3.IconCache.ItemInfoUpdateReceiver;
-import com.android.launcher3.ItemInfoWithIcon;
-import com.android.launcher3.Launcher;
-import com.android.launcher3.LauncherAppWidgetInfo;
-import com.android.launcher3.R;
-import com.android.launcher3.Utilities;
-import com.android.launcher3.graphics.DrawableFactory;
-import com.android.launcher3.model.PackageItemInfo;
-import com.android.launcher3.touch.ItemClickHandler;
-import com.android.launcher3.util.Themes;
-import com.android.launcher3.widget.LauncherAppWidgetHostView;
+import com.android.launcher3a.DeviceProfile;
+import com.android.launcher3a.FastBitmapDrawable;
+import com.android.launcher3a.IconCache;
+import com.android.launcher3a.IconCache.ItemInfoUpdateReceiver;
+import com.android.launcher3a.ItemInfoWithIcon;
+import com.android.launcher3a.Launcher;
+import com.android.launcher3a.LauncherAppWidgetInfo;
+import com.android.launcher3a.R;
+import com.android.launcher3a.Utilities;
+import com.android.launcher3a.graphics.DrawableFactory;
+import com.android.launcher3a.model.PackageItemInfo;
+import com.android.launcher3a.touch.ItemClickHandler;
+import com.android.launcher3a.util.Themes;
+import com.android.launcher3a.widget.LauncherAppWidgetHostView;
 
 public class PendingAppWidgetHostView extends LauncherAppWidgetHostView
         implements OnClickListener, ItemInfoUpdateReceiver {

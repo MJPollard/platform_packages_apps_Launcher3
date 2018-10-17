@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.android.launcher3.util;
+package com.android.launcher3a.util;
 
 import android.support.test.filters.SmallTest;
 import android.support.test.runner.AndroidJUnit4;

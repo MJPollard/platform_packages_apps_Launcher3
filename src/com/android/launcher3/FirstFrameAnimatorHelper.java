@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.launcher3;
+package com.android.launcher3a;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -23,9 +23,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.view.ViewTreeObserver;
-import com.android.launcher3.util.Thunk;
+import com.android.launcher3a.util.Thunk;
 
-import static com.android.launcher3.Utilities.SINGLE_FRAME_MS;
+import static com.android.launcher3a.Utilities.SINGLE_FRAME_MS;
 
 /*
  *  This is a helper class that listens to updates from the corresponding animation.

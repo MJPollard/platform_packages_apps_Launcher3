@@ -18,8 +18,8 @@ package com.android.quickstep.views;
 import static android.support.v4.graphics.ColorUtils.compositeColors;
 import static android.support.v4.graphics.ColorUtils.setAlphaComponent;
 
-import static com.android.launcher3.LauncherState.OVERVIEW;
-import static com.android.launcher3.anim.Interpolators.ACCEL_2;
+import static com.android.launcher3a.LauncherState.OVERVIEW;
+import static com.android.launcher3a.anim.Interpolators.ACCEL_2;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -30,11 +30,11 @@ import android.graphics.Path.Direction;
 import android.graphics.Path.Op;
 import android.util.AttributeSet;
 
-import com.android.launcher3.DeviceProfile;
-import com.android.launcher3.R;
-import com.android.launcher3.uioverrides.OverviewState;
-import com.android.launcher3.util.Themes;
-import com.android.launcher3.views.ScrimView;
+import com.android.launcher3a.DeviceProfile;
+import com.android.launcher3a.R;
+import com.android.launcher3a.uioverrides.OverviewState;
+import com.android.launcher3a.util.Themes;
+import com.android.launcher3a.views.ScrimView;
 
 /**
  * Scrim used for all-apps and shelf in Overview
