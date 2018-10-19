@@ -881,7 +881,7 @@ public class Launcher extends BaseDraggingActivity implements LauncherExterns,
             return Utilities.ATLEAST_OREO || !getResources().getBoolean(R.bool.allow_rotation);
         }
     }
-
+    
     public boolean isInState(LauncherState state) {
         return mStateManager.getState() == state;
     }
