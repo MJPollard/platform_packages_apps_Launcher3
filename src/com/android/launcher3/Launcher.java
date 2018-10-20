@@ -881,7 +881,7 @@ public class Launcher extends BaseDraggingActivity implements LauncherExterns,
             return Utilities.ATLEAST_OREO || !getResources().getBoolean(R.bool.allow_rotation);
         }
     }
-    
+
     public boolean isInState(LauncherState state) {
         return mStateManager.getState() == state;
     }
@@ -954,7 +954,6 @@ public class Launcher extends BaseDraggingActivity implements LauncherExterns,
         // Setup the drag controller (drop targets have to be added in reverse order in priority)
         mDragController.setMoveTarget(mWorkspace);
         mDropTargetBar.setup(mDragController);
-
         mAllAppsController.setupViews(mAppsView);
     }
 
@@ -2484,7 +2483,6 @@ public class Launcher extends BaseDraggingActivity implements LauncherExterns,
 
         @Override
         public void onScrollChange(float progress, boolean rtl) {
-            Log.i(TAG, "OverlayCallbackImpl onScrollChange");
             mClient.updateMove(progress);
         }
 
