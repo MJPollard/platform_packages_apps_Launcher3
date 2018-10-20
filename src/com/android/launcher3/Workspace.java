@@ -39,6 +39,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -56,6 +57,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.Toast;
 
+import com.android.launcher3.CellLayout.LayoutParams;
 import com.android.launcher3.Launcher.LauncherOverlay;
 import com.android.launcher3.LauncherAppWidgetHost.ProviderChangedListener;
 import com.android.launcher3.LauncherStateManager.AnimationConfig;
@@ -132,6 +134,8 @@ public class Workspace extends PagedView<WorkspacePageIndicator>
     public static final long EXTRA_EMPTY_SCREEN_ID = -201;
     // The is the first screen. It is always present, even if its empty.
     public static final long FIRST_SCREEN_ID = 0;
+
+    public static final long MINUS_ONE_SCREEN_ID = -301;
 
     private LayoutTransition mLayoutTransition;
     @Thunk final WallpaperManager mWallpaperManager;
@@ -483,8 +487,9 @@ public class Workspace extends PagedView<WorkspacePageIndicator>
         if (!FeatureFlags.QSB_ON_FIRST_SCREEN) {
             return;
         }
+        CellLayout minusOnePage = insertMinusOnePageScreen();
         // Add the first page
-        CellLayout firstPage = insertNewWorkspaceScreen(Workspace.FIRST_SCREEN_ID, 0);
+        CellLayout firstPage = insertNewWorkspaceScreen(Workspace.FIRST_SCREEN_ID, 1);
         // Always add a QSB on the first screen.
         if (qsb == null) {
             // In transposed layout, we add the QSB in the Grid. As workspace does not touch the
@@ -498,6 +503,7 @@ public class Workspace extends PagedView<WorkspacePageIndicator>
         if (!firstPage.addViewToCellLayout(qsb, 0, R.id.search_container_workspace, lp, true)) {
             Log.e(TAG, "Failed to add to item at (0, 0) to CellLayout");
         }
+        setCurrentPage(1);
     }
 
     public void removeAllWorkspaceScreens() {
@@ -538,6 +544,57 @@ public class Workspace extends PagedView<WorkspacePageIndicator>
         insertNewWorkspaceScreen(screenId, getChildCount());
     }
 
+    @Override
+    protected LayoutParams generateDefaultLayoutParams() {
+        return new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+    }
+
+    public CellLayout insertMinusOnePageScreen() {
+        long screenId = MINUS_ONE_SCREEN_ID;
+        int insertIndex = 0;
+        if (mWorkspaceScreens.containsKey(screenId)) {
+            throw new RuntimeException("Screen id " + screenId + " already exists!");
+        }
+
+        // Inflate the cell layout, but do not add it automatically so that we can get the newly
+        // created CellLayout.
+        CellLayout newScreen = (CellLayout) LayoutInflater.from(getContext()).inflate(
+            R.layout.workspace_screen, this, false /* attachToRoot */);
+        newScreen.setPadding(0,0,0,0);
+
+        mWorkspaceScreens.put(screenId, newScreen);
+        mScreenOrder.add(insertIndex, screenId);
+        LayoutParams lp = generateDefaultLayoutParams();
+        lp.isFullScreenPage = true;
+        addView(newScreen, insertIndex, lp);
+        mStateTransitionAnimation.applyChildState(
+            mLauncher.getStateManager().getState(), newScreen, insertIndex);
+
+        if (mLauncher.getAccessibilityDelegate().isInAccessibleDrag()) {
+            newScreen.enableAccessibleDrag(true, CellLayout.WORKSPACE_ACCESSIBILITY_DRAG);
+        }
+
+        CellLayout minusOnePage = newScreen;
+        View customContent = LayoutInflater.from(getContext()).inflate(R.layout.minus_one_page_layout, this, false);
+        customContent.setBackgroundColor(Color.GREEN);
+
+        // Add the custom content to the full screen custom page
+        int spanX = minusOnePage.getCountX();
+        int spanY = minusOnePage.getCountY();
+        CellLayout.LayoutParams llp = new CellLayout.LayoutParams(0, 0, spanX, spanY);
+
+        if (customContent.getParent() instanceof ViewGroup) {
+            ViewGroup parent = (ViewGroup) customContent.getParent();
+            parent.removeView(customContent);
+        }
+        minusOnePage.removeAllViews();
+        minusOnePage.setFocusable(true);
+        minusOnePage.setOnKeyListener(new FullscreenKeyEventListener());
+        minusOnePage.addViewToCellLayout(customContent, 0, 0, llp, true);
+        llp.canReorder = false;
+        return  minusOnePage;
+    }
+
     public CellLayout insertNewWorkspaceScreen(long screenId, int insertIndex) {
         if (mWorkspaceScreens.containsKey(screenId)) {
             throw new RuntimeException("Screen id " + screenId + " already exists!");
@@ -553,14 +610,14 @@ public class Workspace extends PagedView<WorkspacePageIndicator>
 
         mWorkspaceScreens.put(screenId, newScreen);
         mScreenOrder.add(insertIndex, screenId);
-        addView(newScreen, insertIndex);
+        LayoutParams lp = generateDefaultLayoutParams();
+        addView(newScreen, insertIndex, lp);
         mStateTransitionAnimation.applyChildState(
                 mLauncher.getStateManager().getState(), newScreen, insertIndex);
 
         if (mLauncher.getAccessibilityDelegate().isInAccessibleDrag()) {
             newScreen.enableAccessibleDrag(true, CellLayout.WORKSPACE_ACCESSIBILITY_DRAG);
         }
-
         return newScreen;
     }
 
@@ -1098,11 +1155,16 @@ public class Workspace extends PagedView<WorkspacePageIndicator>
 
     @Override
     protected void overScroll(float amount) {
+   //     Log.i(TAG, "LUYIFAN DEBUG" + amount);
+      //  Log.i(TAG, "LUYIFAN DEBUG mLauncherOverlay" + (mLauncherOverlay != null));
         boolean shouldScrollOverlay = mLauncherOverlay != null &&
                 ((amount <= 0 && !mIsRtl) || (amount >= 0 && mIsRtl));
+     //   Log.i(TAG, "LUYIFAN DEBUG shouldScrollOverlay" + shouldScrollOverlay);
 
         boolean shouldZeroOverlay = mLauncherOverlay != null && mLastOverlayScroll != 0 &&
                 ((amount >= 0 && !mIsRtl) || (amount <= 0 && mIsRtl));
+     //   Log.i(TAG, "LUYIFAN DEBUG mStartedSendingScrollEvents" + mStartedSendingScrollEvents);
+      //  Log.i(TAG, "LUYIFAN DEBUG mScrollInteractionBegan" + mScrollInteractionBegan);
 
         if (shouldScrollOverlay) {
             if (!mStartedSendingScrollEvents && mScrollInteractionBegan) {

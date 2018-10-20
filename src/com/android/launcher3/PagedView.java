@@ -29,6 +29,7 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.InputDevice;
 import android.view.KeyEvent;
@@ -65,6 +66,7 @@ public abstract class PagedView<T extends View & PageIndicator> extends ViewGrou
 
     public static final int PAGE_SNAP_ANIMATION_DURATION = 750;
     public static final int SLOW_PAGE_SNAP_ANIMATION_DURATION = 950;
+  private Rect mViewport = new Rect();
 
     // OverScroll constants
     private final static int OVERSCROLL_PAGE_SNAP_ANIMATION_DURATION = 270;
@@ -504,6 +506,32 @@ public abstract class PagedView<T extends View & PageIndicator> extends ViewGrou
         super.forceLayout();
     }
 
+  public static class LayoutParams extends ViewGroup.LayoutParams {
+    public boolean isFullScreenPage = false;
+
+    /**
+     * {@inheritDoc}
+     */
+    public LayoutParams(int width, int height) {
+      super(width, height);
+    }
+
+    public LayoutParams(Context context, AttributeSet attrs) {
+      super(context, attrs);
+    }
+
+    public LayoutParams(ViewGroup.LayoutParams source) {
+      super(source);
+    }
+  }
+
+  int getViewportWidth() {
+    return mViewport.width();
+  }
+  int getViewportHeight() {
+    return mViewport.height();
+  }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         if (getChildCount() == 0) {
@@ -511,37 +539,101 @@ public abstract class PagedView<T extends View & PageIndicator> extends ViewGrou
             return;
         }
 
-        // We measure the dimensions of the PagedView to be larger than the pages so that when we
-        // zoom out (and scale down), the view is still contained in the parent
-        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
-        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+      // zoom out (and scale down), the view is still contained in the parent
+      int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+      int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+      int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+      int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+      // NOTE: We multiply by 2f to account for the fact that depending on the offset of the
+      // viewport, we can be at most one and a half screens offset once we scale down
+      DisplayMetrics dm = getResources().getDisplayMetrics();
+      int maxSize = Math.max(dm.widthPixels + mInsets.left + mInsets.right,
+          dm.heightPixels + mInsets.top + mInsets.bottom);
 
-        if (widthMode == MeasureSpec.UNSPECIFIED || heightMode == MeasureSpec.UNSPECIFIED) {
-            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-            return;
+      int parentWidthSize = (int) (2f * maxSize);
+      int parentHeightSize = (int) (2f * maxSize);
+      int scaledWidthSize, scaledHeightSize;
+
+        scaledWidthSize = widthSize;
+        scaledHeightSize = heightSize;
+
+      mViewport.set(0, 0, widthSize, heightSize);
+
+      if (widthMode == MeasureSpec.UNSPECIFIED || heightMode == MeasureSpec.UNSPECIFIED) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        return;
+      }
+
+      // Return early if we aren't given a proper dimension
+      if (widthSize <= 0 || heightSize <= 0) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        return;
+      }
+
+      /* Allow the height to be set as WRAP_CONTENT. This allows the particular case
+       * of the All apps view on XLarge displays to not take up more space then it needs. Width
+       * is still not allowed to be set as WRAP_CONTENT since many parts of the code expect
+       * each page to have the same width.
+       */
+      final int verticalPadding = getPaddingTop() + getPaddingBottom();
+      final int horizontalPadding = getPaddingLeft() + getPaddingRight();
+
+      int referenceChildWidth = 0;
+      // The children are given the same width and height as the workspace
+      // unless they were set to WRAP_CONTENT
+      if (DEBUG) Log.d(TAG, "PagedView.onMeasure(): " + widthSize + ", " + heightSize);
+      if (DEBUG) Log.d(TAG, "PagedView.scaledSize: " + scaledWidthSize + ", " + scaledHeightSize);
+      if (DEBUG) Log.d(TAG, "PagedView.parentSize: " + parentWidthSize + ", " + parentHeightSize);
+      if (DEBUG) Log.d(TAG, "PagedView.horizontalPadding: " + horizontalPadding);
+      if (DEBUG) Log.d(TAG, "PagedView.verticalPadding: " + verticalPadding);
+      final int childCount = getChildCount();
+      for (int i = 0; i < childCount; i++) {
+        // disallowing padding in paged view (just pass 0)
+        final View child = getPageAt(i);
+        if (child.getVisibility() != GONE) {
+          final LayoutParams lp = (LayoutParams) child.getLayoutParams();
+
+          int childWidthMode;
+          int childHeightMode;
+          int childWidth;
+          int childHeight;
+
+          if (!lp.isFullScreenPage) {
+            if (lp.width == LayoutParams.WRAP_CONTENT) {
+              childWidthMode = MeasureSpec.AT_MOST;
+            } else {
+              childWidthMode = MeasureSpec.EXACTLY;
+            }
+
+            if (lp.height == LayoutParams.WRAP_CONTENT) {
+              childHeightMode = MeasureSpec.AT_MOST;
+            } else {
+              childHeightMode = MeasureSpec.EXACTLY;
+            }
+
+            childWidth = getViewportWidth() - horizontalPadding
+                - mInsets.left - mInsets.right;
+            childHeight = getViewportHeight() - verticalPadding
+                - mInsets.top - mInsets.bottom;
+          } else {
+            childWidthMode = MeasureSpec.EXACTLY;
+            childHeightMode = MeasureSpec.EXACTLY;
+
+            childWidth = getViewportWidth();
+            childHeight = getViewportHeight();
+          }
+          if (referenceChildWidth == 0) {
+            referenceChildWidth = childWidth;
+          }
+
+          final int childWidthMeasureSpec =
+              MeasureSpec.makeMeasureSpec(childWidth, childWidthMode);
+          final int childHeightMeasureSpec =
+              MeasureSpec.makeMeasureSpec(childHeight, childHeightMode);
+          child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
         }
-
-        // Return early if we aren't given a proper dimension
-        if (widthSize <= 0 || heightSize <= 0) {
-            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-            return;
-        }
-
-        // The children are given the same width and height as the workspace
-        // unless they were set to WRAP_CONTENT
-        if (DEBUG) Log.d(TAG, "PagedView.onMeasure(): " + widthSize + ", " + heightSize);
-
-        int myWidthSpec = MeasureSpec.makeMeasureSpec(
-                widthSize - mInsets.left - mInsets.right, MeasureSpec.EXACTLY);
-        int myHeightSpec = MeasureSpec.makeMeasureSpec(
-                heightSize - mInsets.top - mInsets.bottom, MeasureSpec.EXACTLY);
-
-        // measureChildren takes accounts for content padding, we only need to care about extra
-        // space due to insets.
-        measureChildren(myWidthSpec, myHeightSpec);
-        setMeasuredDimension(widthSize, heightSize);
+      }
+      setMeasuredDimension(scaledWidthSize, scaledHeightSize);
     }
 
     protected void restoreScrollOnLayout() {
