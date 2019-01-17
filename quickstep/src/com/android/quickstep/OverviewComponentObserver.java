@@ -31,6 +31,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ResolveInfo;
 
+import com.android.launcher3.BaseDraggingActivity;
 import com.android.systemui.shared.system.PackageManagerWrapper;
 
 import java.util.ArrayList;
@@ -98,6 +99,7 @@ public final class OverviewComponentObserver {
 
         if ((mSystemUiStateFlags & SYSUI_STATE_HOME_DISABLED) == 0 &&
                 (defaultHome == null || mMyHomeComponent.equals(defaultHome))) {
+            finishRecentsActivity();
             // User default home is same as out home app. Use Overview integrated in Launcher.
             overviewComponent = mMyHomeComponent;
             mActivityControlHelper = new LauncherActivityControllerHelper();
@@ -148,6 +150,20 @@ public final class OverviewComponentObserver {
         }
     }
 
+
+    private void finishRecentsActivity() {
+        ActivityControlHelper activityHelper = getActivityControlHelper();
+        if (activityHelper != null) {
+            BaseDraggingActivity activity = activityHelper.getCreatedActivity();
+            if (activity != null) {
+                ComponentName componentName = activity.getComponentName();
+                if (componentName.equals(new ComponentName(mContext, RecentsActivity.class))) {
+                    activity.finish();
+                }
+            }
+        }
+    }
+
     /**
      * Clean up any registered receivers.
      */
@@ -158,6 +174,7 @@ public final class OverviewComponentObserver {
             mContext.unregisterReceiver(mOtherHomeAppUpdateReceiver);
             mUpdateRegisteredPackage = null;
         }
+        finishRecentsActivity();
     }
 
     /**
