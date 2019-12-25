@@ -164,6 +164,14 @@ public abstract class RecentsUiFactory {
             }
         }
 
+<<<<<<< HEAD   (006dab Merge "Merge cherrypicks of [9201404] into qt-release am: ec)
+=======
+        if (FeatureFlags.PULL_DOWN_STATUS_BAR
+                && !launcher.getDeviceProfile().isMultiWindowMode) {
+            list.add(new StatusBarTouchController(launcher));
+        }
+
+>>>>>>> BRANCH (d65611 Merge cherrypicks of [9530040, 9530338, 9530339, 9530041, 95)
         list.add(new LauncherTaskViewController(launcher));
         return list.toArray(new TouchController[list.size()]);
     }
