@@ -34,7 +34,10 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.graphics.Matrix;
 import android.graphics.Rect;
@@ -146,6 +149,14 @@ public final class IconRecentsView extends FrameLayout implements Insettable {
             new ContentFillItemAnimator();
     private final BaseActivity mActivity;
     private final Drawable mStatusBarForegroundScrim;
+    private final BroadcastReceiver mLocaleReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            RecentsModel.INSTANCE.get(mContext).getIconCache().clear();
+            mTaskAdapter.notifyDataSetChanged();
+        }
+    };
+    private final IntentFilter mLocaleFilter = new IntentFilter(Intent.ACTION_LOCALE_CHANGED);
 
     private RecentsToActivityHelper mActivityHelper;
     private RecyclerView mTaskRecyclerView;
@@ -930,6 +941,16 @@ public final class IconRecentsView extends FrameLayout implements Insettable {
         if (mInsets.top != 0) {
             updateStatusBarScrim();
         }
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        mContext.registerReceiver(mLocaleReceiver, mLocaleFilter);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        mContext.unregisterReceiver(mLocaleReceiver);
     }
 
     /**
