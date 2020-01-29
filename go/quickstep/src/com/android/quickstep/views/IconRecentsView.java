@@ -16,9 +16,8 @@
 package com.android.quickstep.views;
 
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
-
 import static androidx.recyclerview.widget.LinearLayoutManager.VERTICAL;
-
+import static com.android.launcher3.InvariantDeviceProfile.CHANGE_FLAG_ICON_PARAMS;
 import static com.android.launcher3.anim.Interpolators.ACCEL_2;
 import static com.android.quickstep.TaskAdapter.CHANGE_EVENT_TYPE_EMPTY_TO_CONTENT;
 import static com.android.quickstep.TaskAdapter.ITEM_TYPE_CLEAR_ALL;
@@ -48,7 +47,6 @@ import android.view.ViewDebug;
 import android.view.ViewTreeObserver;
 import android.view.animation.PathInterpolator;
 import android.widget.FrameLayout;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator;
@@ -59,9 +57,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver;
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration;
 import androidx.recyclerview.widget.RecyclerView.OnChildAttachStateChangeListener;
-
 import com.android.launcher3.BaseActivity;
 import com.android.launcher3.Insettable;
+import com.android.launcher3.InvariantDeviceProfile;
 import com.android.launcher3.R;
 import com.android.launcher3.util.Themes;
 import com.android.quickstep.ContentFillItemAnimator;
@@ -77,17 +75,16 @@ import com.android.systemui.shared.recents.model.Task;
 import com.android.systemui.shared.system.RemoteAnimationTargetCompat;
 import com.android.systemui.shared.system.SyncRtSurfaceTransactionApplierCompat;
 import com.android.systemui.shared.system.SyncRtSurfaceTransactionApplierCompat.SurfaceParams;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-
 /**
  * Root view for the icon recents view. Acts as the main interface to the rest of the Launcher code
  * base.
  */
-public final class IconRecentsView extends FrameLayout implements Insettable {
+public final class IconRecentsView extends FrameLayout implements
+    InvariantDeviceProfile.OnIDPChangeListener, Insettable {
 
     public static final FloatProperty<IconRecentsView> CONTENT_ALPHA =
             new FloatProperty<IconRecentsView>("contentAlpha") {
@@ -146,6 +143,7 @@ public final class IconRecentsView extends FrameLayout implements Insettable {
             new ContentFillItemAnimator();
     private final BaseActivity mActivity;
     private final Drawable mStatusBarForegroundScrim;
+    private final InvariantDeviceProfile mIdp;
 
     private RecentsToActivityHelper mActivityHelper;
     private RecyclerView mTaskRecyclerView;
@@ -190,6 +188,7 @@ public final class IconRecentsView extends FrameLayout implements Insettable {
         mTaskAdapter.setActionController(mTaskActionController);
         mTaskLayoutManager = new LinearLayoutManager(mContext, VERTICAL, true /* reverseLayout */);
         RecentsModel.INSTANCE.get(context).addThumbnailChangeListener(listener);
+        mIdp = InvariantDeviceProfile.INSTANCE.get(context);
     }
 
     @Override
@@ -930,6 +929,25 @@ public final class IconRecentsView extends FrameLayout implements Insettable {
         if (mInsets.top != 0) {
             updateStatusBarScrim();
         }
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        mIdp.addOnChangeListener(this);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        mIdp.removeOnChangeListener(this);
+    }
+
+    @Override
+    public void onIdpChanged(int changeFlags, InvariantDeviceProfile idp) {
+        if ((changeFlags & CHANGE_FLAG_ICON_PARAMS) == 0) {
+            return;
+        }
+        RecentsModel.INSTANCE.get(mContext).getIconCache().clear();
+        mTaskAdapter.notifyDataSetChanged();
     }
 
     /**
