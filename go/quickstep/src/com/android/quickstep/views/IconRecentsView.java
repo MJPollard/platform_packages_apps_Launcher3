@@ -16,9 +16,7 @@
 package com.android.quickstep.views;
 
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
-
 import static androidx.recyclerview.widget.LinearLayoutManager.VERTICAL;
-
 import static com.android.launcher3.anim.Interpolators.ACCEL_2;
 import static com.android.quickstep.TaskAdapter.CHANGE_EVENT_TYPE_EMPTY_TO_CONTENT;
 import static com.android.quickstep.TaskAdapter.ITEM_TYPE_CLEAR_ALL;
@@ -34,7 +32,10 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.graphics.Matrix;
 import android.graphics.Rect;
@@ -48,7 +49,6 @@ import android.view.ViewDebug;
 import android.view.ViewTreeObserver;
 import android.view.animation.PathInterpolator;
 import android.widget.FrameLayout;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator;
@@ -59,7 +59,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver;
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration;
 import androidx.recyclerview.widget.RecyclerView.OnChildAttachStateChangeListener;
-
 import com.android.launcher3.BaseActivity;
 import com.android.launcher3.Insettable;
 import com.android.launcher3.R;
@@ -77,12 +76,10 @@ import com.android.systemui.shared.recents.model.Task;
 import com.android.systemui.shared.system.RemoteAnimationTargetCompat;
 import com.android.systemui.shared.system.SyncRtSurfaceTransactionApplierCompat;
 import com.android.systemui.shared.system.SyncRtSurfaceTransactionApplierCompat.SurfaceParams;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-
 /**
  * Root view for the icon recents view. Acts as the main interface to the rest of the Launcher code
  * base.
@@ -146,6 +143,14 @@ public final class IconRecentsView extends FrameLayout implements Insettable {
             new ContentFillItemAnimator();
     private final BaseActivity mActivity;
     private final Drawable mStatusBarForegroundScrim;
+    private final BroadcastReceiver mLocaleReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            RecentsModel.INSTANCE.get(mContext).getIconCache().clear();
+            mTaskAdapter.notifyDataSetChanged();
+        }
+    };
+    private final IntentFilter mLocaleFilter = new IntentFilter(Intent.ACTION_LOCALE_CHANGED);
 
     private RecentsToActivityHelper mActivityHelper;
     private RecyclerView mTaskRecyclerView;
@@ -930,6 +935,16 @@ public final class IconRecentsView extends FrameLayout implements Insettable {
         if (mInsets.top != 0) {
             updateStatusBarScrim();
         }
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        mContext.registerReceiver(mLocaleReceiver, mLocaleFilter);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        mContext.unregisterReceiver(mLocaleReceiver);
     }
 
     /**
