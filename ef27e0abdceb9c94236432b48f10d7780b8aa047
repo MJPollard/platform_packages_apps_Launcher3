@@ -1,0 +1,11 @@
+Code-Review+2: Jaewoong Jung <jungjw@google.com>
+Open-Source-Licensing+2: Jaewoong Jung <jungjw@google.com>
+Open-Source-Licensing-1: Lint 🤖 <android-build-prod-ayeaye@system.gserviceaccount.com>
+Open-Source-Licensing+2: Bob Badour <bbadour@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Autosubmit+1: Bob Badour <bbadour@google.com>
+Submitted-by: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-at: Tue, 05 May 2020 16:54:41 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/packages/apps/Launcher3/+/1297073
+Project: platform/packages/apps/Launcher3
+Branch: refs/heads/master
