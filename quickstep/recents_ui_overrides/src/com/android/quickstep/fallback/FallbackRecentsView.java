@@ -141,9 +141,9 @@ public class FallbackRecentsView extends RecentsView<RecentsActivity> {
             mZoomScale = 1f;
             mZoomTranslationY = 0f;
         } else {
-            TaskView dummyTask = getTaskViewAt(0);
+            TaskView stubTask = getTaskViewAt(0);
             ScaleAndTranslation sat = getTempClipAnimationHelper()
-                    .updateForFullscreenOverview(dummyTask)
+                    .updateForFullscreenOverview(stubTask)
                     .getScaleAndTranslation();
             mZoomScale = sat.scale;
             mZoomTranslationY = sat.translationY;
@@ -174,9 +174,10 @@ public class FallbackRecentsView extends RecentsView<RecentsActivity> {
 
     @Override
     protected void applyLoadPlan(ArrayList<Task> tasks) {
-        // When quick-switching on 3p-launcher, we add a "dummy" tile corresponding to Launcher
-        // as well. This tile is never shown as we have setCurrentTaskHidden, but allows use to
-        // track the index of the next task appropriately, as if we are switching on any other app.
+        // When quick-switching on 3p-launcher, we add a "placeholder" tile corresponding to
+        // Launcher as well. This tile is never shown as we have setCurrentTaskHidden, but allows
+        // use to track the index of the next task appropriately, as if we are switching on any
+        // other app.
         if (mRunningTaskInfo != null && mRunningTaskInfo.taskId == mRunningTaskId) {
             // Check if the task list has running task
             boolean found = false;
