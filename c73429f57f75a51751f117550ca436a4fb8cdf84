@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c7b7079d_2042249d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1338311
+      },
+      "writtenOn": "2020-07-31T21:04:21Z",
+      "side": 1,
+      "message": "I hope you don\u0027t mind taking a look at this change again.",
+      "revId": "c73429f57f75a51751f117550ca436a4fb8cdf84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
