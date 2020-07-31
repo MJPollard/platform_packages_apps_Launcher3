@@ -50,7 +50,7 @@ import com.android.systemui.shared.system.InputMonitorCompat;
 import com.android.systemui.shared.system.RemoteAnimationTargetCompat;
 
 /**
- * A dummy input consumer used when the device is still locked, e.g. from secure camera.
+ * A placeholder input consumer used when the device is still locked, e.g. from secure camera.
  */
 public class DeviceLockedInputConsumer implements InputConsumer,
         SwipeAnimationTargetSet.SwipeAnimationListener {
