@@ -30,7 +30,7 @@ public class CacheDataUpdatedTaskTest extends BaseModelUpdateTaskTestCase {
     @Before
     public void initData() throws Exception {
         initializeData("/cache_data_updated_task_data.txt");
-        // Add dummy entries in the cache to simulate update
+        // Add mock entries in the cache to simulate update
         for (ItemInfo info : bgDataModel.itemsIdMap) {
             iconCache.addCache(info.getTargetComponent(), NEW_LABEL_PREFIX + info.id);
         }
