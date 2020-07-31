@@ -27,16 +27,16 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class TestUtil {
-    public static final String DUMMY_PACKAGE = "com.example.android.aardwolf";
+    public static final String STUB_PACKAGE = "com.example.android.aardwolf";
 
-    public static void installDummyApp() throws IOException {
+    public static void installStubApp() throws IOException {
         // Copy apk from resources to a local file and install from there.
         final Resources resources = getContext().getResources();
         final InputStream in = resources.openRawResource(
-                resources.getIdentifier("aardwolf_dummy_app",
+                resources.getIdentifier("aardwolf_stub_app",
                         "raw", getContext().getPackageName()));
         final String apkFilename = getInstrumentation().getTargetContext().
-                getFilesDir().getPath() + "/dummy_app.apk";
+                getFilesDir().getPath() + "/stub_app.apk";
 
         final FileOutputStream out = new FileOutputStream(apkFilename);
         byte[] buff = new byte[1024];
@@ -51,8 +51,8 @@ public class TestUtil {
         UiDevice.getInstance(getInstrumentation()).executeShellCommand("pm install " + apkFilename);
     }
 
-    public static void uninstallDummyApp() throws IOException {
+    public static void uninstallStubApp() throws IOException {
         UiDevice.getInstance(getInstrumentation()).executeShellCommand(
-                "pm uninstall " + DUMMY_PACKAGE);
+                "pm uninstall " + STUB_PACKAGE);
     }
 }

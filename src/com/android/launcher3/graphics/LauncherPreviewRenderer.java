@@ -50,8 +50,8 @@ import com.android.launcher3.InsettableFrameLayout;
 import com.android.launcher3.InvariantDeviceProfile;
 import com.android.launcher3.LauncherSettings.Favorites;
 import com.android.launcher3.R;
-import com.android.launcher3.WorkspaceItemInfo;
 import com.android.launcher3.Utilities;
+import com.android.launcher3.WorkspaceItemInfo;
 import com.android.launcher3.WorkspaceLayoutManager;
 import com.android.launcher3.allapps.SearchUiManager;
 import com.android.launcher3.config.FeatureFlags;
@@ -67,7 +67,7 @@ import java.util.concurrent.CountDownLatch;
 /**
  * Utility class for generating the preview of Launcher for a given InvariantDeviceProfile.
  * Steps:
- *   1) Create a dummy icon info with just white icon
+ *   1) Create a stub icon info with just white icon
  *   2) Inflate a strip down layout definition for Launcher
  *   3) Place appropriate elements like icons and first-page qsb
  *   4) Measure and draw the view on a canvas
