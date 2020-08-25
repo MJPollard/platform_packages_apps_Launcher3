@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6692c534_ade9f91e",
+        "filename": "go/res/values-v26/bools.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1404098
+      },
+      "writtenOn": "2020-08-25T16:09:15Z",
+      "side": 1,
+      "message": "Legacy flag never used in Launcher",
+      "range": {
+        "startLine": 21,
+        "startChar": 16,
+        "endLine": 21,
+        "endChar": 44
+      },
+      "revId": "23334ccc5e52f2c9036bb2aa3d3f0bac9e3adbea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
