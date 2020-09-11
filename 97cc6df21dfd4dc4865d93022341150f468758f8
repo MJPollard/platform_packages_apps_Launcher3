@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "24c6a2b9_947aa866",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1746668
+      },
+      "writtenOn": "2020-09-11T03:10:45Z",
+      "side": 1,
+      "message": "Help me review this change please. I found a bug on Launcher3 about search apps algorithms. The apps named \u0027电子邮件\u0027 can\u0027t be searched by the keyword \u0027邮件\u0027. It\u0027s a very bad behavior in Chinese. Chinese apps can\u0027t use the original search algorithms, as Chinese words are not seperated by spaces.",
+      "revId": "97cc6df21dfd4dc4865d93022341150f468758f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
