@@ -51,6 +51,23 @@
       "revId": "97cc6df21dfd4dc4865d93022341150f468758f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d824c45b_7a6b4ae0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1746668
+      },
+      "writtenOn": "2020-09-11T09:31:46Z",
+      "side": 1,
+      "message": "Can someone copy out the failed logs? I can\u0027t see it.  TreeHugger finished with: 75 passed, 1 failed, 2 warning, 6 skipped.",
+      "revId": "97cc6df21dfd4dc4865d93022341150f468758f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
