@@ -33,6 +33,24 @@
       "revId": "97cc6df21dfd4dc4865d93022341150f468758f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ef8e36e8_a022cafa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1086523
+      },
+      "writtenOn": "2020-09-11T05:34:38Z",
+      "side": 1,
+      "message": "Yes (via stage -\u003e r+aosp -\u003e r-d1+aosp -\u003e r-q+aosp -\u003e internal master).",
+      "parentUuid": "46500cec_4eeba12d",
+      "revId": "97cc6df21dfd4dc4865d93022341150f468758f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
