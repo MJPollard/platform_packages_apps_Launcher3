@@ -259,6 +259,9 @@ public abstract class TaskViewTouchController<T extends BaseDraggingActivity>
         } else {
             mFlingBlockCheck.onEvent();
         }
+        if(mCurrentAnimation == null){
+           return;
+        }
         mCurrentAnimation.setPlayFraction(Utilities.boundToRange(
                 totalDisplacement * mProgressMultiplier, 0, 1));
 
