@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e21a9055_df5c9052",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1352498
+      },
+      "writtenOn": "2020-11-20T09:56:50Z",
+      "side": 1,
+      "message": "```\nout/target/common/obj/JAVA_LIBRARIES/Launcher3QuickStepLib_intermediates/classes-full-debug.jar -C out/target/common/obj/JAVA_LIBRARIES/Launcher3QuickStepLib_intermediates/classes -D out/target/common/obj/JAVA_LIBRARIES/Launcher3QuickStepLib_intermediates/classes )\"\npackages/apps/Launcher3/quickstep/recents_ui_overrides/src/com/android/launcher3/uioverrides/touchcontrollers/TaskViewTouchController.java:263: error: incompatible types: missing return value\n           return;\n           ^\n1 error\n```",
+      "revId": "d6ac291fd82ae360b024e1689241641ff428dae7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
