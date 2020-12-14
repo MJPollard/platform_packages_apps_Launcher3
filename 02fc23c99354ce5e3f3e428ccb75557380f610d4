@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75b0a0ec_8c8941a8",
+        "filename": "quickstep/res/layout/overview_actions_container.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1060100
+      },
+      "writtenOn": "2020-12-14T23:10:05Z",
+      "side": 1,
+      "message": "I don\u0027t this is the right approach here.\nThe Share button is fully disabled, so is marked Gone.\n\nThe Screenshot button should be visible until hidden in code.",
+      "range": {
+        "startLine": 44,
+        "startChar": 32,
+        "endLine": 44,
+        "endChar": 36
+      },
+      "revId": "02fc23c99354ce5e3f3e428ccb75557380f610d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
