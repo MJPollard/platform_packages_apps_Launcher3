@@ -20,7 +20,7 @@ import static com.android.launcher3.InvariantDeviceProfile.KEY_MIGRATION_SRC_HOT
 import static com.android.launcher3.InvariantDeviceProfile.KEY_MIGRATION_SRC_WORKSPACE_SIZE;
 import static com.android.launcher3.Utilities.getPointString;
 import static com.android.launcher3.provider.LauncherDbUtils.dropTable;
-
+import com.android.launcher3.LauncherSettings.Favorites;
 import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Context;
@@ -174,6 +174,14 @@ public class GridSizeMigrationTaskV2 {
                     migrateForPreview ? LauncherSettings.Favorites.TABLE_NAME
                             : LauncherSettings.Favorites.TMP_TABLE,
                     context, validPackages, srcHotseatCount);
+             if(!migrateForPreview)
+            t.getDb().execSQL("DELETE FROM "+LauncherSettings.Favorites.TABLE_NAME
+                              +" WHERE appWidgetId != -1 AND ("
+                              +LauncherSettings.Favorites.APPWIDGET_ID+","
+                              +LauncherSettings.Favorites.APPWIDGET_PROVIDER+") NOT IN (SELECT "
+                              +LauncherSettings.Favorites.APPWIDGET_ID+","
+                              +LauncherSettings.Favorites.APPWIDGET_PROVIDER+" FROM "
+                              +LauncherSettings.Favorites.TMP_TABLE+")");
             DbReader destReader = new DbReader(t.getDb(),
                     migrateForPreview ? LauncherSettings.Favorites.PREVIEW_TABLE_NAME
                             : LauncherSettings.Favorites.TABLE_NAME,
@@ -249,20 +257,30 @@ public class GridSizeMigrationTaskV2 {
     private static List<DbEntry> calcDiff(List<DbEntry> src, List<DbEntry> dest) {
         Set<String> destIntentSet = new HashSet<>();
         Set<Map<String, Integer>> destFolderIntentSet = new HashSet<>();
+        HashMap<Integer,String> destIntentWidgetMap = new HashMap<Integer,String>();
+
         for (DbEntry entry : dest) {
             if (entry.itemType == LauncherSettings.Favorites.ITEM_TYPE_FOLDER) {
                 destFolderIntentSet.add(getFolderIntents(entry));
-            } else {
-                destIntentSet.add(entry.mIntent);
+            }else if (entry.itemType == LauncherSettings.Favorites.ITEM_TYPE_APPWIDGET){
+              destIntentWidgetMap.put(entry.mappWidgetId,entry.mProvider);
+            }else {
+              destIntentSet.add(entry.mIntent);
             }
         }
+
         List<DbEntry> diff = new ArrayList<>();
         for (DbEntry entry : src) {
             if (entry.itemType == LauncherSettings.Favorites.ITEM_TYPE_FOLDER) {
                 if (!destFolderIntentSet.contains(getFolderIntents(entry))) {
+                  diff.add(entry);
+                }
+            } else if (entry.itemType == LauncherSettings.Favorites.ITEM_TYPE_APPWIDGET){
+                if (!((destIntentWidgetMap.get(entry.mappWidgetId)!=null)&&(
+                    destIntentWidgetMap.get(entry.mappWidgetId).equals(entry.mProvider)))) {
                     diff.add(entry);
                 }
-            } else {
+            }else {
                 if (!destIntentSet.contains(entry.mIntent)) {
                     diff.add(entry);
                 }
@@ -629,6 +647,7 @@ public class GridSizeMigrationTaskV2 {
                             verifyPackage(cn.getPackageName());
 
                             int widgetId = c.getInt(indexAppWidgetId);
+                            entry.mappWidgetId = widgetId;
                             LauncherAppWidgetProviderInfo pInfo =
                                     widgetManagerHelper.getLauncherAppWidgetInfo(widgetId);
                             Point spans = null;
@@ -727,6 +746,7 @@ public class GridSizeMigrationTaskV2 {
 
         private String mIntent;
         private String mProvider;
+        private int mappWidgetId;
         private Map<String, Set<Integer>> mFolderItems = new HashMap<>();
 
         /** Comparator according to the reading order */
