@@ -1,0 +1,13 @@
+Open-Source-Licensing+1: Lint 🤖 <ayeaye-gerrit@google.com>
+Open-Source-Licensing+2: Bob Badour <bbadour@google.com>
+Lint+1: Lint 🤖 <ayeaye-gerrit@google.com>
+Lint+2: Bob Badour <bbadour@google.com>
+Code-Review+2: Bob Badour <bbadour@google.com>
+Global-Approval+1: Bob Badour <bbadour@google.com>
+Build-Cop-Override+1: Bob Badour <bbadour@google.com>
+Presubmit-Verified+1: Treehugger Robot <treehugger-gerrit@google.com>
+Submitted-by: Bob Badour <bbadour@google.com>
+Submitted-at: Wed, 24 Feb 2021 19:19:02 +0000
+Reviewed-on: https://android-review.googlesource.com/c/platform/packages/apps/Launcher3/+/1587746
+Project: platform/packages/apps/Launcher3
+Branch: refs/heads/master
