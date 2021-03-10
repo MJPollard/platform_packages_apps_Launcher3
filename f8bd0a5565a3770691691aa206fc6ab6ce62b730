@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "187eca6a_0bcae858",
+        "filename": "OWNERS",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1060050
+      },
+      "writtenOn": "2021-03-10T22:08:32Z",
+      "side": 1,
+      "message": "I would add new people at the bottom of the list",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 18
+      },
+      "revId": "f8bd0a5565a3770691691aa206fc6ab6ce62b730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
