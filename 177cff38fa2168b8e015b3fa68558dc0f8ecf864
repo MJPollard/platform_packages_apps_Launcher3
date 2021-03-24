@@ -16,6 +16,24 @@
       "message": "Does it still allow owners from parent file?\n",
       "revId": "177cff38fa2168b8e015b3fa68558dc0f8ecf864",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8b08eef_fa3a7446",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010211
+      },
+      "writtenOn": "2021-03-24T20:34:48Z",
+      "side": 1,
+      "message": "It should unless noparent is set in the owners file:\nhttps://gerrit.googlesource.com/plugins/find-owners/+/master/src/main/resources/Documentation/syntax.md",
+      "parentUuid": "e0b79b3d_796ae1a7",
+      "revId": "177cff38fa2168b8e015b3fa68558dc0f8ecf864",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
