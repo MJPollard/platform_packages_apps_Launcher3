@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0b79b3d_796ae1a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1060398
+      },
+      "writtenOn": "2021-03-24T20:32:06Z",
+      "side": 1,
+      "message": "Does it still allow owners from parent file?\n",
+      "revId": "177cff38fa2168b8e015b3fa68558dc0f8ecf864",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
