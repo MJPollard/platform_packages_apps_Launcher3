@@ -22,6 +22,30 @@
       },
       "revId": "02fc23c99354ce5e3f3e428ccb75557380f610d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ecf843f_f3775edd",
+        "filename": "quickstep/res/layout/overview_actions_container.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1060100
+      },
+      "writtenOn": "2021-04-16T23:32:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "75b0a0ec_8c8941a8",
+      "range": {
+        "startLine": 44,
+        "startChar": 32,
+        "endLine": 44,
+        "endChar": 36
+      },
+      "revId": "02fc23c99354ce5e3f3e428ccb75557380f610d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
