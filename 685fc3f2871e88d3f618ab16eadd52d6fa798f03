@@ -16,6 +16,24 @@
       "message": "Any particular reason for this cl (bug number)?",
       "revId": "685fc3f2871e88d3f618ab16eadd52d6fa798f03",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27b62f33_f77f6ce3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881760
+      },
+      "writtenOn": "2021-07-27T20:10:46Z",
+      "side": 1,
+      "message": "As per b/192286203, we are trying to upgrade AOSP apps such that they target API level 30.",
+      "parentUuid": "f764cf9d_bd00b3bd",
+      "revId": "685fc3f2871e88d3f618ab16eadd52d6fa798f03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
