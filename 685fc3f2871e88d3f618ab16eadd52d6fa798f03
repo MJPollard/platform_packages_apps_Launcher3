@@ -51,6 +51,24 @@
       "message": "Can you move the cl to internal gerrit so that presubmit can verify this",
       "revId": "685fc3f2871e88d3f618ab16eadd52d6fa798f03",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "553e6739_4dbfd0ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881760
+      },
+      "writtenOn": "2021-07-28T14:49:01Z",
+      "side": 1,
+      "message": "I can make this change on internal Gerrit and then run presubmit again once that change is merged.",
+      "parentUuid": "39f1d1d5_a5433dfb",
+      "revId": "685fc3f2871e88d3f618ab16eadd52d6fa798f03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
