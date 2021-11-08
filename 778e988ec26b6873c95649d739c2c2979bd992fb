@@ -16,6 +16,23 @@
       "message": "Adding Jon and Sunny, as they are the original authors for this part of the code.",
       "revId": "778e988ec26b6873c95649d739c2c2979bd992fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c41777fb_5f0ae24f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041604
+      },
+      "writtenOn": "2021-11-08T21:30:25Z",
+      "side": 1,
+      "message": "Hi, that back key also is triggered when delete key is pressed.\nIs there a bug or a video that captures what you are trying to solve?",
+      "revId": "778e988ec26b6873c95649d739c2c2979bd992fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
