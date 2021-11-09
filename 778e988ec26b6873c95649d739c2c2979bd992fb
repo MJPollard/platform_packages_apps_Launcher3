@@ -33,6 +33,24 @@
       "message": "Hi, that back key also is triggered when delete key is pressed.\nIs there a bug or a video that captures what you are trying to solve?",
       "revId": "778e988ec26b6873c95649d739c2c2979bd992fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9a43288_b62d0ef8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1815899
+      },
+      "writtenOn": "2021-11-09T04:54:12Z",
+      "side": 1,
+      "message": "Yes, the bug is as described: if the search input is empyy but focused, back key does nothing. It should  close the all apps view as is also mentioned in a comment on line 119.\nIf there is text in the searchbox, it should clear the text, and on next back press close the all apps view.",
+      "parentUuid": "c41777fb_5f0ae24f",
+      "revId": "778e988ec26b6873c95649d739c2c2979bd992fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
