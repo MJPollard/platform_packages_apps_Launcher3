@@ -103,6 +103,23 @@
       "message": "Any thoughs on this change?",
       "revId": "778e988ec26b6873c95649d739c2c2979bd992fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4675439f_1061367b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1815899
+      },
+      "writtenOn": "2022-02-22T20:34:07Z",
+      "side": 1,
+      "message": "It\u0027s also worth noting that either the comment \"Only hide the search field if there is no query\" is wrong, or the code itself, as they contradict.",
+      "revId": "778e988ec26b6873c95649d739c2c2979bd992fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
