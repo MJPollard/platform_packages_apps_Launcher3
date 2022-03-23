@@ -120,6 +120,23 @@
       "message": "It\u0027s also worth noting that either the comment \"Only hide the search field if there is no query\" is wrong, or the code itself, as they contradict.",
       "revId": "778e988ec26b6873c95649d739c2c2979bd992fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11faf3ab_bb2ffc4f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1815899
+      },
+      "writtenOn": "2022-03-23T08:18:17Z",
+      "side": 1,
+      "message": "Hi,\n\nany word for this?\n\nThe comment here states: \"Only hide the search field if there is no query\".\nWhen there is no query, onBackKey() returns true after calling AllAppsSearchBarController#reset.\nAllAppsSearchBarController#reset clears the _empty_ search field and results again and hides the keyboard. Pressing back button again has no effect and the empty textfield is cleared again.\n\nWhen there is text in the search field, onBackKey() returns false and that causes the whole search screen to close. This does not seems proper behaviour.",
+      "revId": "778e988ec26b6873c95649d739c2c2979bd992fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
