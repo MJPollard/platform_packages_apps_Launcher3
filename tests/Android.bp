@@ -61,6 +61,7 @@ android_library {
         "androidx.test.uiautomator_uiautomator",
         "mockito-target-inline-minus-junit4",
         "launcher_log_protos_lite",
+	"platform-screenshot-diff-core",
         "truth-prebuilt"
     ],
     manifest: "AndroidManifest-common.xml",
@@ -88,5 +89,6 @@ android_test {
     manifest: "AndroidManifest.xml",
     platform_apis: true,
     test_config: "Launcher3Tests.xml",
-    data: [":Launcher3"]
+    data: [":Launcher3"],
+    asset_dirs: ["assets"],
 }
