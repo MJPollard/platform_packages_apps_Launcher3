@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abedaf23_c6e852ae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1060398
+      },
+      "writtenOn": "2022-07-06T17:43:39Z",
+      "side": 1,
+      "message": "I believe this is by design. What is the use case you are trying to solve",
+      "revId": "7e74e82d9b775ac53ab304f4a47cb5356925107a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
