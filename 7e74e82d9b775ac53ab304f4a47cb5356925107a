@@ -16,6 +16,24 @@
       "message": "I believe this is by design. What is the use case you are trying to solve",
       "revId": "7e74e82d9b775ac53ab304f4a47cb5356925107a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "789cc2d5_b22cf824",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958109
+      },
+      "writtenOn": "2022-07-06T18:09:44Z",
+      "side": 1,
+      "message": "Use case: Making updates to Launcher3 installable (so, not requiring a full-blown OTA update). This makes it easier to test Launcher3 bugfixes, etc.\n\nSince Android 12, if not earlier, it has not been possible to install any package that references the SYSTEM_TOOLS permission group, which no longer exists.\n\nLauncher3 is the only package in AOSP that still references the non-existent android.permission-group.SYSTEM_TOOLS.",
+      "parentUuid": "abedaf23_c6e852ae",
+      "revId": "7e74e82d9b775ac53ab304f4a47cb5356925107a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
