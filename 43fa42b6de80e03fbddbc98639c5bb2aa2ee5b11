@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e60289e2_9d22ac63",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1060512
+      },
+      "writtenOn": "2022-08-19T15:38:14Z",
+      "side": 1,
+      "message": "Sorry, I am not involved in launcher development.",
+      "revId": "43fa42b6de80e03fbddbc98639c5bb2aa2ee5b11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
