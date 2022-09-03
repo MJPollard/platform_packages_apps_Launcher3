@@ -129,11 +129,6 @@ LOCAL_SYSTEM_EXT_MODULE := true
 LOCAL_OVERRIDES_PACKAGES := Home Launcher2 Launcher3 Launcher3QuickStep
 LOCAL_REQUIRED_MODULES := privapp_whitelist_com.android.launcher3
 
-LOCAL_FULL_LIBS_MANIFEST_FILES := \
-    $(LOCAL_PATH)/go/AndroidManifest.xml \
-    $(LOCAL_PATH)/go/AndroidManifest-launcher.xml \
-    $(LOCAL_PATH)/AndroidManifest-common.xml
-
 LOCAL_MANIFEST_FILE := quickstep/AndroidManifest.xml
 LOCAL_JACK_COVERAGE_INCLUDE_FILTER := com.android.launcher3.*
 LOCAL_LICENSE_KINDS := SPDX-license-identifier-Apache-2.0
