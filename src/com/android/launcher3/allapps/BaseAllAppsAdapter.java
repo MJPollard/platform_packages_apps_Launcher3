@@ -18,6 +18,7 @@ package com.android.launcher3.allapps;
 import static com.android.launcher3.touch.ItemLongClickListener.INSTANCE_ALL_APPS;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -33,6 +34,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.launcher3.BubbleTextView;
+import com.android.launcher3.Launcher;
 import com.android.launcher3.R;
 import com.android.launcher3.config.FeatureFlags;
 import com.android.launcher3.model.data.AppInfo;
@@ -142,7 +144,7 @@ public abstract class BaseAllAppsAdapter<T extends Context & ActivityContext> ex
     protected OnLongClickListener mOnIconLongClickListener = INSTANCE_ALL_APPS;
     protected OnFocusChangeListener mIconFocusListener;
     // The click listener to send off to the market app, updated each time the search query changes.
-    private OnClickListener mMarketSearchClickListener;
+    private Intent mMarketIntent;
     private final int mExtraHeight;
 
     public BaseAllAppsAdapter(T activityContext, LayoutInflater inflater,
@@ -184,10 +186,10 @@ public abstract class BaseAllAppsAdapter<T extends Context & ActivityContext> ex
      * Sets the last search query that was made, used to show when there are no results and to also
      * seed the intent for searching the market.
      */
-    public void setLastSearchQuery(String query, OnClickListener marketSearchClickListener) {
+    public void setLastSearchQuery(String query, Intent intent) {
         Resources res = mActivityContext.getResources();
         mEmptySearchMessage = res.getString(R.string.all_apps_no_search_results, query);
-        mMarketSearchClickListener = marketSearchClickListener;
+        mMarketIntent = intent;
     }
 
     /**
@@ -220,7 +222,17 @@ public abstract class BaseAllAppsAdapter<T extends Context & ActivityContext> ex
             case VIEW_TYPE_SEARCH_MARKET:
                 View searchMarketView = mLayoutInflater.inflate(R.layout.all_apps_search_market,
                         parent, false);
-                searchMarketView.setOnClickListener(mMarketSearchClickListener);
+                searchMarketView.setOnClickListener((v) -> {
+                    if (mActivityContext instanceof Launcher) {
+                        ((Launcher) mActivityContext).startActivitySafely(v, mMarketIntent, null);
+                    } else {
+                        try {
+                            mActivityContext.startActivity(mMarketIntent);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
                 return new ViewHolder(searchMarketView);
             case VIEW_TYPE_ALL_APPS_DIVIDER:
                 return new ViewHolder(mLayoutInflater.inflate(
@@ -251,7 +263,7 @@ public abstract class BaseAllAppsAdapter<T extends Context & ActivityContext> ex
                 break;
             case VIEW_TYPE_SEARCH_MARKET:
                 TextView searchView = (TextView) holder.itemView;
-                if (mMarketSearchClickListener != null) {
+                if (mMarketIntent != null) {
                     searchView.setVisibility(View.VISIBLE);
                 } else {
                     searchView.setVisibility(View.GONE);

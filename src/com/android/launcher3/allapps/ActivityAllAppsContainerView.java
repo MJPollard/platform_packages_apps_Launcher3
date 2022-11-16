@@ -79,10 +79,8 @@ public class ActivityAllAppsContainerView<T extends Context & AppLauncher
     public void setLastSearchQuery(String query) {
         Intent marketSearchIntent = PackageManagerHelper.getMarketSearchIntent(
                 mActivityContext, query);
-        OnClickListener marketSearchClickListener = (v) -> mActivityContext.startActivitySafely(v,
-                marketSearchIntent, null);
         for (int i = 0; i < mAH.size(); i++) {
-            mAH.get(i).mAdapter.setLastSearchQuery(query, marketSearchClickListener);
+            mAH.get(i).mAdapter.setLastSearchQuery(query, marketSearchIntent);
         }
         mIsSearching = true;
         rebindAdapters();
