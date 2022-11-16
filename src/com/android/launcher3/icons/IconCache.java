@@ -458,7 +458,7 @@ public class IconCache extends BaseIconCache {
                             cn,
                             sectionKey.first);
                 }
-                if (loadFallbackTitle && TextUtils.isEmpty(entry.title) && lai != null) {
+                if (lai != null) {
                     loadFallbackTitle(
                             lai,
                             entry,
