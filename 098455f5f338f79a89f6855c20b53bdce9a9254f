@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a8719ab_27d40279",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1156808
+      },
+      "writtenOn": "2022-12-10T12:20:44Z",
+      "side": 1,
+      "message": "Before the change (partially broken, when scrolling through the apps Personal/Work tabs are slightly covered by Search): https://imgur.com/a/U2ItK7q\nAfter the change (all fixed): https://imgur.com/a/1zK1bte",
+      "revId": "098455f5f338f79a89f6855c20b53bdce9a9254f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
