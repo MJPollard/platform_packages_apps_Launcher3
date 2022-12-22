@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2864a51d_7ef9149a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1275415
+      },
+      "writtenOn": "2022-12-22T04:44:50Z",
+      "side": 1,
+      "message": "Hi Tony would you help me bypass the Presubmit-verify? we have no permission to view the logs.",
+      "revId": "ed2f309652cfbac2844dc49518c1efa5591d8322",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
