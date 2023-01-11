@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "554b581b_77daa635",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1060413
+      },
+      "writtenOn": "2023-01-11T15:21:40Z",
+      "side": 1,
+      "message": "Retrying presubmit on the hopes that ag/20925750 has fixed the affected bug.",
+      "revId": "c15e2a3a5d9765c9a737c5b7ec51782cf82d6354",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
