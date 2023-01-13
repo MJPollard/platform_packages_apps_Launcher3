@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f60459b_3cc76457",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1984456
+      },
+      "writtenOn": "2023-01-13T02:43:06Z",
+      "side": 1,
+      "message": "Hi all,\n\nApologies if this is a lot of reviewers, was just following the [AOSP docs](https://source.android.com/docs/setup/contribute/submit-patches#request-review) 😅\n\nNormally I like to include screencaps, but since there\u0027s a 72-character hard-wrap, I\u0027ll link a rich version of the test plan table (with video links) here:\n\nhttps://github.com/ygdanchoi/aosp/blob/main/README-2379074.md\n\n(btw, I\u0027m currently in the team matching phase - would love to join Android System UI if you\u0027re hiring!)",
+      "revId": "36cbe3c31074d8878f0f6408f260a5bdf2f41daf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
