@@ -29,8 +29,6 @@ import android.os.UserHandle;
 import android.os.UserManager;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
 import com.android.launcher3.Launcher;
 import com.android.launcher3.LauncherAppState;
 import com.android.launcher3.LauncherSettings;
@@ -59,9 +57,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 /**
  * Handles updates due to changes in package manager (app installed/updated/removed)
@@ -82,23 +78,17 @@ public class PackageUpdatedTask extends BaseModelUpdateTask {
     public static final int OP_USER_AVAILABILITY_CHANGE = 7; // user available/unavailable
 
     private final int mOp;
-
-    @NonNull
     private final UserHandle mUser;
-
-    @NonNull
     private final String[] mPackages;
 
-    public PackageUpdatedTask(final int op, @NonNull final UserHandle user,
-            @NonNull final String... packages) {
+    public PackageUpdatedTask(int op, UserHandle user, String... packages) {
         mOp = op;
         mUser = user;
         mPackages = packages;
     }
 
     @Override
-    public void execute(@NonNull final LauncherAppState app, @NonNull final BgDataModel dataModel,
-            @NonNull final AllAppsList appsList) {
+    public void execute(LauncherAppState app, BgDataModel dataModel, AllAppsList appsList) {
         final Context context = app.getContext();
         final IconCache iconCache = app.getIconCache();
 
@@ -353,12 +343,7 @@ public class PackageUpdatedTask extends BaseModelUpdateTask {
                     .or(ItemInfoMatcher.ofComponents(removedComponents, mUser))
                     .and(ItemInfoMatcher.ofItemIds(forceKeepShortcuts).negate());
             deleteAndBindComponentsRemoved(removeMatch,
-                    "removed because the corresponding package or component is removed. "
-                            + "mOp=" + mOp + " removedPackages=" + removedPackages.stream().collect(
-                                    Collectors.joining(",", "[", "]"))
-                            + " removedComponents=" + removedComponents.stream()
-                            .filter(Objects::nonNull).map(ComponentName::toShortString)
-                            .collect(Collectors.joining(",", "[", "]")));
+                    "removed because the corresponding package or component is removed");
 
             // Remove any queued items from the install queue
             ItemInstallQueue.INSTANCE.get(context)

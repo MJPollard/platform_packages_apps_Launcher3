@@ -57,6 +57,7 @@ import com.android.launcher3.Utilities;
 import com.android.launcher3.Workspace;
 import com.android.launcher3.allapps.ActivityAllAppsContainerView;
 import com.android.launcher3.anim.Interpolators;
+import com.android.launcher3.config.FeatureFlags;
 import com.android.launcher3.dot.FolderDotInfo;
 import com.android.launcher3.dragndrop.BaseItemDragListener;
 import com.android.launcher3.dragndrop.DragLayer;
@@ -417,23 +418,35 @@ public class FolderIcon extends FrameLayout implements FolderListener, IconLabel
             if (!itemAdded) mPreviewItemManager.hidePreviewItem(index, true);
 
             FolderNameInfos nameInfos = new FolderNameInfos();
-            Executors.MODEL_EXECUTOR.post(() -> {
-                d.folderNameProvider.getSuggestedFolderName(
-                        getContext(), mInfo.contents, nameInfos);
-                postDelayed(() -> {
-                    setLabelSuggestion(nameInfos, d.logInstanceId);
-                    invalidate();
-                }, DROP_IN_ANIMATION_DURATION);
-            });
+            if (FeatureFlags.FOLDER_NAME_SUGGEST.get()) {
+                Executors.MODEL_EXECUTOR.post(() -> {
+                    d.folderNameProvider.getSuggestedFolderName(
+                            getContext(), mInfo.contents, nameInfos);
+                    showFinalView(finalIndex, item, nameInfos, d.logInstanceId);
+                });
+            } else {
+                showFinalView(finalIndex, item, nameInfos, d.logInstanceId);
+            }
         } else {
             addItem(item);
         }
+    }
+
+    private void showFinalView(int finalIndex, final WorkspaceItemInfo item,
+            FolderNameInfos nameInfos, InstanceId instanceId) {
+        postDelayed(() -> {
+            setLabelSuggestion(nameInfos, instanceId);
+            invalidate();
+        }, DROP_IN_ANIMATION_DURATION);
     }
 
     /**
      * Set the suggested folder name.
      */
     public void setLabelSuggestion(FolderNameInfos nameInfos, InstanceId instanceId) {
+        if (!FeatureFlags.FOLDER_NAME_SUGGEST.get()) {
+            return;
+        }
         if (!mInfo.getLabelState().equals(LabelState.UNLABELED)) {
             return;
         }

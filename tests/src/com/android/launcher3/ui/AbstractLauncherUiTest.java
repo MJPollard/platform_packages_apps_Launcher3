@@ -61,7 +61,7 @@ import com.android.launcher3.tapl.LauncherInstrumentation;
 import com.android.launcher3.tapl.LauncherInstrumentation.ContainerType;
 import com.android.launcher3.tapl.TestHelpers;
 import com.android.launcher3.testcomponent.TestCommandReceiver;
-import com.android.launcher3.testing.shared.TestProtocol;
+import com.android.launcher3.testing.TestProtocol;
 import com.android.launcher3.util.LooperExecutor;
 import com.android.launcher3.util.PackageManagerHelper;
 import com.android.launcher3.util.Wait;
@@ -151,8 +151,6 @@ public abstract class AbstractLauncherUiTest {
                     device.executeShellCommand(
                             "am dumpheap " + device.getLauncherPackageName() + " " + fileName);
                 }
-                Log.d(TAG, "Saved leak dump, the leak is still present: "
-                        + !launcher.noLeakedActivities());
                 sDumpWasGenerated = true;
                 result = "saved memory dump as an artifact";
             } catch (Throwable e) {
@@ -321,7 +319,7 @@ public abstract class AbstractLauncherUiTest {
     /**
      * Adds {@param item} on the homescreen on the 0th screen
      */
-    public void addItemToScreen(ItemInfo item) {
+    protected void addItemToScreen(ItemInfo item) {
         WidgetUtils.addItemToScreen(item, mTargetContext);
         resetLoaderState();
 
@@ -527,7 +525,7 @@ public abstract class AbstractLauncherUiTest {
     }
 
     protected int getAllAppsScroll(Launcher launcher) {
-        return launcher.getAppsView().getActiveRecyclerView().computeVerticalScrollOffset();
+        return launcher.getAppsView().getActiveRecyclerView().getCurrentScrollY();
     }
 
     private void checkLauncherIntegrity(
@@ -565,13 +563,10 @@ public abstract class AbstractLauncherUiTest {
                     break;
                 }
                 case OVERVIEW: {
-                    verifyOverviewState(launcher, expectedContainerType, isStarted, isResumed,
-                            ordinal, TestProtocol.OVERVIEW_STATE_ORDINAL);
-                    break;
-                }
-                case SPLIT_SCREEN_SELECT: {
-                    verifyOverviewState(launcher, expectedContainerType, isStarted, isResumed,
-                            ordinal, TestProtocol.OVERVIEW_SPLIT_SELECT_ORDINAL);
+                    checkLauncherStateInOverview(launcher, expectedContainerType, isStarted,
+                            isResumed);
+                    assertTrue(TestProtocol.stateOrdinalToString(ordinal),
+                            ordinal == TestProtocol.OVERVIEW_STATE_ORDINAL);
                     break;
                 }
                 case TASKBAR_ALL_APPS:
@@ -637,9 +632,5 @@ public abstract class AbstractLauncherUiTest {
         return homeAppIcon;
     }
 
-    private void verifyOverviewState(Launcher launcher, ContainerType expectedContainerType,
-            boolean isStarted, boolean isResumed, int ordinal, int expectedOrdinal) {
-        checkLauncherStateInOverview(launcher, expectedContainerType, isStarted, isResumed);
-        assertEquals(TestProtocol.stateOrdinalToString(ordinal), ordinal, expectedOrdinal);
-    }
+
 }

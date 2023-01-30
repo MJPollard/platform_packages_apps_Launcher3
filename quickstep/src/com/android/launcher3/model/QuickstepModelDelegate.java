@@ -117,15 +117,14 @@ public class QuickstepModelDelegate extends ModelDelegate {
         // TODO: Implement caching and preloading
         super.loadItems(ums, pinnedShortcuts);
 
-        WorkspaceItemFactory allAppsFactory = new WorkspaceItemFactory(mApp, ums, pinnedShortcuts,
-                mIDP.numDatabaseAllAppsColumns, mAllAppsState.containerId);
-        FixedContainerItems allAppsPredictionItems = new FixedContainerItems(
-                mAllAppsState.containerId, mAllAppsState.storage.read(mApp.getContext(),
-                allAppsFactory, ums.allUsers::get));
-        mDataModel.extraItems.put(mAllAppsState.containerId, allAppsPredictionItems);
+        WorkspaceItemFactory allAppsFactory = new WorkspaceItemFactory(
+                mApp, ums, pinnedShortcuts, mIDP.numDatabaseAllAppsColumns);
+        FixedContainerItems allAppsItems = new FixedContainerItems(mAllAppsState.containerId,
+                mAllAppsState.storage.read(mApp.getContext(), allAppsFactory, ums.allUsers::get));
+        mDataModel.extraItems.put(mAllAppsState.containerId, allAppsItems);
 
-        WorkspaceItemFactory hotseatFactory = new WorkspaceItemFactory(mApp, ums, pinnedShortcuts,
-                mIDP.numDatabaseHotseatIcons, mHotseatState.containerId);
+        WorkspaceItemFactory hotseatFactory =
+                new WorkspaceItemFactory(mApp, ums, pinnedShortcuts, mIDP.numDatabaseHotseatIcons);
         FixedContainerItems hotseatItems = new FixedContainerItems(mHotseatState.containerId,
                 mHotseatState.storage.read(mApp.getContext(), hotseatFactory, ums.allUsers::get));
         mDataModel.extraItems.put(mHotseatState.containerId, hotseatItems);
@@ -433,17 +432,15 @@ public class QuickstepModelDelegate extends ModelDelegate {
         private final UserManagerState mUMS;
         private final Map<ShortcutKey, ShortcutInfo> mPinnedShortcuts;
         private final int mMaxCount;
-        private final int mContainer;
 
         private int mReadCount = 0;
 
         protected WorkspaceItemFactory(LauncherAppState appState, UserManagerState ums,
-                Map<ShortcutKey, ShortcutInfo> pinnedShortcuts, int maxCount, int container) {
+                Map<ShortcutKey, ShortcutInfo> pinnedShortcuts, int maxCount) {
             mAppState = appState;
             mUMS = ums;
             mPinnedShortcuts = pinnedShortcuts;
             mMaxCount = maxCount;
-            mContainer = container;
         }
 
         @Nullable
@@ -461,7 +458,6 @@ public class QuickstepModelDelegate extends ModelDelegate {
                         return null;
                     }
                     AppInfo info = new AppInfo(lai, user, mUMS.isUserQuiet(user));
-                    info.container = mContainer;
                     mAppState.getIconCache().getTitleAndIcon(info, lai, false);
                     mReadCount++;
                     return info.makeWorkspaceItem(mAppState.getContext());
@@ -476,7 +472,6 @@ public class QuickstepModelDelegate extends ModelDelegate {
                         return null;
                     }
                     WorkspaceItemInfo wii = new WorkspaceItemInfo(si, mAppState.getContext());
-                    wii.container = mContainer;
                     mAppState.getIconCache().getShortcutIcon(wii, si);
                     mReadCount++;
                     return wii;

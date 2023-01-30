@@ -27,14 +27,15 @@ import static com.android.quickstep.views.RecentsView.TASK_PRIMARY_SPLIT_TRANSLA
 import static com.android.quickstep.views.RecentsView.TASK_SECONDARY_SPLIT_TRANSLATION;
 import static com.android.quickstep.views.TaskView.FLAG_UPDATE_ALL;
 
-import android.animation.AnimatorSet;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.util.FloatProperty;
 import android.util.Pair;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
+import com.android.launcher3.BaseQuickstepLauncher;
 import com.android.launcher3.LauncherState;
 import com.android.launcher3.anim.AnimatorListeners;
 import com.android.launcher3.anim.PendingAnimation;
@@ -42,8 +43,6 @@ import com.android.launcher3.anim.PropertySetter;
 import com.android.launcher3.states.StateAnimationConfig;
 import com.android.launcher3.touch.PagedOrientationHandler;
 import com.android.launcher3.util.MultiValueAlpha;
-import com.android.quickstep.util.AnimUtils;
-import com.android.quickstep.util.SplitAnimationTimings;
 import com.android.quickstep.views.ClearAllButton;
 import com.android.quickstep.views.LauncherRecentsView;
 import com.android.quickstep.views.RecentsView;
@@ -56,7 +55,7 @@ import com.android.quickstep.views.RecentsView;
 public final class RecentsViewStateController extends
         BaseRecentsViewStateController<LauncherRecentsView> {
 
-    public RecentsViewStateController(QuickstepLauncher launcher) {
+    public RecentsViewStateController(BaseQuickstepLauncher launcher) {
         super(launcher);
     }
 
@@ -73,10 +72,7 @@ public final class RecentsViewStateController extends
         // DepthController to prevent optimizations which might occlude the layers behind
         mLauncher.getDepthController().setHasContentBehindLauncher(state.overviewUi);
 
-        PendingAnimation builder =
-                new PendingAnimation(state.getTransitionDuration(mLauncher, true));
-
-        handleSplitSelectionState(state, builder, /* animate */false);
+        handleSplitSelectionState(state, null);
     }
 
     @Override
@@ -97,7 +93,7 @@ public final class RecentsViewStateController extends
         builder.addListener(AnimatorListeners.forSuccessCallback(() ->
                 mLauncher.getDepthController().setHasContentBehindLauncher(toState.overviewUi)));
 
-        handleSplitSelectionState(toState, builder, /* animate */true);
+        handleSplitSelectionState(toState, builder);
 
         setAlphas(builder, config, toState);
         builder.setFloat(mRecentsView, FULLSCREEN_PROGRESS,
@@ -110,14 +106,8 @@ public final class RecentsViewStateController extends
      *                will add animations to builder.
      */
     private void handleSplitSelectionState(@NonNull LauncherState toState,
-            @NonNull PendingAnimation builder, boolean animate) {
-        if (toState != OVERVIEW_SPLIT_SELECT) {
-            // Not going to split, nothing to do but ensure taskviews are at correct offset
-            mRecentsView.resetSplitPrimaryScrollOffset();
-            return;
-        }
-
-        // Create transition animations to split select
+            @Nullable PendingAnimation builder) {
+        boolean animate = builder != null;
         PagedOrientationHandler orientationHandler =
                 ((RecentsView) mLauncher.getOverviewPanel()).getPagedOrientationHandler();
         Pair<FloatProperty, FloatProperty> taskViewsFloat =
@@ -125,27 +115,25 @@ public final class RecentsViewStateController extends
                         TASK_PRIMARY_SPLIT_TRANSLATION, TASK_SECONDARY_SPLIT_TRANSLATION,
                         mLauncher.getDeviceProfile());
 
-        SplitAnimationTimings timings =
-                AnimUtils.getDeviceOverviewToSplitTimings(mLauncher.getDeviceProfile().isTablet);
+        if (toState == OVERVIEW_SPLIT_SELECT) {
+            // Animation to "dismiss" selected taskView
+            PendingAnimation splitSelectInitAnimation = mRecentsView.createSplitSelectInitAnimation(
+                    toState.getTransitionDuration(mLauncher, true /* isToState */));
+            // Add properties to shift remaining taskViews to get out of placeholder view
+            splitSelectInitAnimation.setFloat(mRecentsView, taskViewsFloat.first,
+                    toState.getSplitSelectTranslation(mLauncher), LINEAR);
+            splitSelectInitAnimation.setFloat(mRecentsView, taskViewsFloat.second, 0, LINEAR);
 
-        mRecentsView.createSplitSelectInitAnimation(builder,
-                toState.getTransitionDuration(mLauncher, true /* isToState */));
-        // Shift tasks vertically downward to get out of placeholder view
-        builder.setFloat(mRecentsView, taskViewsFloat.first,
-                toState.getSplitSelectTranslation(mLauncher),
-                timings.getGridSlidePrimaryInterpolator());
-        // Zero out horizontal translation
-        builder.setFloat(mRecentsView, taskViewsFloat.second,
-                0,
-                timings.getGridSlideSecondaryInterpolator());
+            if (!animate) {
+                splitSelectInitAnimation.buildAnim().start();
+            } else {
+                builder.add(splitSelectInitAnimation.buildAnim());
+            }
 
-        if (!animate) {
-            AnimatorSet as = builder.buildAnim();
-            as.start();
-            as.end();
+            mRecentsView.applySplitPrimaryScrollOffset();
+        } else {
+            mRecentsView.resetSplitPrimaryScrollOffset();
         }
-
-        mRecentsView.applySplitPrimaryScrollOffset();
     }
 
     private void setAlphas(PropertySetter propertySetter, StateAnimationConfig config,

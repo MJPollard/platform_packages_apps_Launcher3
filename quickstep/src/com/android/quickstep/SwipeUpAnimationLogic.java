@@ -17,6 +17,7 @@ package com.android.quickstep;
 
 import static com.android.launcher3.anim.Interpolators.ACCEL_1_5;
 import static com.android.launcher3.anim.Interpolators.LINEAR;
+import static com.android.launcher3.config.FeatureFlags.ENABLE_SPLIT_SELECT;
 
 import android.animation.Animator;
 import android.content.Context;
@@ -71,14 +72,16 @@ public abstract class SwipeUpAnimationLogic implements
     // How much further we can drag past recents, as a factor of mTransitionDragLength.
     protected float mDragLengthFactor = 1;
 
-    protected boolean mIsSwipeForSplit;
+    protected boolean mIsSwipeForStagedSplit;
 
     public SwipeUpAnimationLogic(Context context, RecentsAnimationDeviceState deviceState,
             GestureState gestureState) {
         mContext = context;
         mDeviceState = deviceState;
         mGestureState = gestureState;
-        mIsSwipeForSplit = TopTaskTracker.INSTANCE.get(context).getRunningSplitTaskIds().length > 1;
+
+        mIsSwipeForStagedSplit = ENABLE_SPLIT_SELECT.get() &&
+                TopTaskTracker.INSTANCE.get(context).getRunningSplitTaskIds().length > 1;
 
         mTargetGluer = new RemoteTargetGluer(mContext, mGestureState.getActivityInterface());
         mRemoteTargetHandles = mTargetGluer.getRemoteTargetHandles();

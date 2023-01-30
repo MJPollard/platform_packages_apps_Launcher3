@@ -49,13 +49,9 @@ public class TaskbarUIController {
         return true;
     }
 
-    /**
-     * This should only be called by TaskbarStashController so that a TaskbarUIController can
-     * disable stashing. All other controllers should use
-     * {@link TaskbarStashController#supportsVisualStashing()} as the source of truth.
-     */
     public boolean supportsVisualStashing() {
-        return true;
+        if (mControllers == null) return false;
+        return !mControllers.taskbarActivityContext.isThreeButtonNav();
     }
 
     protected void onStashedInAppChanged() { }

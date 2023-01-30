@@ -19,6 +19,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.view.Display;
 import android.view.WindowInsets;
 
 import com.android.launcher3.deviceemulator.models.DeviceEmulationData;
@@ -31,9 +32,14 @@ public class TestWindowManagerProxy extends WindowManagerProxy {
 
     private final DeviceEmulationData mDevice;
 
-    public TestWindowManagerProxy(DeviceEmulationData device) {
+    public TestWindowManagerProxy(Context context, DeviceEmulationData device) {
         super(true);
         mDevice = device;
+    }
+
+    @Override
+    public boolean isInternalDisplay(Display display) {
+        return display.getDisplayId() == Display.DEFAULT_DISPLAY;
     }
 
     @Override
@@ -48,25 +54,27 @@ public class TestWindowManagerProxy extends WindowManagerProxy {
     }
 
     @Override
-    public CachedDisplayInfo getDisplayInfo(Context displayInfoContext) {
-        int rotation = getRotation(displayInfoContext);
+    public CachedDisplayInfo getDisplayInfo(Context context, Display display) {
+        int rotation = display.getRotation();
         Point size = new Point(mDevice.width, mDevice.height);
         RotationUtils.rotateSize(size, rotation);
         Rect cutout = new Rect(mDevice.cutout);
         RotationUtils.rotateRect(cutout, rotation);
-        return new CachedDisplayInfo(size, rotation, cutout);
+        return new CachedDisplayInfo(getDisplayId(display), size, rotation, cutout);
     }
 
     @Override
-    public WindowBounds getRealBounds(Context displayInfoContext, CachedDisplayInfo info) {
-        return estimateInternalDisplayBounds(displayInfoContext).get(
-                getDisplayInfo(displayInfoContext))[getDisplay(displayInfoContext).getRotation()];
+    public WindowBounds getRealBounds(Context windowContext, Display display,
+            CachedDisplayInfo info) {
+        return estimateInternalDisplayBounds(windowContext)
+                .get(getDisplayId(display)).second[display.getRotation()];
     }
 
     @Override
     public WindowInsets normalizeWindowInsets(Context context, WindowInsets oldInsets,
             Rect outInsets) {
-        outInsets.set(getRealBounds(context, getDisplayInfo(context)).insets);
+        outInsets.set(getRealBounds(context, context.getDisplay(),
+                getDisplayInfo(context, context.getDisplay())).insets);
         return oldInsets;
     }
 }

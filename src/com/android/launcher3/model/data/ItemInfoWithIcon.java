@@ -16,6 +16,7 @@
 
 package com.android.launcher3.model.data;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 
@@ -219,10 +220,10 @@ public abstract class ItemInfoWithIcon extends ItemInfo {
     /** Creates an intent to that launches the app store at this app's page. */
     @Nullable
     public Intent getMarketIntent(Context context) {
-        String targetPackage = getTargetPackage();
+        ComponentName componentName = getTargetComponent();
 
-        return targetPackage != null
-                ? new PackageManagerHelper(context).getMarketIntent(targetPackage)
+        return componentName != null
+                ? new PackageManagerHelper(context).getMarketIntent(componentName.getPackageName())
                 : null;
     }
 

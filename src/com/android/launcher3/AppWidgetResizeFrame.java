@@ -24,7 +24,6 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -69,6 +68,22 @@ public class AppWidgetResizeFrame extends AbstractFloatingView implements View.O
 
     private final View[] mDragHandles = new View[HANDLE_COUNT];
     private final List<Rect> mSystemGestureExclusionRects = new ArrayList<>(HANDLE_COUNT);
+    private final OnAttachStateChangeListener mWidgetViewAttachStateChangeListener =
+            new OnAttachStateChangeListener() {
+                @Override
+                public void onViewAttachedToWindow(View view) {
+                    // Do nothing
+                }
+
+                @Override
+                public void onViewDetachedFromWindow(View view) {
+                    // When the app widget view is detached, we should close the resize frame.
+                    // An example is when the dragging starts, the widget view is detached from
+                    // CellLayout and then reattached to DragLayout.
+                    close(false);
+                }
+            };
+
 
     private LauncherAppWidgetHostView mWidgetView;
     private CellLayout mCellLayout;
@@ -206,7 +221,11 @@ public class AppWidgetResizeFrame extends AbstractFloatingView implements View.O
     private void setupForWidget(LauncherAppWidgetHostView widgetView, CellLayout cellLayout,
             DragLayer dragLayer) {
         mCellLayout = cellLayout;
+        if (mWidgetView != null) {
+            mWidgetView.removeOnAttachStateChangeListener(mWidgetViewAttachStateChangeListener);
+        }
         mWidgetView = widgetView;
+        mWidgetView.addOnAttachStateChangeListener(mWidgetViewAttachStateChangeListener);
         LauncherAppWidgetProviderInfo info = (LauncherAppWidgetProviderInfo)
                 widgetView.getAppWidgetInfo();
         mDragLayer = dragLayer;
@@ -404,10 +423,6 @@ public class AppWidgetResizeFrame extends AbstractFloatingView implements View.O
      *  Based on the current deltas, we determine if and how to resize the widget.
      */
     private void resizeWidgetIfNeeded(boolean onDismiss) {
-        ViewGroup.LayoutParams wlp = mWidgetView.getLayoutParams();
-        if (!(wlp instanceof CellLayout.LayoutParams)) {
-            return;
-        }
         DeviceProfile dp = mLauncher.getDeviceProfile();
         float xThreshold = mCellLayout.getCellWidth() + dp.cellLayoutBorderSpacePx.x;
         float yThreshold = mCellLayout.getCellHeight() + dp.cellLayoutBorderSpacePx.y;
@@ -420,7 +435,7 @@ public class AppWidgetResizeFrame extends AbstractFloatingView implements View.O
         mDirectionVector[0] = 0;
         mDirectionVector[1] = 0;
 
-        CellLayout.LayoutParams lp = (CellLayout.LayoutParams) wlp;
+        CellLayout.LayoutParams lp = (CellLayout.LayoutParams) mWidgetView.getLayoutParams();
 
         int spanX = lp.cellHSpan;
         int spanY = lp.cellVSpan;
@@ -672,6 +687,9 @@ public class AppWidgetResizeFrame extends AbstractFloatingView implements View.O
     @Override
     protected void handleClose(boolean animate) {
         mDragLayer.removeView(this);
+        if (mWidgetView != null) {
+            mWidgetView.removeOnAttachStateChangeListener(mWidgetViewAttachStateChangeListener);
+        }
     }
 
     private void updateInvalidResizeEffect(CellLayout cellLayout, CellLayout pairedCellLayout,

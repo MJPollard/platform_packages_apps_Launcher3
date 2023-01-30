@@ -159,7 +159,7 @@ public class SecondaryDropTarget extends ButtonDropTarget implements OnAlarmList
                 return RECONFIGURE;
             }
             return INVALID;
-        } else if (info.isPredictedItem()) {
+        } else if (FeatureFlags.ENABLE_PREDICTION_DISMISS.get() && info.isPredictedItem()) {
             return DISMISS_PREDICTION;
         }
 

@@ -17,12 +17,11 @@ package com.android.launcher3.taskbar;
 
 import android.content.res.Resources;
 import android.graphics.Rect;
-import android.view.ViewTreeObserver;
 
-import com.android.launcher3.DeviceProfile;
 import com.android.launcher3.R;
 import com.android.launcher3.util.TouchController;
 import com.android.quickstep.AnimatedFloat;
+import com.android.systemui.shared.system.ViewTreeObserverWrapper.InsetsInfo;
 
 import java.io.PrintWriter;
 
@@ -145,9 +144,10 @@ public class TaskbarDragLayerController implements TaskbarControllers.LoggableTa
     public void dumpLogs(String prefix, PrintWriter pw) {
         pw.println(prefix + "TaskbarDragLayerController:");
 
-        pw.println(prefix + "\tmBgOffset=" + mBgOffset.value);
-        pw.println(prefix + "\tmFolderMargin=" + mFolderMargin);
-        pw.println(prefix + "\tmLastSetBackgroundAlpha=" + mLastSetBackgroundAlpha);
+        pw.println(String.format("%s\tmBgOffset=%.2f", prefix, mBgOffset.value));
+        pw.println(String.format("%s\tmFolderMargin=%dpx", prefix, mFolderMargin));
+        pw.println(String.format(
+                "%s\tmLastSetBackgroundAlpha=%.2f", prefix, mLastSetBackgroundAlpha));
     }
 
     /**
@@ -157,9 +157,9 @@ public class TaskbarDragLayerController implements TaskbarControllers.LoggableTa
 
         /**
          * Called to update the touchable insets.
-         * @see ViewTreeObserver.InternalInsetsInfo#setTouchableInsets(int)
+         * @see InsetsInfo#setTouchableInsets(int)
          */
-        public void updateInsetsTouchability(ViewTreeObserver.InternalInsetsInfo insetsInfo) {
+        public void updateInsetsTouchability(InsetsInfo insetsInfo) {
             mControllers.taskbarInsetsController.updateInsetsTouchability(insetsInfo);
         }
 
@@ -174,15 +174,7 @@ public class TaskbarDragLayerController implements TaskbarControllers.LoggableTa
          * Returns how tall the background should be drawn at the bottom of the screen.
          */
         public int getTaskbarBackgroundHeight() {
-            DeviceProfile deviceProfile = mActivity.getDeviceProfile();
-            if (TaskbarManager.isPhoneMode(deviceProfile)) {
-                Resources resources = mActivity.getResources();
-                return mActivity.isThreeButtonNav() ?
-                        resources.getDimensionPixelSize(R.dimen.taskbar_size) :
-                        resources.getDimensionPixelSize(R.dimen.taskbar_stashed_size);
-            } else {
-                return deviceProfile.taskbarSize;
-            }
+            return mActivity.getDeviceProfile().taskbarSize;
         }
 
         /**

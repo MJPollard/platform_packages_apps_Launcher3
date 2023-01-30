@@ -19,7 +19,7 @@ package com.android.launcher3.tapl;
 import androidx.annotation.NonNull;
 import androidx.test.uiautomator.UiObject2;
 
-import com.android.launcher3.testing.shared.TestProtocol;
+import com.android.launcher3.testing.TestProtocol;
 
 /**
  * View containing overview actions
@@ -41,8 +41,6 @@ public class OverviewActions {
         try (LauncherInstrumentation.Closable e = mLauncher.eventsCheck();
              LauncherInstrumentation.Closable c = mLauncher.addContextLayer(
                      "want to click screenshot button and exit screenshot ui")) {
-            mLauncher.setIndefiniteAccessibilityInteractiveUiTimeout(true);
-
             UiObject2 screenshot = mLauncher.waitForObjectInContainer(mOverviewActions,
                     "action_screenshot");
 
@@ -64,8 +62,6 @@ public class OverviewActions {
                     return new Overview(mLauncher);
                 }
             }
-        } finally {
-            mLauncher.setIndefiniteAccessibilityInteractiveUiTimeout(false);
         }
     }
 
@@ -86,6 +82,7 @@ public class OverviewActions {
                     "clicked select button")) {
                 return getSelectModeButtons();
             }
+
         }
     }
 
@@ -100,24 +97,6 @@ public class OverviewActions {
                 "want to get select mode buttons")) {
             UiObject2 selectModeButtons = mLauncher.waitForLauncherObject("select_mode_buttons");
             return new SelectModeButtons(selectModeButtons, mLauncher);
-        }
-    }
-
-    /**
-     * Clicks split button and enters split select mode.
-     */
-    @NonNull
-    public SplitScreenSelect clickSplit() {
-        try (LauncherInstrumentation.Closable e = mLauncher.eventsCheck();
-             LauncherInstrumentation.Closable c = mLauncher.addContextLayer(
-                     "want to click split button to enter split select mode")) {
-            UiObject2 split = mLauncher.waitForObjectInContainer(mOverviewActions,
-                    "action_split");
-            mLauncher.clickLauncherObject(split);
-            try (LauncherInstrumentation.Closable c2 = mLauncher.addContextLayer(
-                    "clicked split")) {
-                return new SplitScreenSelect(mLauncher);
-            }
         }
     }
 }

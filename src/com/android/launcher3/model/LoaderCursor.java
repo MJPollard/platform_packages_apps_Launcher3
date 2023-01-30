@@ -291,16 +291,12 @@ public class LoaderCursor extends CursorWrapper {
 
         // from the db
         if (TextUtils.isEmpty(info.title)) {
-            if (loadIcon) {
-                info.title = getTitle();
+            info.title = getTitle();
+        }
 
-                // fall back to the class name of the activity
-                if (info.title == null) {
-                    info.title = componentName.getClassName();
-                }
-            } else {
-                info.title = "";
-            }
+        // fall back to the class name of the activity
+        if (info.title == null) {
+            info.title = componentName.getClassName();
         }
 
         info.contentDescription = mPM.getUserBadgedLabel(info.title, info.user);
@@ -465,7 +461,7 @@ public class LoaderCursor extends CursorWrapper {
                 // occupied (if the feature is enabled) in order to account for the search
                 // container.
                 int spanX = mIDP.numSearchContainerColumns;
-                int spanY = 1;
+                int spanY = FeatureFlags.EXPANDED_SMARTSPACE.get() ? 2 : 1;
                 screen.markCells(0, 0, spanX, spanY, true);
             }
             occupied.put(item.screenId, screen);

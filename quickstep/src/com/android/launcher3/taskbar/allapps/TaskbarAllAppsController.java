@@ -144,7 +144,9 @@ public final class TaskbarAllAppsController {
         // to catch invalid states.
         mControllers.getSharedState().allAppsVisible = true;
 
-        mAllAppsContext = new TaskbarAllAppsContext(mTaskbarContext, this, mControllers);
+        mAllAppsContext = new TaskbarAllAppsContext(mTaskbarContext,
+                this,
+                mControllers.taskbarStashController);
         mAllAppsContext.getDragController().init(mControllers);
         TaskStackChangeListeners.getInstance().registerTaskStackListener(mTaskStackListener);
         Optional.ofNullable(mAllAppsContext.getSystemService(WindowManager.class))
@@ -169,8 +171,8 @@ public final class TaskbarAllAppsController {
      * This method should be called after an exit animation finishes, if applicable.
      */
     void maybeCloseWindow() {
-        if (mAllAppsContext != null && (AbstractFloatingView.hasOpenView(mAllAppsContext, TYPE_ALL)
-                || mAllAppsContext.getDragController().isSystemDragInProgress())) {
+        if (AbstractFloatingView.getOpenView(mAllAppsContext, TYPE_ALL) != null
+                || mAllAppsContext.getDragController().isSystemDragInProgress()) {
             return;
         }
         mProxyView.close(false);
@@ -185,7 +187,7 @@ public final class TaskbarAllAppsController {
         TaskStackChangeListeners.getInstance().unregisterTaskStackListener(mTaskStackListener);
         Optional.ofNullable(mAllAppsContext)
                 .map(c -> c.getSystemService(WindowManager.class))
-                .ifPresent(m -> m.removeViewImmediate(mAllAppsContext.getDragLayer()));
+                .ifPresent(m -> m.removeView(mAllAppsContext.getDragLayer()));
         mAllAppsContext = null;
     }
 
@@ -205,7 +207,7 @@ public final class TaskbarAllAppsController {
     private LayoutParams createLayoutParams() {
         LayoutParams layoutParams = new LayoutParams(
                 TYPE_APPLICATION_OVERLAY,
-                WindowManager.LayoutParams.FLAG_SPLIT_TOUCH,
+                0,
                 PixelFormat.TRANSLUCENT);
         layoutParams.setTitle(WINDOW_TITLE);
         layoutParams.gravity = Gravity.BOTTOM;

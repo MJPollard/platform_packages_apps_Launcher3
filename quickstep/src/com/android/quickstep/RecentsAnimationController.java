@@ -32,8 +32,6 @@ import androidx.annotation.UiThread;
 
 import com.android.launcher3.util.Preconditions;
 import com.android.launcher3.util.RunnableList;
-import com.android.quickstep.util.ActiveGestureErrorDetector;
-import com.android.quickstep.util.ActiveGestureLog;
 import com.android.systemui.shared.recents.model.ThumbnailData;
 import com.android.systemui.shared.system.InteractionJankMonitorWrapper;
 import com.android.systemui.shared.system.RecentsAnimationControllerCompat;
@@ -106,6 +104,8 @@ public class RecentsAnimationController {
         }
         if (mSplitScreenMinimized != splitScreenMinimized) {
             mSplitScreenMinimized = splitScreenMinimized;
+            UI_HELPER_EXECUTOR.execute(() -> SystemUiProxy.INSTANCE.get(context)
+                    .setSplitScreenMinimized(splitScreenMinimized));
         }
     }
 
@@ -174,12 +174,7 @@ public class RecentsAnimationController {
      */
     @UiThread
     public void cleanupScreenshot() {
-        UI_HELPER_EXECUTOR.execute(() -> {
-            ActiveGestureLog.INSTANCE.addLog(
-                    "cleanupScreenshot",
-                    ActiveGestureErrorDetector.GestureEvent.CLEANUP_SCREENSHOT);
-            mController.cleanupScreenshot();
-        });
+        UI_HELPER_EXECUTOR.execute(() -> mController.cleanupScreenshot());
     }
 
     /**
@@ -227,6 +222,7 @@ public class RecentsAnimationController {
      */
     public void enableInputConsumer() {
         UI_HELPER_EXECUTOR.submit(() -> {
+            mController.hideCurrentInputMethod();
             mController.setInputConsumerEnabled(true);
         });
     }

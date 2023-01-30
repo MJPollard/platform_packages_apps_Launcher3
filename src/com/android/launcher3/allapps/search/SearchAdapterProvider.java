@@ -58,9 +58,4 @@ public abstract class SearchAdapterProvider<T extends ActivityContext> extends B
      * Returns the item decorator.
      */
     public abstract RecyclerView.ItemDecoration getDecorator();
-
-    /**
-     * Clear the highlighted view.
-     */
-    public abstract void clearHighlightedItem();
 }

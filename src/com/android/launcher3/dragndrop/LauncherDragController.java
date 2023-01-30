@@ -37,7 +37,7 @@ import com.android.launcher3.Launcher;
 import com.android.launcher3.R;
 import com.android.launcher3.accessibility.DragViewStateAnnouncer;
 import com.android.launcher3.model.data.ItemInfo;
-import com.android.launcher3.testing.shared.TestProtocol;
+import com.android.launcher3.testing.TestProtocol;
 
 /**
  * Drag controller for Launcher activity

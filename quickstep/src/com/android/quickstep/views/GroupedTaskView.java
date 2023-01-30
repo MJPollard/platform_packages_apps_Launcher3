@@ -1,6 +1,5 @@
 package com.android.quickstep.views;
 
-import static com.android.launcher3.AbstractFloatingView.getAnyView;
 import static com.android.launcher3.util.SplitConfigurationOptions.DEFAULT_SPLIT_RATIO;
 import static com.android.launcher3.util.SplitConfigurationOptions.STAGE_POSITION_BOTTOM_OR_RIGHT;
 import static com.android.launcher3.util.SplitConfigurationOptions.STAGE_POSITION_TOP_OR_LEFT;
@@ -14,12 +13,11 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.android.launcher3.AbstractFloatingView;
 import com.android.launcher3.DeviceProfile;
 import com.android.launcher3.R;
 import com.android.launcher3.Utilities;
 import com.android.launcher3.util.RunnableList;
-import com.android.launcher3.util.SplitConfigurationOptions.SplitBounds;
+import com.android.launcher3.util.SplitConfigurationOptions.StagedSplitBounds;
 import com.android.launcher3.util.TransformingTouchDelegate;
 import com.android.quickstep.RecentsModel;
 import com.android.quickstep.TaskIconCache;
@@ -55,7 +53,7 @@ public class GroupedTaskView extends TaskView {
     private CancellableTask mIconLoadRequest2;
     private final float[] mIcon2CenterCoords = new float[2];
     private TransformingTouchDelegate mIcon2TouchDelegate;
-    @Nullable private SplitBounds mSplitBoundsConfig;
+    @Nullable private StagedSplitBounds mSplitBoundsConfig;
     private final DigitalWellBeingToast mDigitalWellBeingToast2;
 
     public GroupedTaskView(Context context) {
@@ -80,7 +78,7 @@ public class GroupedTaskView extends TaskView {
     }
 
     public void bind(Task primary, Task secondary, RecentsOrientedState orientedState,
-            @Nullable SplitBounds splitBoundsConfig) {
+            @Nullable StagedSplitBounds splitBoundsConfig) {
         super.bind(primary, orientedState);
         mSecondaryTask = secondary;
         mTaskIdContainer[1] = secondary.key.id;
@@ -128,8 +126,8 @@ public class GroupedTaskView extends TaskView {
         }
     }
 
-    public void updateSplitBoundsConfig(SplitBounds splitBounds) {
-        mSplitBoundsConfig = splitBounds;
+    public void updateSplitBoundsConfig(StagedSplitBounds stagedSplitBounds) {
+        mSplitBoundsConfig = stagedSplitBounds;
         invalidate();
     }
 
@@ -164,21 +162,6 @@ public class GroupedTaskView extends TaskView {
         }
     }
 
-    @Override
-    protected boolean showTaskMenuWithContainer(IconView iconView) {
-        boolean showedTaskMenu = super.showTaskMenuWithContainer(iconView);
-        if (iconView == mIconView2 && showedTaskMenu && !mActivity.getDeviceProfile().isTablet) {
-            // Adjust the position of the secondary task's menu view (only on phones)
-            TaskMenuView taskMenuView = getAnyView(mActivity, AbstractFloatingView.TYPE_TASK_MENU);
-            DeviceProfile deviceProfile = mActivity.getDeviceProfile();
-            getRecentsView().getPagedOrientationHandler()
-                    .setSecondaryTaskMenuPosition(mSplitBoundsConfig, this,
-                            deviceProfile, mTaskIdAttributeContainer[0].getThumbnailView(),
-                            taskMenuView);
-        }
-        return showedTaskMenu;
-    }
-
     @Nullable
     @Override
     public RunnableList launchTaskAnimated() {
@@ -191,7 +174,7 @@ public class GroupedTaskView extends TaskView {
         // Callbacks run from remote animation when recents animation not currently running
         InteractionJankMonitorWrapper.begin(this,
                 InteractionJankMonitorWrapper.CUJ_SPLIT_SCREEN_ENTER, "Enter form GroupedTaskView");
-        recentsView.getSplitSelectController().launchTasks(this /*groupedTaskView*/,
+        recentsView.getSplitPlaceholder().launchTasks(this /*groupedTaskView*/,
                 success -> {
                     endCallback.executeAllAndDestroy();
                     InteractionJankMonitorWrapper.end(
@@ -206,7 +189,7 @@ public class GroupedTaskView extends TaskView {
 
     @Override
     public void launchTask(@NonNull Consumer<Boolean> callback, boolean freezeTaskList) {
-        getRecentsView().getSplitSelectController().launchTasks(mTask.key.id, mSecondaryTask.key.id,
+        getRecentsView().getSplitPlaceholder().launchTasks(mTask.key.id, mSecondaryTask.key.id,
                 STAGE_POSITION_TOP_OR_LEFT, callback, freezeTaskList, getSplitRatio());
     }
 
@@ -230,12 +213,11 @@ public class GroupedTaskView extends TaskView {
     }
 
     @Override
-    protected int getLastSelectedChildTaskIndex() {
-        if (isCoordInView(mIconView2, mLastTouchDownPosition)
-                || isCoordInView(mSnapshotView2, mLastTouchDownPosition)) {
+    protected int getChildTaskIndexAtPosition(PointF position) {
+        if (isCoordInView(mIconView2, position) || isCoordInView(mSnapshotView2, position)) {
             return 1;
         }
-        return super.getLastSelectedChildTaskIndex();
+        return super.getChildTaskIndexAtPosition(position);
     }
 
     private boolean isCoordInView(View v, PointF position) {
@@ -268,7 +250,8 @@ public class GroupedTaskView extends TaskView {
 
     @Override
     public void setOverlayEnabled(boolean overlayEnabled) {
-        // Intentional no-op to prevent setting smart actions overlay on thumbnails
+        super.setOverlayEnabled(overlayEnabled);
+        mSnapshotView2.setOverlayEnabled(overlayEnabled);
     }
 
     @Override
@@ -329,34 +312,5 @@ public class GroupedTaskView extends TaskView {
         mIconView2.setIconColorTint(tintColor, amount);
         mSnapshotView2.setDimAlpha(amount);
         mDigitalWellBeingToast2.setBannerColorTint(tintColor, amount);
-    }
-
-    @Override
-    protected void applyThumbnailSplashAlpha() {
-        super.applyThumbnailSplashAlpha();
-        mSnapshotView2.setSplashAlpha(mTaskThumbnailSplashAlpha);
-    }
-
-    /**
-     *     Sets visibility for thumbnails and associated elements (DWB banners).
-     *     IconView is unaffected.
-     *
-     *     When setting INVISIBLE, sets the visibility for the last selected child task.
-     *     When setting VISIBLE (as a reset), sets the visibility for both tasks.
-     */
-    @Override
-    void setThumbnailVisibility(int visibility) {
-        if (visibility == VISIBLE) {
-            mSnapshotView.setVisibility(visibility);
-            mDigitalWellBeingToast.setBannerVisibility(visibility);
-            mSnapshotView2.setVisibility(visibility);
-            mDigitalWellBeingToast2.setBannerVisibility(visibility);
-        } else if (getLastSelectedChildTaskIndex() == 0) {
-            mSnapshotView.setVisibility(visibility);
-            mDigitalWellBeingToast.setBannerVisibility(visibility);
-        } else {
-            mSnapshotView2.setVisibility(visibility);
-            mDigitalWellBeingToast2.setBannerVisibility(visibility);
-        }
     }
 }

@@ -19,7 +19,6 @@ package com.android.launcher3.tapl;
 import android.graphics.Rect;
 
 import androidx.annotation.NonNull;
-import androidx.test.uiautomator.By;
 import androidx.test.uiautomator.BySelector;
 import androidx.test.uiautomator.Direction;
 import androidx.test.uiautomator.UiObject2;
@@ -169,27 +168,6 @@ public class BaseOverview extends LauncherInstrumentation.VisibleContainer {
         return new OverviewTask(mLauncher, widestTask, this);
     }
 
-    /** Returns an overview task matching TestActivity {@param activityNumber}. */
-    @NonNull
-    public OverviewTask getTestActivityTask(int activityNumber) {
-        final List<UiObject2> taskViews = getTasks();
-        mLauncher.assertNotEquals("Unable to find a task", 0, taskViews.size());
-
-        final String activityName = "TestActivity" + activityNumber;
-        UiObject2 task = null;
-        for (UiObject2 taskView : taskViews) {
-            // TODO(b/239452415): Use equals instead of descEndsWith
-            if (taskView.getParent().hasObject(By.descEndsWith(activityName))) {
-                task = taskView;
-                break;
-            }
-        }
-        mLauncher.assertNotNull(
-                "Unable to find a task with " + activityName + " from the task list", task);
-
-        return new OverviewTask(mLauncher, task, this);
-    }
-
     /**
      * Returns a list of all tasks fully visible in the tablet grid overview.
      */
@@ -247,16 +225,8 @@ public class BaseOverview extends LauncherInstrumentation.VisibleContainer {
         return mLauncher.hasLauncherObject(mLauncher.getOverviewObjectSelector("clear_all"));
     }
 
-    protected boolean isActionsViewVisible() {
-        OverviewTask task = mLauncher.isTablet() ? getFocusedTaskForTablet() : getCurrentTask();
-        if (task == null) {
-            return false;
-        }
-        return !task.isTaskSplit();
-    }
-
     private void verifyActionsViewVisibility() {
-        if (!hasTasks() || !isActionsViewVisible()) {
+        if (!hasTasks()) {
             return;
         }
         try (LauncherInstrumentation.Closable c = mLauncher.addContextLayer(
@@ -273,11 +243,13 @@ public class BaseOverview extends LauncherInstrumentation.VisibleContainer {
      * Returns if focused task is currently snapped task in tablet grid overview.
      */
     private boolean isOverviewSnappedToFocusedTaskForTablet() {
-        OverviewTask focusedTask = getFocusedTaskForTablet();
+        UiObject2 focusedTask = getFocusedTaskForTablet();
         if (focusedTask == null) {
             return false;
         }
-        return Math.abs(focusedTask.getExactCenterX() - mLauncher.getExactScreenCenterX()) < 1;
+        return Math.abs(
+                focusedTask.getVisibleBounds().exactCenterX() - mLauncher.getExactScreenCenterX())
+                < 1;
     }
 
     /**
@@ -285,7 +257,7 @@ public class BaseOverview extends LauncherInstrumentation.VisibleContainer {
      *
      * @throws IllegalStateException if not run on a tablet device.
      */
-    OverviewTask getFocusedTaskForTablet() {
+    UiObject2 getFocusedTaskForTablet() {
         if (!mLauncher.isTablet()) {
             throw new IllegalStateException("Must be run on tablet device.");
         }
@@ -296,7 +268,7 @@ public class BaseOverview extends LauncherInstrumentation.VisibleContainer {
         int focusedTaskHeight = mLauncher.getFocusedTaskHeightForTablet();
         for (UiObject2 task : taskViews) {
             if (task.getVisibleBounds().height() == focusedTaskHeight) {
-                return new OverviewTask(mLauncher, task, this);
+                return task;
             }
         }
         return null;

@@ -21,7 +21,7 @@ import com.android.launcher3.tapl.LauncherInstrumentation.ContainerType;
 /**
  * Overview pane.
  */
-public class Overview extends BaseOverview {
+public final class Overview extends BaseOverview {
 
     Overview(LauncherInstrumentation launcher) {
         super(launcher);
@@ -29,7 +29,7 @@ public class Overview extends BaseOverview {
 
     @Override
     protected ContainerType getContainerType() {
-        return ContainerType.OVERVIEW;
+        return LauncherInstrumentation.ContainerType.OVERVIEW;
     }
 
     @Override

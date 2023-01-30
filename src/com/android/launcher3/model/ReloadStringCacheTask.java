@@ -15,8 +15,6 @@
  */
 package com.android.launcher3.model;
 
-import androidx.annotation.NonNull;
-
 import com.android.launcher3.LauncherAppState;
 
 /**
@@ -24,17 +22,14 @@ import com.android.launcher3.LauncherAppState;
  * {@link android.app.admin.DevicePolicyManager#ACTION_DEVICE_POLICY_RESOURCE_UPDATED}.
  */
 public class ReloadStringCacheTask extends BaseModelUpdateTask {
-
-    @NonNull
     private ModelDelegate mModelDelegate;
 
-    public ReloadStringCacheTask(@NonNull final ModelDelegate modelDelegate) {
+    public ReloadStringCacheTask(ModelDelegate modelDelegate) {
         mModelDelegate = modelDelegate;
     }
 
     @Override
-    public void execute(@NonNull final LauncherAppState app, @NonNull final BgDataModel dataModel,
-            @NonNull final AllAppsList appsList) {
+    public void execute(LauncherAppState app, BgDataModel dataModel, AllAppsList appsList) {
         synchronized (dataModel) {
             mModelDelegate.loadStringCache(dataModel.stringCache);
             StringCache cloneSC = dataModel.stringCache.clone();

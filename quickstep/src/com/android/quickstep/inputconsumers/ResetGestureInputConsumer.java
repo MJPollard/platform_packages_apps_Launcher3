@@ -17,11 +17,8 @@ package com.android.quickstep.inputconsumers;
 
 import android.view.MotionEvent;
 
-import com.android.launcher3.taskbar.TaskbarActivityContext;
 import com.android.quickstep.InputConsumer;
 import com.android.quickstep.TaskAnimationManager;
-
-import java.util.function.Supplier;
 
 /**
  * A NO_OP input consumer which also resets any pending gesture
@@ -29,13 +26,9 @@ import java.util.function.Supplier;
 public class ResetGestureInputConsumer implements InputConsumer {
 
     private final TaskAnimationManager mTaskAnimationManager;
-    private final Supplier<TaskbarActivityContext> mActivityContextSupplier;
 
-    public ResetGestureInputConsumer(
-            TaskAnimationManager taskAnimationManager,
-            Supplier<TaskbarActivityContext> activityContextSupplier) {
+    public ResetGestureInputConsumer(TaskAnimationManager taskAnimationManager) {
         mTaskAnimationManager = taskAnimationManager;
-        mActivityContextSupplier = activityContextSupplier;
     }
 
     @Override
@@ -47,9 +40,7 @@ public class ResetGestureInputConsumer implements InputConsumer {
     public void onMotionEvent(MotionEvent ev) {
         if (ev.getAction() == MotionEvent.ACTION_DOWN
                 && mTaskAnimationManager.isRecentsAnimationRunning()) {
-            TaskbarActivityContext tac = mActivityContextSupplier.get();
-            mTaskAnimationManager.finishRunningRecentsAnimation(
-                    /* toHome= */ tac != null && !tac.isInApp());
+            mTaskAnimationManager.finishRunningRecentsAnimation(false /* toHome */);
         }
     }
 }

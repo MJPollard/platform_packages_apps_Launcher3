@@ -16,6 +16,8 @@
 
 package com.android.quickstep;
 
+import android.content.Intent;
+
 import androidx.test.filters.LargeTest;
 import androidx.test.runner.AndroidJUnit4;
 
@@ -41,7 +43,7 @@ public class StartLauncherViaGestureTests extends AbstractQuickStepTest {
         // b/143488140
         mLauncher.goHome();
         // Start an activity where the gestures start.
-        startTestActivity(2);
+        startAppFast(resolveSystemApp(Intent.CATEGORY_APP_CALCULATOR));
     }
 
     private void runTest(String... eventSequence) {

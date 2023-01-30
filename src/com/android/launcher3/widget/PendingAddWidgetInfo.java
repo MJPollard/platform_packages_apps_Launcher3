@@ -19,9 +19,6 @@ import android.appwidget.AppWidgetHostView;
 import android.content.Context;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.android.launcher3.LauncherSettings;
 import com.android.launcher3.PendingAddItemInfo;
 import com.android.launcher3.logger.LauncherAtom;
@@ -69,9 +66,8 @@ public class PendingAddWidgetInfo extends PendingAddItemInfo {
         return WidgetSizes.getWidgetSizeOptions(context, componentName, spanX, spanY);
     }
 
-    @NonNull
     @Override
-    public LauncherAtom.ItemInfo buildProto(@Nullable FolderInfo folderInfo) {
+    public LauncherAtom.ItemInfo buildProto(FolderInfo folderInfo) {
         LauncherAtom.ItemInfo info = super.buildProto(folderInfo);
         return info.toBuilder()
                 .addItemAttributes(LauncherAppWidgetInfo.getAttribute(sourceContainer))

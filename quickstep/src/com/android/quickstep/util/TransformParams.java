@@ -139,12 +139,10 @@ public class TransformParams {
 
     public SurfaceParams[] createSurfaceParams(BuilderProxy proxy) {
         RemoteAnimationTargets targets = mTargetSet;
-        final int appLength =  targets.unfilteredApps.length;
-        final int wallpaperLength = targets.wallpapers != null ? targets.wallpapers.length : 0;
-        SurfaceParams[] surfaceParams = new SurfaceParams[appLength + wallpaperLength];
+        SurfaceParams[] surfaceParams = new SurfaceParams[targets.unfilteredApps.length];
         mRecentsSurface = getRecentsSurface(targets);
 
-        for (int i = 0; i < appLength; i++) {
+        for (int i = 0; i < targets.unfilteredApps.length; i++) {
             RemoteAnimationTargetCompat app = targets.unfilteredApps[i];
             SurfaceParams.Builder builder = new SurfaceParams.Builder(app.leash);
 
@@ -167,12 +165,6 @@ public class TransformParams {
                 mBaseBuilderProxy.onBuildTargetParams(builder, app, this);
             }
             surfaceParams[i] = builder.build();
-        }
-        // always put wallpaper layer to bottom.
-        for (int i = 0; i < wallpaperLength; i++) {
-            RemoteAnimationTargetCompat wallpaper = targets.wallpapers[i];
-            surfaceParams[appLength + i] = new SurfaceParams.Builder(wallpaper.leash)
-                    .withLayer(Integer.MIN_VALUE).build();
         }
         return surfaceParams;
     }

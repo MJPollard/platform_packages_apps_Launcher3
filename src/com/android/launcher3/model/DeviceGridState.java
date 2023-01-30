@@ -134,13 +134,10 @@ public class DeviceGridState implements Comparable<DeviceGridState> {
      * DeviceGridState without migration, or false otherwise.
      */
     public boolean isCompatible(DeviceGridState other) {
-        if (this == other) {
-            return true;
-        }
-        if (other == null) {
-            return false;
-        }
-        return Objects.equals(mDbFile, other.mDbFile);
+        if (this == other) return true;
+        if (other == null) return false;
+        return mNumHotseat == other.mNumHotseat
+                && Objects.equals(mGridSizeString, other.mGridSizeString);
     }
 
     public Integer getColumns() {

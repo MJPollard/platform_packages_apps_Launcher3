@@ -22,12 +22,7 @@ import android.os.Looper;
 import android.util.Log;
 import android.util.SparseArray;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.android.launcher3.config.FeatureFlags;
-import com.android.quickstep.util.ActiveGestureErrorDetector;
-import com.android.quickstep.util.ActiveGestureLog;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -46,29 +41,17 @@ public class MultiStateCallback {
     private final SparseArray<ArrayList<Consumer<Boolean>>> mStateChangeListeners =
             new SparseArray<>();
 
-    @NonNull private final TrackedEventsMapper mTrackedEventsMapper;
-
     private final String[] mStateNames;
 
     private int mState = 0;
 
     public MultiStateCallback(String[] stateNames) {
-        this(stateNames, stateFlag -> null);
-    }
-
-    public MultiStateCallback(
-            String[] stateNames,
-            @NonNull TrackedEventsMapper trackedEventsMapper) {
         mStateNames = DEBUG_STATES ? stateNames : null;
-        mTrackedEventsMapper = trackedEventsMapper;
     }
 
     /**
      * Adds the provided state flags to the global state on the UI thread and executes any callbacks
      * as a result.
-     *
-     * Also tracks the provided gesture events for error detection. Each provided event must be
-     * associated with one provided state flag.
      */
     public void setStateOnUiThread(int stateFlag) {
         if (Looper.myLooper() == Looper.getMainLooper()) {
@@ -86,9 +69,7 @@ public class MultiStateCallback {
             Log.d(TAG, "[" + System.identityHashCode(this) + "] Adding "
                     + convertToFlagNames(stateFlag) + " to " + convertToFlagNames(mState));
         }
-        if (FeatureFlags.ENABLE_GESTURE_ERROR_DETECTION.get()) {
-            trackGestureEvents(stateFlag);
-        }
+
         final int oldState = mState;
         mState = mState | stateFlag;
 
@@ -104,26 +85,6 @@ public class MultiStateCallback {
             }
         }
         notifyStateChangeListeners(oldState);
-    }
-
-    private void trackGestureEvents(int stateFlags) {
-        for (int index = 0; (stateFlags >> index) != 0; index++) {
-            if ((stateFlags & (1 << index)) == 0) {
-                continue;
-            }
-            ActiveGestureErrorDetector.GestureEvent gestureEvent =
-                    mTrackedEventsMapper.getTrackedEventForState(1 << index);
-            if (gestureEvent == null) {
-                continue;
-            }
-            if (gestureEvent.mLogEvent && gestureEvent.mTrackEvent) {
-                ActiveGestureLog.INSTANCE.addLog(gestureEvent.name(), gestureEvent);
-            } else if (gestureEvent.mLogEvent) {
-                ActiveGestureLog.INSTANCE.addLog(gestureEvent.name());
-            } else if (gestureEvent.mTrackEvent) {
-                ActiveGestureLog.INSTANCE.trackEvent(gestureEvent);
-            }
-        }
     }
 
     /**
@@ -213,7 +174,4 @@ public class MultiStateCallback {
         return joiner.toString();
     }
 
-    public interface TrackedEventsMapper {
-        @Nullable ActiveGestureErrorDetector.GestureEvent getTrackedEventForState(int stateflag);
-    }
 }

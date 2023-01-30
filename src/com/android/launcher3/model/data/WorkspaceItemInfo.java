@@ -75,7 +75,6 @@ public class WorkspaceItemInfo extends ItemInfoWithIcon {
     /**
      * The intent used to start the application.
      */
-    @NonNull
     public Intent intent;
 
     /**
@@ -131,7 +130,7 @@ public class WorkspaceItemInfo extends ItemInfoWithIcon {
     }
 
     @Override
-    public void onAddToDatabase(@NonNull ContentWriter writer) {
+    public void onAddToDatabase(ContentWriter writer) {
         super.onAddToDatabase(writer);
         writer.put(Favorites.TITLE, title)
                 .put(Favorites.INTENT, getIntent())
@@ -148,7 +147,6 @@ public class WorkspaceItemInfo extends ItemInfoWithIcon {
     }
 
     @Override
-    @NonNull
     public Intent getIntent() {
         return intent;
     }
@@ -166,8 +164,7 @@ public class WorkspaceItemInfo extends ItemInfoWithIcon {
         return isPromise() && !hasStatusFlag(FLAG_SUPPORTS_WEB_UI);
     }
 
-    public void updateFromDeepShortcutInfo(@NonNull final ShortcutInfo shortcutInfo,
-            @NonNull final Context context) {
+    public void updateFromDeepShortcutInfo(ShortcutInfo shortcutInfo, Context context) {
         // {@link ShortcutInfo#getActivity} can change during an update. Recreate the intent
         intent = ShortcutKey.makeIntent(shortcutInfo);
         title = shortcutInfo.getShortLabel();

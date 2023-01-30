@@ -30,7 +30,6 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.WorkerThread;
 
@@ -40,7 +39,7 @@ import com.android.launcher3.Utilities;
 import com.android.launcher3.config.FeatureFlags;
 import com.android.launcher3.logging.FileLog;
 import com.android.launcher3.model.ItemInstallQueue;
-import com.android.launcher3.testing.shared.TestProtocol;
+import com.android.launcher3.testing.TestProtocol;
 import com.android.launcher3.util.IntArray;
 import com.android.launcher3.util.IntSet;
 import com.android.launcher3.util.MainThreadInitializedObject;
@@ -52,50 +51,38 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Utility class to tracking install sessions
  */
 public class InstallSessionHelper {
 
-    @NonNull
     private static final String LOG = "InstallSessionHelper";
 
     // Set<String> of session ids of promise icons that have been added to the home screen
     // as FLAG_PROMISE_NEW_INSTALLS.
-    @NonNull
     protected static final String PROMISE_ICON_IDS = "promise_icon_ids";
 
     private static final boolean DEBUG = false;
 
-    @NonNull
     public static final MainThreadInitializedObject<InstallSessionHelper> INSTANCE =
             new MainThreadInitializedObject<>(InstallSessionHelper::new);
 
-    @Nullable
     private final LauncherApps mLauncherApps;
-
-    @NonNull
     private final Context mAppContext;
 
-    @NonNull
     private final PackageInstaller mInstaller;
-
-    @NonNull
     private final HashMap<String, Boolean> mSessionVerifiedMap = new HashMap<>();
 
-    @Nullable
     private IntSet mPromiseIconIds;
 
-    public InstallSessionHelper(@NonNull final Context context) {
+    public InstallSessionHelper(Context context) {
         mInstaller = context.getPackageManager().getPackageInstaller();
         mAppContext = context.getApplicationContext();
         mLauncherApps = context.getSystemService(LauncherApps.class);
     }
 
     @WorkerThread
-    @NonNull
     private IntSet getPromiseIconIds() {
         Preconditions.assertWorkerThread();
         if (mPromiseIconIds != null) {
@@ -121,7 +108,6 @@ public class InstallSessionHelper {
         return mPromiseIconIds;
     }
 
-    @NonNull
     public HashMap<PackageUserKey, SessionInfo> getActiveSessions() {
         HashMap<PackageUserKey, SessionInfo> activePackages = new HashMap<>();
         for (SessionInfo info : getAllVerifiedSessions()) {
@@ -131,7 +117,6 @@ public class InstallSessionHelper {
         return activePackages;
     }
 
-    @Nullable
     public SessionInfo getActiveSessionInfo(UserHandle user, String pkg) {
         for (SessionInfo info : getAllVerifiedSessions()) {
             boolean match = pkg.equals(info.getAppPackageName());
@@ -151,13 +136,11 @@ public class InstallSessionHelper {
                 .apply();
     }
 
-    @Nullable
-    SessionInfo getVerifiedSessionInfo(final int sessionId) {
+    SessionInfo getVerifiedSessionInfo(int sessionId) {
         return verify(mInstaller.getSessionInfo(sessionId));
     }
 
-    @Nullable
-    private SessionInfo verify(@Nullable final SessionInfo sessionInfo) {
+    private SessionInfo verify(SessionInfo sessionInfo) {
         if (sessionInfo == null
                 || sessionInfo.getInstallerPackageName() == null
                 || TextUtils.isEmpty(sessionInfo.getAppPackageName())) {
@@ -184,10 +167,9 @@ public class InstallSessionHelper {
         return mSessionVerifiedMap.get(pkg) ? sessionInfo : null;
     }
 
-    @NonNull
     public List<SessionInfo> getAllVerifiedSessions() {
         List<SessionInfo> list = new ArrayList<>(Utilities.ATLEAST_Q
-                ? Objects.requireNonNull(mLauncherApps).getAllPackageInstallerSessions()
+                ? mLauncherApps.getAllPackageInstallerSessions()
                 : mInstaller.getAllSessions());
         Iterator<SessionInfo> it = list.iterator();
         while (it.hasNext()) {
@@ -219,12 +201,12 @@ public class InstallSessionHelper {
     }
 
     @WorkerThread
-    public boolean promiseIconAddedForId(final int sessionId) {
+    public boolean promiseIconAddedForId(int sessionId) {
         return getPromiseIconIds().contains(sessionId);
     }
 
     @WorkerThread
-    public void removePromiseIconId(final int sessionId) {
+    public void removePromiseIconId(int sessionId) {
         if (promiseIconAddedForId(sessionId)) {
             getPromiseIconIds().getArray().removeValue(sessionId);
             updatePromiseIconPrefs();
@@ -240,15 +222,17 @@ public class InstallSessionHelper {
      * - A promise icon for the session has not already been created
      */
     @WorkerThread
-    void tryQueuePromiseAppIcon(@Nullable final PackageInstaller.SessionInfo sessionInfo) {
+    void tryQueuePromiseAppIcon(PackageInstaller.SessionInfo sessionInfo) {
         if (TestProtocol.sDebugTracing) {
             Log.d(TestProtocol.MISSING_PROMISE_ICON, LOG + " tryQueuePromiseAppIcon"
+                    + ", FeatureFlags=" + FeatureFlags.PROMISE_APPS_NEW_INSTALLS.get()
                     + ", SessionCommitReceiveEnabled" + SessionCommitReceiver.isEnabled(mAppContext)
                     + ", verifySessionInfo(sessionInfo)=" + verifySessionInfo(sessionInfo)
                     + ", !promiseIconAdded=" + (sessionInfo != null
                     && !promiseIconAddedForId(sessionInfo.getSessionId())));
         }
-        if (SessionCommitReceiver.isEnabled(mAppContext)
+        if (FeatureFlags.PROMISE_APPS_NEW_INSTALLS.get()
+                && SessionCommitReceiver.isEnabled(mAppContext)
                 && verifySessionInfo(sessionInfo)
                 && !promiseIconAddedForId(sessionInfo.getSessionId())) {
             FileLog.d(LOG, "Adding package name to install queue: "
@@ -262,7 +246,7 @@ public class InstallSessionHelper {
         }
     }
 
-    public boolean verifySessionInfo(@Nullable final PackageInstaller.SessionInfo sessionInfo) {
+    public boolean verifySessionInfo(PackageInstaller.SessionInfo sessionInfo) {
         if (TestProtocol.sDebugTracing) {
             boolean appNotInstalled = sessionInfo == null
                     || !new PackageManagerHelper(mAppContext)
@@ -285,15 +269,14 @@ public class InstallSessionHelper {
                         sessionInfo.getAppPackageName(), getUserHandle(sessionInfo));
     }
 
-    public InstallSessionTracker registerInstallTracker(
-            @Nullable final InstallSessionTracker.Callback callback) {
+    public InstallSessionTracker registerInstallTracker(InstallSessionTracker.Callback callback) {
         InstallSessionTracker tracker = new InstallSessionTracker(
                 this, callback, mInstaller, mLauncherApps);
         tracker.register();
         return tracker;
     }
 
-    public static UserHandle getUserHandle(@NonNull final SessionInfo info) {
+    public static UserHandle getUserHandle(SessionInfo info) {
         return Utilities.ATLEAST_Q ? info.getUser() : Process.myUserHandle();
     }
 }

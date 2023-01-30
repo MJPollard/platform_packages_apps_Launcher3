@@ -20,6 +20,8 @@ import static android.view.HapticFeedbackConstants.CLOCK_TICK;
 
 import static androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE;
 
+import static com.android.launcher3.util.UiThreadHelper.hideKeyboardAsync;
+
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.Resources;
@@ -119,6 +121,7 @@ public class RecyclerViewFastScroller extends View {
     // prevent jumping, this offset is applied as the user scrolls.
     protected int mTouchOffsetY;
     protected int mThumbOffsetY;
+    protected int mRvOffsetY;
 
     // Fast scroller popup
     private TextView mPopupView;
@@ -171,11 +174,6 @@ public class RecyclerViewFastScroller extends View {
         ta.recycle();
     }
 
-    /** @return whether there is a RecyclerView bound to this scroller. */
-    public boolean hasRecyclerView() {
-        return mRv != null;
-    }
-
     public void setRecyclerView(FastScrollRecyclerView rv, TextView popupView) {
         if (mRv != null && mOnScrollListener != null) {
             mRv.removeOnScrollListener(mOnScrollListener);
@@ -206,11 +204,16 @@ public class RecyclerViewFastScroller extends View {
 
     public void setThumbOffsetY(int y) {
         if (mThumbOffsetY == y) {
+            int rvCurrentOffsetY = mRv.getCurrentScrollY();
+            if (mRvOffsetY != rvCurrentOffsetY) {
+                mRvOffsetY = mRv.getCurrentScrollY();
+            }
             return;
         }
         updatePopupY(y);
         mThumbOffsetY = y;
         invalidate();
+        mRvOffsetY = mRv.getCurrentScrollY();
     }
 
     public int getThumbOffsetY() {
@@ -305,7 +308,7 @@ public class RecyclerViewFastScroller extends View {
     }
 
     private void calcTouchOffsetAndPrepToFastScroll(int downY, int lastY) {
-        ActivityContext.lookupContext(getContext()).hideKeyboard();
+        hideKeyboardAsync(ActivityContext.lookupContext(getContext()), getWindowToken());
         mIsDragging = true;
         if (mCanThumbDetach) {
             mIsThumbDetached = true;

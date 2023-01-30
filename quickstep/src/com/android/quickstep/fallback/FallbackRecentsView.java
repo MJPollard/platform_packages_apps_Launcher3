@@ -15,6 +15,7 @@
  */
 package com.android.quickstep.fallback;
 
+import static com.android.launcher3.testing.TestProtocol.BAD_STATE;
 import static com.android.quickstep.GestureState.GestureEndTarget.RECENTS;
 import static com.android.quickstep.fallback.RecentsState.DEFAULT;
 import static com.android.quickstep.fallback.RecentsState.HOME;
@@ -26,6 +27,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import androidx.annotation.Nullable;
@@ -33,7 +35,6 @@ import androidx.annotation.Nullable;
 import com.android.launcher3.AbstractFloatingView;
 import com.android.launcher3.anim.AnimatorPlaybackController;
 import com.android.launcher3.anim.PendingAnimation;
-import com.android.launcher3.logging.StatsLogManager;
 import com.android.launcher3.popup.QuickstepSystemShortcut;
 import com.android.launcher3.statemanager.StateManager.StateListener;
 import com.android.launcher3.util.SplitConfigurationOptions;
@@ -54,8 +55,6 @@ import java.util.ArrayList;
 @TargetApi(Build.VERSION_CODES.R)
 public class FallbackRecentsView extends RecentsView<RecentsActivity, RecentsState>
         implements StateListener<RecentsState> {
-
-    private static final int TASK_DISMISS_DURATION = 150;
 
     @Nullable
     private Task mHomeTask;
@@ -108,9 +107,8 @@ public class FallbackRecentsView extends RecentsView<RecentsActivity, RecentsSta
         if (mHomeTask != null && endTarget == RECENTS && animatorSet != null) {
             TaskView tv = getTaskViewByTaskId(mHomeTask.key.id);
             if (tv != null) {
-                PendingAnimation pa = new PendingAnimation(TASK_DISMISS_DURATION);
-                createTaskDismissAnimation(pa, tv, true, false,
-                        TASK_DISMISS_DURATION, false /* dismissingForSplitSelection*/);
+                PendingAnimation pa = createTaskDismissAnimation(tv, true, false, 150,
+                        false /* dismissingForSplitSelection*/);
                 pa.addEndListener(e -> setCurrentTask(-1));
                 AnimatorPlaybackController controller = pa.createPlaybackController();
                 controller.dispatchOnStart();
@@ -214,9 +212,8 @@ public class FallbackRecentsView extends RecentsView<RecentsActivity, RecentsSta
 
     @Override
     public void initiateSplitSelect(TaskView taskView,
-            @SplitConfigurationOptions.StagePosition int stagePosition,
-            StatsLogManager.EventEnum splitEvent) {
-        super.initiateSplitSelect(taskView, stagePosition, splitEvent);
+            @SplitConfigurationOptions.StagePosition int stagePosition) {
+        super.initiateSplitSelect(taskView, stagePosition);
         mActivity.getStateManager().goToState(OVERVIEW_SPLIT_SELECT);
     }
 
@@ -228,6 +225,7 @@ public class FallbackRecentsView extends RecentsView<RecentsActivity, RecentsSta
         if (toState == MODAL_TASK) {
             setOverviewSelectEnabled(true);
         }
+        Log.d(BAD_STATE, "FRV onStateTransitionStart setFreezeVisibility=true, toState=" + toState);
         setFreezeViewVisibility(true);
     }
 
@@ -239,6 +237,8 @@ public class FallbackRecentsView extends RecentsView<RecentsActivity, RecentsSta
         }
         boolean isOverlayEnabled = finalState == DEFAULT || finalState == MODAL_TASK;
         setOverlayEnabled(isOverlayEnabled);
+        Log.d(BAD_STATE, "FRV onStateTransitionComplete setFreezeVisibility=false, finalState="
+                + finalState);
         setFreezeViewVisibility(false);
         if (finalState != MODAL_TASK) {
             setOverviewSelectEnabled(false);

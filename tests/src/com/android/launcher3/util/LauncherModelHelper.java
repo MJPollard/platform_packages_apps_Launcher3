@@ -47,7 +47,6 @@ import android.provider.Settings;
 import android.test.mock.MockContentResolver;
 import android.util.ArrayMap;
 
-import androidx.annotation.NonNull;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.uiautomator.UiDevice;
 
@@ -195,9 +194,8 @@ public class LauncherModelHelper {
         Executor mockExecutor = mock(Executor.class);
         model.enqueueModelUpdateTask(new ModelUpdateTask() {
             @Override
-            public void init(@NonNull final LauncherAppState app,
-                    @NonNull final LauncherModel model, @NonNull final BgDataModel dataModel,
-                    @NonNull final AllAppsList allAppsList, @NonNull final Executor uiExecutor) {
+            public void init(LauncherAppState app, LauncherModel model, BgDataModel dataModel,
+                    AllAppsList allAppsList, Executor uiExecutor) {
                 task.init(app, model, dataModel, allAppsList, mockExecutor);
             }
 

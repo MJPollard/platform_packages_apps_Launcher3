@@ -33,7 +33,6 @@ import androidx.annotation.Nullable;
 
 import com.android.launcher3.CellLayout;
 import com.android.launcher3.DeviceProfile;
-import com.android.launcher3.Hotseat;
 import com.android.launcher3.InvariantDeviceProfile;
 import com.android.launcher3.Launcher;
 import com.android.launcher3.LauncherAppState;
@@ -41,9 +40,6 @@ import com.android.launcher3.LauncherState;
 import com.android.launcher3.R;
 import com.android.launcher3.Workspace;
 import com.android.launcher3.dragndrop.DragLayer;
-import com.android.launcher3.testing.shared.HotseatCellCenterRequest;
-import com.android.launcher3.testing.shared.TestProtocol;
-import com.android.launcher3.testing.shared.WorkspaceCellCenterRequest;
 import com.android.launcher3.util.ResourceBasedOverride;
 import com.android.launcher3.widget.picker.WidgetsFullSheet;
 
@@ -112,12 +108,12 @@ public class TestInformationHandler implements ResourceBasedOverride {
 
             case TestProtocol.REQUEST_APPS_LIST_SCROLL_Y: {
                 return getLauncherUIProperty(Bundle::putInt,
-                        l -> l.getAppsView().getActiveRecyclerView().computeVerticalScrollOffset());
+                        l -> l.getAppsView().getActiveRecyclerView().getCurrentScrollY());
             }
 
             case TestProtocol.REQUEST_WIDGETS_SCROLL_Y: {
                 return getLauncherUIProperty(Bundle::putInt,
-                        l -> WidgetsFullSheet.getWidgetsView(l).computeVerticalScrollOffset());
+                        l -> WidgetsFullSheet.getWidgetsView(l).getCurrentScrollY());
             }
 
             case TestProtocol.REQUEST_TARGET_INSETS: {
@@ -157,6 +153,10 @@ public class TestInformationHandler implements ResourceBasedOverride {
                         mDeviceProfile.isTwoPanels);
                 return response;
 
+            case TestProtocol.REQUEST_SET_FORCE_PAUSE_TIMEOUT:
+                TestProtocol.sForcePauseTimeout = Long.parseLong(arg);
+                return response;
+
             case TestProtocol.REQUEST_GET_HAD_NONTEST_EVENTS:
                 response.putBoolean(
                         TestProtocol.TEST_INFO_RESPONSE_FIELD, TestLogging.sHadEventsNotFromTest);
@@ -185,7 +185,7 @@ public class TestInformationHandler implements ResourceBasedOverride {
                     return new int[]{cellLayout.getCountX(), cellLayout.getCountY()};
                 });
 
-            case TestProtocol.REQUEST_WORKSPACE_CELL_CENTER: {
+            case TestProtocol.REQUEST_WORKSPACE_CELL_CENTER:
                 final WorkspaceCellCenterRequest request = extra.getParcelable(
                         TestProtocol.TEST_INFO_REQUEST_FIELD);
                 return getLauncherUIProperty(Bundle::putParcelable, launcher -> {
@@ -197,21 +197,6 @@ public class TestInformationHandler implements ResourceBasedOverride {
                             cellLayout, request.cellX, request.cellY, request.spanX, request.spanY);
                     return new Point(cellRect.centerX(), cellRect.centerY());
                 });
-            }
-
-            case TestProtocol.REQUEST_HOTSEAT_CELL_CENTER: {
-                final HotseatCellCenterRequest request = extra.getParcelable(
-                        TestProtocol.TEST_INFO_REQUEST_FIELD);
-                return getLauncherUIProperty(Bundle::putParcelable, launcher -> {
-                    final Hotseat hotseat = launcher.getHotseat();
-                    final Rect cellRect = getDescendantRectRelativeToDragLayerForCell(launcher,
-                            hotseat, request.cellInd, /* cellY= */ 0,
-                            /* spanX= */ 1, /* spanY= */ 1);
-                    // TODO(b/234322284): return the real center point.
-                    return new Point(cellRect.left + (cellRect.right - cellRect.left) / 3,
-                            cellRect.top + (cellRect.bottom - cellRect.top) / 3);
-                });
-            }
 
             case TestProtocol.REQUEST_HAS_TIS: {
                 response.putBoolean(

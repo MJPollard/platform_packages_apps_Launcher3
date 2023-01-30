@@ -20,7 +20,7 @@ import android.content.Context;
 
 import androidx.annotation.Nullable;
 
-import com.android.launcher3.util.SplitConfigurationOptions.SplitBounds;
+import com.android.launcher3.util.SplitConfigurationOptions.StagedSplitBounds;
 import com.android.quickstep.util.AnimatorControllerWithResistance;
 import com.android.quickstep.util.TaskViewSimulator;
 import com.android.quickstep.util.TransformParams;
@@ -34,7 +34,7 @@ import java.util.ArrayList;
  */
 public class RemoteTargetGluer {
     private RemoteTargetHandle[] mRemoteTargetHandles;
-    private SplitBounds mSplitBounds;
+    private StagedSplitBounds mStagedSplitBounds;
 
     /**
      * Use this constructor if remote targets are split-screen independent
@@ -118,18 +118,18 @@ public class RemoteTargetGluer {
 
             // remoteTargetHandle[0] denotes topLeft task, so we pass in the bottomRight to exclude,
             // vice versa
-            mSplitBounds = new SplitBounds(
+            mStagedSplitBounds = new StagedSplitBounds(
                     topLeftTarget.startScreenSpaceBounds,
                     bottomRightTarget.startScreenSpaceBounds, splitIds[0], splitIds[1]);
             mRemoteTargetHandles[0].mTransformParams.setTargetSet(
                     createRemoteAnimationTargetsForTarget(targets, bottomRightTarget));
             mRemoteTargetHandles[0].mTaskViewSimulator.setPreview(topLeftTarget,
-                    mSplitBounds);
+                    mStagedSplitBounds);
 
             mRemoteTargetHandles[1].mTransformParams.setTargetSet(
                     createRemoteAnimationTargetsForTarget(targets, topLeftTarget));
             mRemoteTargetHandles[1].mTaskViewSimulator.setPreview(bottomRightTarget,
-                    mSplitBounds);
+                    mStagedSplitBounds);
         }
         return mRemoteTargetHandles;
     }
@@ -173,8 +173,8 @@ public class RemoteTargetGluer {
         return mRemoteTargetHandles;
     }
 
-    public SplitBounds getSplitBounds() {
-        return mSplitBounds;
+    public StagedSplitBounds getStagedSplitBounds() {
+        return mStagedSplitBounds;
     }
 
     /**

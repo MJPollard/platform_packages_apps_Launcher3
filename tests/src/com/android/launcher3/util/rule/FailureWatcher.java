@@ -32,6 +32,7 @@ public class FailureWatcher extends TestWatcher {
     public FailureWatcher(UiDevice device, LauncherInstrumentation launcher) {
         mDevice = device;
         mLauncher = launcher;
+        Log.d("b/196820244", "FailureWatcher.ctor", new Exception());
     }
 
     @Override
@@ -47,8 +48,10 @@ public class FailureWatcher extends TestWatcher {
             public void evaluate() throws Throwable {
                 boolean success = false;
                 try {
+                    Log.d("b/196820244", "Before evaluate");
                     mDevice.executeShellCommand("cmd statusbar tracing start");
                     FailureWatcher.super.apply(base, description).evaluate();
+                    Log.d("b/196820244", "After evaluate");
                     success = true;
                 } finally {
                     // Save artifact for Launcher Winscope trace.
@@ -93,7 +96,9 @@ public class FailureWatcher extends TestWatcher {
     public static void onError(LauncherInstrumentation launcher, Description description,
             Throwable e) {
         final UiDevice device = launcher.getDevice();
+        Log.d("b/196820244", "onError 1");
         if (device == null) return;
+        Log.d("b/196820244", "onError 2");
         final File sceenshot = diagFile(description, "TestScreenshot", "png");
         final File hierarchy = diagFile(description, "Hierarchy", "zip");
 

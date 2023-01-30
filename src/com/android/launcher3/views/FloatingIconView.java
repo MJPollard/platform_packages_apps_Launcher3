@@ -15,8 +15,6 @@
  */
 package com.android.launcher3.views;
 
-import static android.view.Gravity.LEFT;
-
 import static com.android.launcher3.Utilities.getBadge;
 import static com.android.launcher3.Utilities.getFullDrawable;
 import static com.android.launcher3.util.Executors.MODEL_EXECUTOR;
@@ -183,10 +181,8 @@ public class FloatingIconView extends FrameLayout implements
         updatePosition(positionOut, lp);
         setLayoutParams(lp);
 
-        // For code simplicity, we always layout the child views using Gravity.LEFT
-        // and manually handle RTL for FloatingIconView when positioning it on the screen.
-        mClipIconView.setLayoutParams(new FrameLayout.LayoutParams(lp.width, lp.height, LEFT));
-        mBtvDrawable.setLayoutParams(new FrameLayout.LayoutParams(lp.width, lp.height, LEFT));
+        mClipIconView.setLayoutParams(new FrameLayout.LayoutParams(lp.width, lp.height));
+        mBtvDrawable.setLayoutParams(new FrameLayout.LayoutParams(lp.width, lp.height));
     }
 
     private void updatePosition(RectF pos, InsettableFrameLayout.LayoutParams lp) {

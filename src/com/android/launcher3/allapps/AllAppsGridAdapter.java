@@ -26,9 +26,7 @@ import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.core.view.accessibility.AccessibilityRecordCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView.Adapter;
 
-import com.android.launcher3.util.ScrollableLayoutManager;
 import com.android.launcher3.views.ActivityContext;
 
 import java.util.List;
@@ -42,36 +40,32 @@ public class AllAppsGridAdapter<T extends Context & ActivityContext> extends
         BaseAllAppsAdapter<T> {
 
     public static final String TAG = "AppsGridAdapter";
-    private final AppsGridLayoutManager mGridLayoutMgr;
+    private final GridLayoutManager mGridLayoutMgr;
+    private final GridSpanSizer mGridSizer;
 
     public AllAppsGridAdapter(T activityContext, LayoutInflater inflater,
             AlphabeticalAppsList apps, BaseAdapterProvider[] adapterProviders) {
         super(activityContext, inflater, apps, adapterProviders);
+        mGridSizer = new GridSpanSizer();
         mGridLayoutMgr = new AppsGridLayoutManager(mActivityContext);
-        mGridLayoutMgr.setSpanSizeLookup(new GridSpanSizer());
+        mGridLayoutMgr.setSpanSizeLookup(mGridSizer);
         setAppsPerRow(activityContext.getDeviceProfile().numShownAllAppsColumns);
     }
 
     /**
      * Returns the grid layout manager.
      */
-    public AppsGridLayoutManager getLayoutManager() {
+    public RecyclerView.LayoutManager getLayoutManager() {
         return mGridLayoutMgr;
-    }
-
-    /** @return the column index that the given adapter index falls. */
-    public int getSpanIndex(int adapterIndex) {
-        AppsGridLayoutManager lm = getLayoutManager();
-        return lm.getSpanSizeLookup().getSpanIndex(adapterIndex, lm.getSpanCount());
     }
 
     /**
      * A subclass of GridLayoutManager that overrides accessibility values during app search.
      */
-    public class AppsGridLayoutManager extends ScrollableLayoutManager {
+    public class AppsGridLayoutManager extends GridLayoutManager {
 
         public AppsGridLayoutManager(Context context) {
-            super(context);
+            super(context, 1, GridLayoutManager.VERTICAL, false);
         }
 
         @Override
@@ -130,15 +124,6 @@ public class AllAppsGridAdapter<T extends Context & ActivityContext> extends
                 }
             }
             return extraRows;
-        }
-
-        @Override
-        protected int incrementTotalHeight(Adapter adapter, int position, int heightUntilLastPos) {
-            AllAppsGridAdapter.AdapterItem item = mApps.getAdapterItems().get(position);
-            // only account for the first icon in the row since they are the same size within a row
-            return (isIconViewType(item.viewType) && item.rowAppIndex != 0)
-                    ? heightUntilLastPos
-                    : (heightUntilLastPos + mCachedSizes.get(item.viewType));
         }
     }
 

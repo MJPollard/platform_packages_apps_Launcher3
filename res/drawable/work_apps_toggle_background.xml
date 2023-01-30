@@ -13,8 +13,16 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="@color/accent_ripple_color">
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="false">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/work_fab_radius" />
+            <solid android:color="?android:attr/colorControlHighlight" />
+            <padding
+                android:left="@dimen/work_profile_footer_padding"
+                android:right="@dimen/work_profile_footer_padding" />
+        </shape>
+    </item>
     <item>
         <shape android:shape="rectangle">
             <corners android:radius="@dimen/work_fab_radius" />
@@ -24,4 +32,4 @@
                 android:right="@dimen/work_profile_footer_padding" />
         </shape>
     </item>
-</ripple>
+</selector>

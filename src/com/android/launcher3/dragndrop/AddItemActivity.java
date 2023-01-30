@@ -31,7 +31,6 @@ import android.appwidget.AppWidgetProviderInfo;
 import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherApps.PinItemRequest;
 import android.content.pm.ShortcutInfo;
 import android.content.res.Configuration;
@@ -63,8 +62,6 @@ import com.android.launcher3.model.ItemInstallQueue;
 import com.android.launcher3.model.WidgetItem;
 import com.android.launcher3.model.data.ItemInfo;
 import com.android.launcher3.pm.PinRequestHelper;
-import com.android.launcher3.util.PackageManagerHelper;
-import com.android.launcher3.util.PackageUserKey;
 import com.android.launcher3.util.SystemUiController;
 import com.android.launcher3.views.AbstractSlideInView;
 import com.android.launcher3.views.BaseDragLayer;
@@ -139,25 +136,13 @@ public class AddItemActivity extends BaseActivity
         mAccessibilityManager =
                 getApplicationContext().getSystemService(AccessibilityManager.class);
 
-        PackageUserKey targetApp = null;
-        switch (mRequest.getRequestType()) {
-            case PinItemRequest.REQUEST_TYPE_SHORTCUT:
-                targetApp = setupShortcut();
-                break;
-            case PinItemRequest.REQUEST_TYPE_APPWIDGET:
-                targetApp = setupWidget();
-                break;
-        }
-        if (targetApp == null) {
-            // TODO: show error toast?
-            finish();
-            return;
-        }
-        ApplicationInfo info = new PackageManagerHelper(this)
-                .getApplicationInfo(targetApp.mPackageName, targetApp.mUser, 0);
-        if (info == null) {
-            finish();
-            return;
+        if (mRequest.getRequestType() == PinItemRequest.REQUEST_TYPE_SHORTCUT) {
+            setupShortcut();
+        } else {
+            if (!setupWidget()) {
+                // TODO: show error toast?
+                finish();
+            }
         }
 
         WidgetCellPreview previewContainer = mWidgetCell.findViewById(
@@ -171,10 +156,8 @@ public class AddItemActivity extends BaseActivity
             logCommand(LAUNCHER_ADD_EXTERNAL_ITEM_START);
         }
 
-        // Set the label synchronously instead of via IconCache as this is the first thing
-        // user sees
         TextView widgetAppName = findViewById(R.id.widget_appName);
-        widgetAppName.setText(info.loadLabel(getPackageManager()));
+        widgetAppName.setText(getApplicationInfo().labelRes);
 
         mSlideInView = findViewById(R.id.add_item_bottom_sheet);
         mSlideInView.addOnCloseListener(this);
@@ -263,23 +246,20 @@ public class AddItemActivity extends BaseActivity
         }
     }
 
-    private PackageUserKey setupShortcut() {
+    private void setupShortcut() {
         PinShortcutRequestActivityInfo shortcutInfo =
                 new PinShortcutRequestActivityInfo(mRequest, this);
         mWidgetCell.getWidgetView().setTag(new PendingAddShortcutInfo(shortcutInfo));
         applyWidgetItemAsync(
                 () -> new WidgetItem(shortcutInfo, mApp.getIconCache(), getPackageManager()));
-        return new PackageUserKey(
-                mRequest.getShortcutInfo().getPackage(),
-                mRequest.getShortcutInfo().getUserHandle());
     }
 
-    private PackageUserKey setupWidget() {
+    private boolean setupWidget() {
         LauncherAppWidgetProviderInfo widgetInfo = LauncherAppWidgetProviderInfo
                 .fromProviderInfo(this, mRequest.getAppWidgetProviderInfo(this));
         if (widgetInfo.minSpanX > mIdp.numColumns || widgetInfo.minSpanY > mIdp.numRows) {
             // Cannot add widget
-            return null;
+            return false;
         }
         mWidgetCell.setRemoteViewsPreview(PinItemDragListener.getPreview(mRequest));
 
@@ -294,7 +274,7 @@ public class AddItemActivity extends BaseActivity
         mWidgetCell.getWidgetView().setTag(pendingInfo);
 
         applyWidgetItemAsync(() -> new WidgetItem(widgetInfo, mIdp, mApp.getIconCache()));
-        return new PackageUserKey(widgetInfo.provider.getPackageName(), widgetInfo.getUser());
+        return true;
     }
 
     private void applyWidgetItemAsync(final Supplier<WidgetItem> itemProvider) {

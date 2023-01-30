@@ -32,7 +32,6 @@ import static com.android.launcher3.util.window.RefreshRateTracker.getSingleFram
 
 import android.animation.Animator.AnimatorListener;
 import android.animation.ValueAnimator;
-import android.util.Log;
 import android.view.MotionEvent;
 
 import com.android.launcher3.Launcher;
@@ -211,10 +210,6 @@ public abstract class AbstractStateChangeTouchController
                 if (mCanBlockFling) {
                     mFlingBlockCheck.blockFling();
                 }
-            }
-            if (mFromState == LauncherState.ALL_APPS) {
-                mAllAppsOvershootStarted = true;
-                mLauncher.getAppsView().onPull(-progress , -progress);
             }
         } else if (progress >= 1) {
             if (reinitCurrentAnimation(true, isDragTowardPositive)) {

@@ -76,7 +76,6 @@ public class WindowBounds {
                 + "bounds=" + bounds
                 + ", insets=" + insets
                 + ", availableSize=" + availableSize
-                + ", rotationHint=" + rotationHint
                 + '}';
     }
 

@@ -17,16 +17,15 @@ package com.android.launcher3.taskbar.allapps;
 
 import static android.view.KeyEvent.ACTION_UP;
 import static android.view.KeyEvent.KEYCODE_BACK;
-import static android.view.ViewTreeObserver.InternalInsetsInfo.TOUCHABLE_INSETS_REGION;
 import static android.view.WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+
+import static com.android.systemui.shared.system.ViewTreeObserverWrapper.InsetsInfo.TOUCHABLE_INSETS_REGION;
 
 import android.content.Context;
 import android.graphics.Insets;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.view.ViewTreeObserver.OnComputeInternalInsetsListener;
 import android.view.WindowInsets;
 
 import com.android.launcher3.AbstractFloatingView;
@@ -41,14 +40,16 @@ import com.android.launcher3.model.data.ItemInfo;
 import com.android.launcher3.popup.PopupDataProvider;
 import com.android.launcher3.taskbar.BaseTaskbarContext;
 import com.android.launcher3.taskbar.TaskbarActivityContext;
-import com.android.launcher3.taskbar.TaskbarControllers;
 import com.android.launcher3.taskbar.TaskbarDragController;
 import com.android.launcher3.taskbar.TaskbarStashController;
 import com.android.launcher3.testing.TestLogging;
-import com.android.launcher3.testing.shared.TestProtocol;
+import com.android.launcher3.testing.TestProtocol;
 import com.android.launcher3.util.OnboardingPrefs;
 import com.android.launcher3.util.TouchController;
 import com.android.launcher3.views.BaseDragLayer;
+import com.android.systemui.shared.system.ViewTreeObserverWrapper;
+import com.android.systemui.shared.system.ViewTreeObserverWrapper.InsetsInfo;
+import com.android.systemui.shared.system.ViewTreeObserverWrapper.OnComputeInsetsListener;
 
 /**
  * Window context for the taskbar all apps overlay.
@@ -73,7 +74,7 @@ class TaskbarAllAppsContext extends BaseTaskbarContext {
     TaskbarAllAppsContext(
             TaskbarActivityContext taskbarContext,
             TaskbarAllAppsController windowController,
-            TaskbarControllers taskbarControllers) {
+            TaskbarStashController taskbarStashController) {
         super(taskbarContext.createWindowContext(TYPE_APPLICATION_OVERLAY, null));
         mTaskbarContext = taskbarContext;
         mWindowController = windowController;
@@ -87,10 +88,9 @@ class TaskbarAllAppsContext extends BaseTaskbarContext {
                 this,
                 slideInView,
                 windowController,
-                taskbarControllers);
+                taskbarStashController);
         mAppsView = slideInView.getAppsView();
 
-        TaskbarStashController taskbarStashController = taskbarControllers.taskbarStashController;
         mWillTaskbarBeVisuallyStashed = taskbarStashController.supportsVisualStashing();
         mStashedTaskbarHeight = taskbarStashController.getStashedHeight();
     }
@@ -163,7 +163,7 @@ class TaskbarAllAppsContext extends BaseTaskbarContext {
 
     /** Root drag layer for this context. */
     private static class TaskbarAllAppsDragLayer extends
-            BaseDragLayer<TaskbarAllAppsContext> implements OnComputeInternalInsetsListener {
+            BaseDragLayer<TaskbarAllAppsContext> implements OnComputeInsetsListener {
 
         private TaskbarAllAppsDragLayer(Context context) {
             super(context, null, 1);
@@ -174,13 +174,14 @@ class TaskbarAllAppsContext extends BaseTaskbarContext {
         @Override
         protected void onAttachedToWindow() {
             super.onAttachedToWindow();
-            getViewTreeObserver().addOnComputeInternalInsetsListener(this);
+            ViewTreeObserverWrapper.addOnComputeInsetsListener(
+                    getViewTreeObserver(), this);
         }
 
         @Override
         protected void onDetachedFromWindow() {
             super.onDetachedFromWindow();
-            getViewTreeObserver().removeOnComputeInternalInsetsListener(this);
+            ViewTreeObserverWrapper.removeOnComputeInsetsListener(this);
         }
 
         @Override
@@ -206,7 +207,7 @@ class TaskbarAllAppsContext extends BaseTaskbarContext {
         }
 
         @Override
-        public void onComputeInternalInsets(ViewTreeObserver.InternalInsetsInfo inoutInfo) {
+        public void onComputeInsets(InsetsInfo inoutInfo) {
             if (mActivity.mDragController.isSystemDragInProgress()) {
                 inoutInfo.touchableRegion.setEmpty();
                 inoutInfo.setTouchableInsets(TOUCHABLE_INSETS_REGION);

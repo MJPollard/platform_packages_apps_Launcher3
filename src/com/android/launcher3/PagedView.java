@@ -259,13 +259,8 @@ public abstract class PagedView<T extends View & PageIndicator> extends ViewGrou
         abortScrollerAnimation(true);
     }
 
-    protected void onScrollerAnimationAborted() {
-        // No-Op
-    }
-
     private void abortScrollerAnimation(boolean resetNextPage) {
         mScroller.abortAnimation();
-        onScrollerAnimationAborted();
         // We need to clean up the next page here to avoid computeScrollHelper from
         // updating current page on the pass.
         if (resetNextPage) {
@@ -560,11 +555,11 @@ public abstract class PagedView<T extends View & PageIndicator> extends ViewGrou
             if (mAllowOverScroll) {
                 if (newPos < mMinScroll && oldPos >= mMinScroll) {
                     mEdgeGlowLeft.onAbsorb((int) mScroller.getCurrVelocity());
-                    abortScrollerAnimation(false);
+                    mScroller.abortAnimation();
                     onEdgeAbsorbingScroll();
                 } else if (newPos > mMaxScroll && oldPos <= mMaxScroll) {
                     mEdgeGlowRight.onAbsorb((int) mScroller.getCurrVelocity());
-                    abortScrollerAnimation(false);
+                    mScroller.abortAnimation();
                     onEdgeAbsorbingScroll();
                 }
             }
@@ -574,7 +569,7 @@ public abstract class PagedView<T extends View & PageIndicator> extends ViewGrou
             int finalPos = mOrientationHandler.getPrimaryValue(mScroller.getFinalX(),
                     mScroller.getFinalY());
             if (newPos == finalPos && mEdgeGlowLeft.isFinished() && mEdgeGlowRight.isFinished()) {
-                abortScrollerAnimation(false);
+                mScroller.abortAnimation();
             }
 
             invalidate();
@@ -1192,7 +1187,9 @@ public abstract class PagedView<T extends View & PageIndicator> extends ViewGrou
     }
 
     public int getScrollForPage(int index) {
-        if (!pageScrollsInitialized() || index >= mPageScrolls.length || index < 0) {
+        // TODO(b/233112195): Use !pageScrollsInitialized() instead of mPageScrolls == null, once we
+        // root cause where we should be using runOnPageScrollsInitialized().
+        if (mPageScrolls == null || index >= mPageScrolls.length || index < 0) {
             return 0;
         } else {
             return mPageScrolls[index];

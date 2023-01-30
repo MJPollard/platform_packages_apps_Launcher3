@@ -26,6 +26,7 @@ import android.util.Log;
 import com.android.launcher3.InvariantDeviceProfile;
 import com.android.launcher3.InvariantDeviceProfile.GridOption;
 import com.android.launcher3.Utilities;
+import com.android.launcher3.config.FeatureFlags;
 import com.android.launcher3.util.Executors;
 
 /**
@@ -142,9 +143,11 @@ public class GridCustomizationsProvider extends ContentProvider {
             }
             case ICON_THEMED:
             case SET_ICON_THEMED: {
-                getPrefs(getContext()).edit()
-                        .putBoolean(KEY_THEMED_ICONS, values.getAsBoolean(BOOLEAN_VALUE))
-                        .apply();
+                if (FeatureFlags.ENABLE_THEMED_ICONS.get()) {
+                    getPrefs(getContext()).edit()
+                            .putBoolean(KEY_THEMED_ICONS, values.getAsBoolean(BOOLEAN_VALUE))
+                            .apply();
+                }
                 return 1;
             }
             default:

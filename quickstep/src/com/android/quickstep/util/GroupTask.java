@@ -19,7 +19,7 @@ package com.android.quickstep.util;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.android.launcher3.util.SplitConfigurationOptions.SplitBounds;
+import com.android.launcher3.util.SplitConfigurationOptions.StagedSplitBounds;
 import com.android.systemui.shared.recents.model.Task;
 
 /**
@@ -29,14 +29,13 @@ import com.android.systemui.shared.recents.model.Task;
 public class GroupTask {
     public @NonNull Task task1;
     public @Nullable Task task2;
-    public @Nullable
-    SplitBounds mSplitBounds;
+    public @Nullable StagedSplitBounds mStagedSplitBounds;
 
     public GroupTask(@NonNull Task t1, @Nullable Task t2,
-            @Nullable SplitBounds splitBounds) {
+            @Nullable StagedSplitBounds stagedSplitBounds) {
         task1 = t1;
         task2 = t2;
-        mSplitBounds = splitBounds;
+        mStagedSplitBounds = stagedSplitBounds;
     }
 
     public GroupTask(@NonNull GroupTask group) {
@@ -44,7 +43,7 @@ public class GroupTask {
         task2 = group.task2 != null
                 ? new Task(group.task2)
                 : null;
-        mSplitBounds = group.mSplitBounds;
+        mStagedSplitBounds = group.mStagedSplitBounds;
     }
 
     public boolean containsTask(int taskId) {

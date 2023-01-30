@@ -52,8 +52,6 @@ public class TaskbarControllers {
     public final TaskbarForceVisibleImmersiveController taskbarForceVisibleImmersiveController;
     public final TaskbarAllAppsController taskbarAllAppsController;
     public final TaskbarInsetsController taskbarInsetsController;
-    public final VoiceInteractionWindowController voiceInteractionWindowController;
-    public final TaskbarRecentAppsController taskbarRecentAppsController;
 
     @Nullable private LoggableTaskbarController[] mControllersToLog = null;
 
@@ -82,9 +80,7 @@ public class TaskbarControllers {
             TaskbarPopupController taskbarPopupController,
             TaskbarForceVisibleImmersiveController taskbarForceVisibleImmersiveController,
             TaskbarAllAppsController taskbarAllAppsController,
-            TaskbarInsetsController taskbarInsetsController,
-            VoiceInteractionWindowController voiceInteractionWindowController,
-            TaskbarRecentAppsController taskbarRecentAppsController) {
+            TaskbarInsetsController taskbarInsetsController) {
         this.taskbarActivityContext = taskbarActivityContext;
         this.taskbarDragController = taskbarDragController;
         this.navButtonController = navButtonController;
@@ -103,8 +99,6 @@ public class TaskbarControllers {
         this.taskbarForceVisibleImmersiveController = taskbarForceVisibleImmersiveController;
         this.taskbarAllAppsController = taskbarAllAppsController;
         this.taskbarInsetsController = taskbarInsetsController;
-        this.voiceInteractionWindowController = voiceInteractionWindowController;
-        this.taskbarRecentAppsController = taskbarRecentAppsController;
     }
 
     /**
@@ -132,16 +126,13 @@ public class TaskbarControllers {
         taskbarAllAppsController.init(this, sharedState.allAppsVisible);
         navButtonController.init(this);
         taskbarInsetsController.init(this);
-        voiceInteractionWindowController.init(this);
-        taskbarRecentAppsController.init(this);
 
         mControllersToLog = new LoggableTaskbarController[] {
                 taskbarDragController, navButtonController, navbarButtonsViewController,
                 taskbarDragLayerController, taskbarScrimViewController, taskbarViewController,
                 taskbarUnfoldAnimationController, taskbarKeyguardController,
                 stashedHandleViewController, taskbarStashController, taskbarEduController,
-                taskbarAutohideSuspendController, taskbarPopupController, taskbarInsetsController,
-                voiceInteractionWindowController
+                taskbarAutohideSuspendController, taskbarPopupController, taskbarInsetsController
         };
 
         mAreAllControllersInitialized = true;
@@ -181,8 +172,6 @@ public class TaskbarControllers {
         taskbarAllAppsController.onDestroy();
         navButtonController.onDestroy();
         taskbarInsetsController.onDestroy();
-        voiceInteractionWindowController.onDestroy();
-        taskbarRecentAppsController.onDestroy();
 
         mControllersToLog = null;
     }

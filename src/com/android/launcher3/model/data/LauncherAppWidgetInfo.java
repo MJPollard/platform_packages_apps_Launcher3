@@ -29,7 +29,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Process;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.android.launcher3.Launcher;
@@ -192,7 +191,7 @@ public class LauncherAppWidgetInfo extends ItemInfo {
     }
 
     @Override
-    public void onAddToDatabase(@NonNull ContentWriter writer) {
+    public void onAddToDatabase(ContentWriter writer) {
         super.onAddToDatabase(writer);
         writer.put(LauncherSettings.Favorites.APPWIDGET_ID, appWidgetId)
                 .put(LauncherSettings.Favorites.APPWIDGET_PROVIDER, providerName.flattenToString())
@@ -284,9 +283,8 @@ public class LauncherAppWidgetInfo extends ItemInfo {
         }
     }
 
-    @NonNull
     @Override
-    public LauncherAtom.ItemInfo buildProto(@Nullable FolderInfo folderInfo) {
+    public LauncherAtom.ItemInfo buildProto(FolderInfo folderInfo) {
         LauncherAtom.ItemInfo info = super.buildProto(folderInfo);
         return info.toBuilder()
                 .setWidget(info.getWidget().toBuilder().setWidgetFeatures(widgetFeatures))

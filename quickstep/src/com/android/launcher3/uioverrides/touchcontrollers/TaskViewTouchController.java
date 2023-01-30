@@ -236,8 +236,7 @@ public abstract class TaskViewTouchController<T extends BaseDraggingActivity>
         PendingAnimation pa;
         if (goingUp) {
             currentInterpolator = Interpolators.LINEAR;
-            pa = new PendingAnimation(maxDuration);
-            mRecentsView.createTaskDismissAnimation(pa, mTaskBeingDragged,
+            pa = mRecentsView.createTaskDismissAnimation(mTaskBeingDragged,
                     true /* animateTaskView */, true /* removeTask */, maxDuration,
                     false /* dismissingForSplitSelection*/);
 

@@ -253,7 +253,7 @@ public class SwipePipToHomeAnimator extends RectFSpringAnim {
                     rotatedPosition.degree, rotatedPosition.positionX, rotatedPosition.positionY);
         } else {
             return mSurfaceTransactionHelper.scaleAndCrop(tx, mLeash, mSourceRectHint, mAppBounds,
-                    bounds, insets, progress);
+                    bounds, insets);
         }
     }
 
@@ -279,10 +279,7 @@ public class SwipePipToHomeAnimator extends RectFSpringAnim {
         // get the final leash operations but do not apply to the leash.
         final SurfaceControl.Transaction tx =
                 PipSurfaceTransactionHelper.newSurfaceControlTransaction();
-        final PictureInPictureSurfaceTransaction pipTx =
-                onAnimationUpdate(tx, new RectF(mDestinationBounds), END_PROGRESS);
-        pipTx.setShouldDisableCanAffectSystemUiFlags(true);
-        return pipTx;
+        return onAnimationUpdate(tx, new RectF(mDestinationBounds), END_PROGRESS);
     }
 
     private RotatedPosition getRotatedPosition(float progress) {

@@ -20,8 +20,6 @@ import static com.android.launcher3.ui.TaplTestsLauncher3.getAppPackageName;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import android.platform.test.annotations.IwTest;
-
 import androidx.test.filters.LargeTest;
 import androidx.test.runner.AndroidJUnit4;
 
@@ -47,7 +45,6 @@ public class AddWidgetTest extends AbstractLauncherUiTest {
     @Rule
     public ShellCommandRule mGrantWidgetRule = ShellCommandRule.grantWidgetBind();
 
-    @IwTest(focusArea="launcher")
     @Test
     @PortraitLandscape
     public void testDragIcon() throws Throwable {

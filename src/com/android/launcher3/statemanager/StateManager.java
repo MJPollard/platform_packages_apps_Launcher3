@@ -342,7 +342,6 @@ public class StateManager<STATE_TYPE extends BaseState<STATE_TYPE>> {
             public void onAnimationSuccess(Animator animator) {
                 onStateTransitionEnd(state);
             }
-
         };
     }
 

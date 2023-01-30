@@ -18,8 +18,6 @@ package com.android.launcher3.model;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 
-import androidx.annotation.NonNull;
-
 import com.android.launcher3.LauncherAppState;
 import com.android.launcher3.model.data.AppInfo;
 import com.android.launcher3.model.data.ItemInfo;
@@ -35,16 +33,14 @@ import java.util.List;
  */
 public class PackageInstallStateChangedTask extends BaseModelUpdateTask {
 
-    @NonNull
     private final PackageInstallInfo mInstallInfo;
 
-    public PackageInstallStateChangedTask(@NonNull final PackageInstallInfo installInfo) {
+    public PackageInstallStateChangedTask(PackageInstallInfo installInfo) {
         mInstallInfo = installInfo;
     }
 
     @Override
-    public void execute(@NonNull final LauncherAppState app, @NonNull final BgDataModel dataModel,
-            @NonNull final AllAppsList apps) {
+    public void execute(LauncherAppState app, BgDataModel dataModel, AllAppsList apps) {
         if (mInstallInfo.state == PackageInstallInfo.STATUS_INSTALLED) {
             try {
                 // For instant apps we do not get package-add. Use setting events to update

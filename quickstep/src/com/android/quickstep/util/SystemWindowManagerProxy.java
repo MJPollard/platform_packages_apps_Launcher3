@@ -15,19 +15,11 @@
  */
 package com.android.quickstep.util;
 
-import static android.view.Display.DEFAULT_DISPLAY;
-
 import android.content.Context;
-import android.util.ArrayMap;
-import android.view.Surface;
-import android.view.WindowManager;
-import android.view.WindowMetrics;
+import android.hardware.display.DisplayManager;
+import android.view.Display;
 
-import com.android.launcher3.util.WindowBounds;
-import com.android.launcher3.util.window.CachedDisplayInfo;
 import com.android.launcher3.util.window.WindowManagerProxy;
-
-import java.util.Set;
 
 /**
  * Extension of {@link WindowManagerProxy} with some assumption for the default system Launcher
@@ -39,23 +31,23 @@ public class SystemWindowManagerProxy extends WindowManagerProxy {
     }
 
     @Override
-    public int getRotation(Context displayInfoContext) {
-        return displayInfoContext.getResources().getConfiguration().windowConfiguration
-                .getRotation();
+    protected String getDisplayId(Display display) {
+        return display.getUniqueId();
     }
 
     @Override
-    public ArrayMap<CachedDisplayInfo, WindowBounds[]> estimateInternalDisplayBounds(
-            Context displayInfoContext) {
-        ArrayMap<CachedDisplayInfo, WindowBounds[]> result = new ArrayMap<>();
-        WindowManager windowManager = displayInfoContext.getSystemService(WindowManager.class);
-        Set<WindowMetrics> possibleMaximumWindowMetrics =
-                windowManager.getPossibleMaximumWindowMetrics(DEFAULT_DISPLAY);
-        for (WindowMetrics windowMetrics : possibleMaximumWindowMetrics) {
-            CachedDisplayInfo info = getDisplayInfo(windowMetrics, Surface.ROTATION_0);
-            WindowBounds[] bounds = estimateWindowBounds(displayInfoContext, info);
-            result.put(info, bounds);
-        }
-        return result;
+    public boolean isInternalDisplay(Display display) {
+        return display.getType() == Display.TYPE_INTERNAL;
+    }
+
+    @Override
+    public int getRotation(Context context) {
+        return context.getResources().getConfiguration().windowConfiguration.getRotation();
+    }
+
+    @Override
+    protected Display[] getDisplays(Context context) {
+        return context.getSystemService(DisplayManager.class).getDisplays(
+                DisplayManager.DISPLAY_CATEGORY_ALL_INCLUDING_DISABLED);
     }
 }

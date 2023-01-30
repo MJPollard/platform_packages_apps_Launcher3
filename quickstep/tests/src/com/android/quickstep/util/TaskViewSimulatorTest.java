@@ -23,6 +23,8 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.ArrayMap;
+import android.util.Pair;
+import android.view.Display;
 import android.view.Surface;
 import android.view.SurfaceControl;
 
@@ -34,7 +36,6 @@ import com.android.launcher3.InvariantDeviceProfile;
 import com.android.launcher3.util.DisplayController;
 import com.android.launcher3.util.DisplayController.Info;
 import com.android.launcher3.util.LauncherModelHelper;
-import com.android.launcher3.util.NavigationMode;
 import com.android.launcher3.util.ReflectionHelpers;
 import com.android.launcher3.util.RotationUtils;
 import com.android.launcher3.util.WindowBounds;
@@ -147,7 +148,7 @@ public class TaskViewSimulatorTest {
                 int rotation = mDisplaySize.x > mDisplaySize.y
                         ? Surface.ROTATION_90 : Surface.ROTATION_0;
                 CachedDisplayInfo cdi =
-                        new CachedDisplayInfo(mDisplaySize, rotation, new Rect());
+                        new CachedDisplayInfo("test-display", mDisplaySize, rotation , new Rect());
                 WindowBounds wm = new WindowBounds(
                         new Rect(0, 0, mDisplaySize.x, mDisplaySize.y),
                         mDisplayInsets);
@@ -163,16 +164,15 @@ public class TaskViewSimulatorTest {
                 }
 
                 WindowManagerProxy wmProxy = mock(WindowManagerProxy.class);
-                doReturn(cdi).when(wmProxy).getDisplayInfo(any());
-                doReturn(wm).when(wmProxy).getRealBounds(any(), any());
-                doReturn(NavigationMode.NO_BUTTON).when(wmProxy).getNavigationMode(any());
+                doReturn(cdi).when(wmProxy).getDisplayInfo(any(), any());
+                doReturn(wm).when(wmProxy).getRealBounds(any(), any(), any());
 
-                ArrayMap<CachedDisplayInfo, WindowBounds[]> perDisplayBoundsCache =
+                ArrayMap<String, Pair<CachedDisplayInfo, WindowBounds[]>> perDisplayBoundsCache =
                         new ArrayMap<>();
-                perDisplayBoundsCache.put(cdi.normalize(), allBounds);
+                perDisplayBoundsCache.put(cdi.id, Pair.create(cdi.normalize(), allBounds));
 
                 DisplayController.Info mockInfo = new Info(
-                        helper.sandboxContext, wmProxy, perDisplayBoundsCache);
+                        helper.sandboxContext, mock(Display.class), wmProxy, perDisplayBoundsCache);
 
                 DisplayController controller =
                         DisplayController.INSTANCE.get(helper.sandboxContext);

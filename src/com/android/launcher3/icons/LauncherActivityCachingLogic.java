@@ -20,8 +20,6 @@ import android.content.Context;
 import android.content.pm.LauncherActivityInfo;
 import android.os.UserHandle;
 
-import androidx.annotation.NonNull;
-
 import com.android.launcher3.LauncherAppState;
 import com.android.launcher3.R;
 import com.android.launcher3.icons.BaseIconFactory.IconOptions;
@@ -42,27 +40,23 @@ public class LauncherActivityCachingLogic
                 R.string.launcher_activity_logic_class);
     }
 
-    @NonNull
     @Override
-    public ComponentName getComponent(@NonNull LauncherActivityInfo object) {
+    public ComponentName getComponent(LauncherActivityInfo object) {
         return object.getComponentName();
     }
 
-    @NonNull
     @Override
-    public UserHandle getUser(@NonNull LauncherActivityInfo object) {
+    public UserHandle getUser(LauncherActivityInfo object) {
         return object.getUser();
     }
 
-    @NonNull
     @Override
-    public CharSequence getLabel(@NonNull LauncherActivityInfo object) {
+    public CharSequence getLabel(LauncherActivityInfo object) {
         return object.getLabel();
     }
 
-    @NonNull
     @Override
-    public BitmapInfo loadIcon(@NonNull Context context, @NonNull LauncherActivityInfo object) {
+    public BitmapInfo loadIcon(Context context, LauncherActivityInfo object) {
         try (LauncherIcons li = LauncherIcons.obtain(context)) {
             return li.createBadgedIconBitmap(LauncherAppState.getInstance(context)
                             .getIconProvider().getIcon(object, li.mFillResIconDpi),

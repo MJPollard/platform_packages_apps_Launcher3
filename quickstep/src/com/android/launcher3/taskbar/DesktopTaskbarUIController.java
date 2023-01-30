@@ -16,7 +16,7 @@
 
 package com.android.launcher3.taskbar;
 
-import com.android.launcher3.uioverrides.QuickstepLauncher;
+import com.android.launcher3.BaseQuickstepLauncher;
 
 /**
  * A data source which integrates with a Launcher instance, used specifically for a
@@ -24,29 +24,26 @@ import com.android.launcher3.uioverrides.QuickstepLauncher;
  */
 public class DesktopTaskbarUIController extends TaskbarUIController {
 
-    private final QuickstepLauncher mLauncher;
+    private final BaseQuickstepLauncher mLauncher;
 
-    public DesktopTaskbarUIController(QuickstepLauncher launcher) {
+    public DesktopTaskbarUIController(BaseQuickstepLauncher launcher) {
         mLauncher = launcher;
     }
 
     @SuppressWarnings("MissingSuperCall") // TODO: Fix me
     @Override
     protected void init(TaskbarControllers taskbarControllers) {
-        super.init(taskbarControllers);
         mLauncher.getHotseat().setIconsAlpha(0f);
-        mControllers.taskbarViewController.updateRunningApps();
     }
 
     @SuppressWarnings("MissingSuperCall") // TODO: Fix me
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         mLauncher.getHotseat().setIconsAlpha(1f);
     }
 
-    /** Disable taskbar stashing in desktop environment. */
     @Override
+    /** Disable taskbar stashing in desktop environment. */
     public boolean supportsVisualStashing() {
         return false;
     }
