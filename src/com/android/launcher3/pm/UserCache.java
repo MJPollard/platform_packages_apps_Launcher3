@@ -110,12 +110,8 @@ public class UserCache {
      */
     public long getSerialNumberForUser(UserHandle user) {
         synchronized (this) {
-            if (mUserToSerialMap != null) {
-                Long serial = mUserToSerialMap.get(user);
-                return serial == null ? 0 : serial;
-            }
+            return mUserToSerialMap.getOrDefault(user, mUserManager.getSerialNumberForUser(user));
         }
-        return mUserManager.getSerialNumberForUser(user);
     }
 
     /**
