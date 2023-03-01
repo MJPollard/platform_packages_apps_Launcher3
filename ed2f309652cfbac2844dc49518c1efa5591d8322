@@ -50,6 +50,24 @@
       "message": "Failed should do nothing with this CL, can someone help bypass them? Thanks.",
       "revId": "ed2f309652cfbac2844dc49518c1efa5591d8322",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16d8f085_d00d6374",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1061229
+      },
+      "writtenOn": "2023-03-01T12:11:20Z",
+      "side": 1,
+      "message": "We shouldn\u0027t bypass presubmit either. Please keep retrying.",
+      "parentUuid": "5dc5f684_368671d9",
+      "revId": "ed2f309652cfbac2844dc49518c1efa5591d8322",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
