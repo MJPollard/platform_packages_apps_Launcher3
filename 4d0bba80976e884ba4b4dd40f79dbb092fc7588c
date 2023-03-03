@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2f49459_c590da3a",
+        "filename": "src/com/android/launcher3/folder/FolderNameProvider.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1060398
+      },
+      "writtenOn": "2023-03-03T18:46:06Z",
+      "side": 1,
+      "message": "creating a new array list also iterated over the original list. So the concurrentModificationException can still happen while this array list is being created.",
+      "range": {
+        "startLine": 116,
+        "startChar": 56,
+        "endLine": 116,
+        "endChar": 92
+      },
+      "revId": "4d0bba80976e884ba4b4dd40f79dbb092fc7588c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
