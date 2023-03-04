@@ -46,6 +46,30 @@
       },
       "revId": "4d0bba80976e884ba4b4dd40f79dbb092fc7588c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "380221f7_eefeda6a",
+        "filename": "src/com/android/launcher3/folder/FolderNameProvider.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1275415
+      },
+      "writtenOn": "2023-03-04T02:38:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "726d7883_ce14da61",
+      "range": {
+        "startLine": 116,
+        "startChar": 56,
+        "endLine": 116,
+        "endChar": 92
+      },
+      "revId": "4d0bba80976e884ba4b4dd40f79dbb092fc7588c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
