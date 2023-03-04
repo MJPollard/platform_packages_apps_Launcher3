@@ -22,6 +22,30 @@
       },
       "revId": "4d0bba80976e884ba4b4dd40f79dbb092fc7588c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "726d7883_ce14da61",
+        "filename": "src/com/android/launcher3/folder/FolderNameProvider.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1275415
+      },
+      "writtenOn": "2023-03-04T02:37:28Z",
+      "side": 1,
+      "message": "Iterating over a list may not be the main reason causing this exception, it\u0027s mainly caused by iterating over it with operations like(`add()`, `remove()`, `set()`) on it at the sametime.\n\nSpecifically looking into this issue, `Foler.java` calling `fnp.getSuggestedFolderName` with `mInfo.contents` mainly caused this problem while  `mInfo.contents` may be modified elsewhere(Saying `Operation A`), and also been modified by following `.filter()` operator(Saying `Operation B`), `A + B` should mainly causes the problem. \n\nWe create a new `candidates` ArrayList with instantaneous state of `mInfo.contents` been passed into the constructor, but did not make any changes to it while creating, also the subsequent will not operate it directly, but to operate `candidates`. In another words we do not satisfy `Operation B`, so there should not be the problem you said.\n\nActually if we search some popular projects in aosp, we can find that somewhere also using the same method to avoid concurrentModificationException, for example the [ConfigurationControllerImpl](https://cs.android.com/android/platform/superproject/+/master:frameworks/base/packages/SystemUI/src/com/android/systemui/statusbar/phone/ConfigurationControllerImpl.kt;l\u003d67?q\u003dConfigurationControllerImpl) or the [Accessibilityservice](https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/accessibilityservice/AccessibilityService.java;l\u003d1406?q\u003dAccessibilityservice).",
+      "parentUuid": "b2f49459_c590da3a",
+      "range": {
+        "startLine": 116,
+        "startChar": 56,
+        "endLine": 116,
+        "endChar": 92
+      },
+      "revId": "4d0bba80976e884ba4b4dd40f79dbb092fc7588c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
