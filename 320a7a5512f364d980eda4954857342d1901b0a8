@@ -22,6 +22,30 @@
       },
       "revId": "320a7a5512f364d980eda4954857342d1901b0a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b153d750_4519a262",
+        "filename": "src/com/android/launcher3/pm/UserCache.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1060398
+      },
+      "writtenOn": "2023-03-28T18:45:06Z",
+      "side": 1,
+      "message": "What are the events we are missing. Launcher would need to listen to such events anyway to update the LauncherModel",
+      "parentUuid": "dd73e8b4_c1e2848c",
+      "range": {
+        "startLine": 71,
+        "startChar": 24,
+        "endLine": 72,
+        "endChar": 61
+      },
+      "revId": "320a7a5512f364d980eda4954857342d1901b0a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
