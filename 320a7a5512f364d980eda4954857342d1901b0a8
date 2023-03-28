@@ -46,6 +46,30 @@
       },
       "revId": "320a7a5512f364d980eda4954857342d1901b0a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f26336ea_607712e4",
+        "filename": "src/com/android/launcher3/pm/UserCache.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1994575
+      },
+      "writtenOn": "2023-03-28T20:21:03Z",
+      "side": 1,
+      "message": "I don\u0027t believe there are intents specifically for profile removals? `USER_ADDED` and `USER_REMOVED` could be used instead (and maybe filtered to check if the added/removed user was a profile)?",
+      "parentUuid": "b153d750_4519a262",
+      "range": {
+        "startLine": 71,
+        "startChar": 24,
+        "endLine": 72,
+        "endChar": 61
+      },
+      "revId": "320a7a5512f364d980eda4954857342d1901b0a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
