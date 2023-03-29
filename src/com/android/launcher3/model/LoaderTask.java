@@ -45,6 +45,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ShortcutInfo;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.os.Process;
 import android.os.Trace;
 import android.os.UserHandle;
 import android.os.UserManager;
@@ -961,10 +962,12 @@ public class LoaderTask implements Runnable {
         for (UserHandle user : profiles) {
             // Query for the set of apps
             final List<LauncherActivityInfo> apps = mLauncherApps.getActivityList(null, user);
-            // Fail if we don't have any apps
-            // TODO: Fix this. Only fail for the current user.
             if (apps == null || apps.isEmpty()) {
-                return allActivityList;
+                if (Process.myUserHandle() == user) {
+                    return allActivityList;
+                } else {
+                    continue;
+                }
             }
             boolean quietMode = mUserManagerState.isUserQuiet(user);
             // Create the ApplicationInfos
