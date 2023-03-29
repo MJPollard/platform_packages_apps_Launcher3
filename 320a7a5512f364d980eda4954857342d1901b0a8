@@ -70,6 +70,30 @@
       },
       "revId": "320a7a5512f364d980eda4954857342d1901b0a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a35ac187_d4728de3",
+        "filename": "src/com/android/launcher3/pm/UserCache.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1994575
+      },
+      "writtenOn": "2023-03-29T18:06:48Z",
+      "side": 1,
+      "message": "`USER_ADDED` and `USER_REMOVED` require `MANAGE_USERS` which Launcher3 does not currently request (and seems a bit excessive for such a small change). There seems to be nothing in between these intents and the ones currently being used that don\u0027t cover enough. Let me know what would be preferable",
+      "parentUuid": "f26336ea_607712e4",
+      "range": {
+        "startLine": 71,
+        "startChar": 24,
+        "endLine": 72,
+        "endChar": 61
+      },
+      "revId": "320a7a5512f364d980eda4954857342d1901b0a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
