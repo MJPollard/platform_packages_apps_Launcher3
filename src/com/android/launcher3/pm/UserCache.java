@@ -68,8 +68,8 @@ public class UserCache {
             if (mUserChangeListeners.isEmpty()) {
                 // Enable caching and start listening for user broadcast
                 mUserChangeReceiver.register(mContext,
-                        Intent.ACTION_MANAGED_PROFILE_ADDED,
-                        Intent.ACTION_MANAGED_PROFILE_REMOVED);
+                        Intent.ACTION_USER_ADDED,
+                        Intent.ACTION_USER_REMOVED);
                 enableAndResetCache();
             }
             mUserChangeListeners.add(command);
