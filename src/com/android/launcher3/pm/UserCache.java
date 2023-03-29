@@ -109,9 +109,46 @@ public class UserCache implements SafeCloseable {
     /**
      * Adds a listener for user additions and removals
      */
-    public SafeCloseable addUserEventListener(BiConsumer<UserHandle, String> listener) {
-        mUserEventListeners.add(listener);
-        return () -> mUserEventListeners.remove(listener);
+    public SafeCloseable addUserChangeListener(Runnable command) {
+        synchronized (this) {
+            if (mUserChangeListeners.isEmpty()) {
+                // Enable caching and start listening for user broadcast
+                mUserChangeReceiver.register(mContext,
+                        Intent.ACTION_PROFILE_ADDED,
+                        Intent.ACTION_PROFILE_REMOVED);
+                enableAndResetCache();
+            }
+            mUserChangeListeners.add(command);
+            return () -> removeUserChangeListener(command);
+        }
+    }
+
+    private void enableAndResetCache() {
+        synchronized (this) {
+            mUsers = new LongSparseArray<>();
+            mUserToSerialMap = new ArrayMap<>();
+            List<UserHandle> users = mUserManager.getUserProfiles();
+            if (users != null) {
+                for (UserHandle user : users) {
+                    long serial = mUserManager.getSerialNumberForUser(user);
+                    mUsers.put(serial, user);
+                    mUserToSerialMap.put(user, serial);
+                }
+            }
+        }
+    }
+
+    private void removeUserChangeListener(Runnable command) {
+        synchronized (this) {
+            mUserChangeListeners.remove(command);
+            if (mUserChangeListeners.isEmpty()) {
+                // Disable cache and stop listening
+                mContext.unregisterReceiver(mUserChangeReceiver);
+
+                mUsers = null;
+                mUserToSerialMap = null;
+            }
+        }
     }
 
     /**
