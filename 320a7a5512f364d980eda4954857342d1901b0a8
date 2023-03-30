@@ -94,6 +94,30 @@
       },
       "revId": "320a7a5512f364d980eda4954857342d1901b0a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f48a44a_a5823784",
+        "filename": "src/com/android/launcher3/pm/UserCache.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1060398
+      },
+      "writtenOn": "2023-03-30T22:43:14Z",
+      "side": 1,
+      "message": "Launcher also relies on these broadcast to reload it\u0027s model (in LauncherAppState and LauncherModel). That is because certain user level properties are only loaded once (like StringCache). So if there are other ways profile can be added/removed, Launcher should probably reload its model as well in those case.\n\nIf there are currently no such signal, we would need to add it either as a broadcast or as a callback from LauncherApps.Callbacks",
+      "parentUuid": "a35ac187_d4728de3",
+      "range": {
+        "startLine": 71,
+        "startChar": 24,
+        "endLine": 72,
+        "endChar": 61
+      },
+      "revId": "320a7a5512f364d980eda4954857342d1901b0a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
