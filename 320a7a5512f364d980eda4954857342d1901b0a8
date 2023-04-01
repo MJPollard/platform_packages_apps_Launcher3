@@ -118,6 +118,30 @@
       },
       "revId": "320a7a5512f364d980eda4954857342d1901b0a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e868990_d6c9c19e",
+        "filename": "src/com/android/launcher3/pm/UserCache.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1994575
+      },
+      "writtenOn": "2023-04-01T02:25:36Z",
+      "side": 1,
+      "message": "I\u0027ve resolved this by changing the existing registered intents for `USER_ADDED` and `USER_REMOVED` in PS2",
+      "parentUuid": "8f48a44a_a5823784",
+      "range": {
+        "startLine": 71,
+        "startChar": 24,
+        "endLine": 72,
+        "endChar": 61
+      },
+      "revId": "320a7a5512f364d980eda4954857342d1901b0a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58a28b2b_c6449de5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1994575
+      },
+      "writtenOn": "2023-04-01T02:25:36Z",
+      "side": 1,
+      "message": "Depends on https://android-review.googlesource.com/c/platform/frameworks/base/+/2518308?usp\u003ddashboard being merged as well",
+      "revId": "50c36a5b7c43f3f24980c51ac4af69a707f688c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
