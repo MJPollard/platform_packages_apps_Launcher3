@@ -16,6 +16,23 @@
       "message": "Depends on https://android-review.googlesource.com/c/platform/frameworks/base/+/2518308?usp\u003ddashboard being merged as well",
       "revId": "50c36a5b7c43f3f24980c51ac4af69a707f688c8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47673037_5c3a2019",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1060398
+      },
+      "writtenOn": "2023-04-04T23:05:58Z",
+      "side": 1,
+      "message": "I am not sure if giving launcher MANAGE_USER permission is a safe solution. If Launcher has access to these profiles without any special permission, it should be able get notified addition/deletion of these profiles as well.\n\nMANAGE_USER permission will probably not be available to non-system launchers anyway",
+      "revId": "50c36a5b7c43f3f24980c51ac4af69a707f688c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
