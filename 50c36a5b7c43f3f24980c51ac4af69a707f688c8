@@ -33,6 +33,23 @@
       "message": "I am not sure if giving launcher MANAGE_USER permission is a safe solution. If Launcher has access to these profiles without any special permission, it should be able get notified addition/deletion of these profiles as well.\n\nMANAGE_USER permission will probably not be available to non-system launchers anyway",
       "revId": "50c36a5b7c43f3f24980c51ac4af69a707f688c8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "716dfa20_a9361a06",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001986
+      },
+      "writtenOn": "2023-04-04T23:21:13Z",
+      "side": 1,
+      "message": "There is a new ACTION_PROFILE_ADDED broadcast that will be available in Android 14, which addresses all profiles types, not just managed profiles. Please wait for that.",
+      "revId": "50c36a5b7c43f3f24980c51ac4af69a707f688c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
