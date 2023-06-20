@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "601965b4_11363ce4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1061229
+      },
+      "writtenOn": "2023-06-20T10:00:21Z",
+      "side": 1,
+      "message": "We\u0027ll come out with the correct fix and share in b/285799902 when we merged the CL internally",
+      "revId": "70bedb1783b957b406b72fd0827185bcb1761749",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
