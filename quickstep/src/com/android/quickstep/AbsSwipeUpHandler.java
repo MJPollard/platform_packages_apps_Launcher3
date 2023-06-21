@@ -133,6 +133,7 @@ import com.android.quickstep.util.TaskViewSimulator;
 import com.android.quickstep.views.DesktopTaskView;
 import com.android.quickstep.views.RecentsView;
 import com.android.quickstep.views.TaskView;
+import com.android.quickstep.views.TaskView.TaskIdAttributeContainer;
 import com.android.systemui.shared.recents.model.Task;
 import com.android.systemui.shared.recents.model.ThumbnailData;
 import com.android.systemui.shared.system.ActivityManagerWrapper;
@@ -149,6 +150,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.OptionalInt;
 import java.util.function.Consumer;
 
 /**
@@ -657,11 +659,12 @@ public abstract class AbsSwipeUpHandler<T extends StatefulActivity<S>,
 
     protected void notifyGestureAnimationStartToRecents() {
         Task[] runningTasks;
+        TopTaskTracker.CachedTaskInfo cachedTaskInfo = mGestureState.getRunningTask();
         if (mIsSwipeForSplit) {
             int[] splitTaskIds = TopTaskTracker.INSTANCE.get(mContext).getRunningSplitTaskIds();
-            runningTasks = mGestureState.getRunningTask().getPlaceholderTasks(splitTaskIds);
+            runningTasks = cachedTaskInfo.getPlaceholderTasks(splitTaskIds);
         } else {
-            runningTasks = mGestureState.getRunningTask().getPlaceholderTasks();
+            runningTasks = cachedTaskInfo.getPlaceholderTasks();
         }
 
         // Safeguard against any null tasks being sent to recents view, happens when quickswitching
@@ -734,8 +737,11 @@ public abstract class AbsSwipeUpHandler<T extends StatefulActivity<S>,
         if (!mDeviceState.isFullyGesturalNavMode() || mRecentsView == null) {
             return;
         }
+        // looking at single target is fine here since either app of a split pair would
+        // have their "isInRecents" field set? (that's what this is used for below)
         RemoteAnimationTarget runningTaskTarget = mRecentsAnimationTargets != null
-                ? mRecentsAnimationTargets.findTask(mGestureState.getRunningTaskId())
+                ? mRecentsAnimationTargets
+                .findTask(mGestureState.getTopRunningTaskId())
                 : null;
         final boolean recentsAttachedToAppWindow;
         if (mIsInAllAppsRegion) {
@@ -1178,7 +1184,7 @@ public abstract class AbsSwipeUpHandler<T extends StatefulActivity<S>,
             return false;
         }
         boolean hasStartedTaskBefore = Arrays.stream(appearedTaskTarget).anyMatch(
-                targetCompat -> targetCompat.taskId == mGestureState.getLastStartedTaskId());
+                mGestureState.mLastStartedTaskIdPredicate);
         if (mStateCallback.hasStates(STATE_START_NEW_TASK) && hasStartedTaskBefore) {
             reset();
             return true;
@@ -1444,9 +1450,12 @@ public abstract class AbsSwipeUpHandler<T extends StatefulActivity<S>,
         @Override
         public void onActivityRestartAttempt(ActivityManager.RunningTaskInfo task,
                 boolean homeTaskVisible, boolean clearedTask, boolean wasVisible) {
-            if (task.taskId == mGestureState.getRunningTaskId()
-                    && task.configuration.windowConfiguration.getActivityType()
-                    != ACTIVITY_TYPE_HOME) {
+            boolean taskRunningAndNotHome = Arrays.stream(mGestureState
+                            .getRunningTaskIds(true /*getMultipleTasks*/))
+                    .anyMatch(taskId -> task.taskId == taskId
+                            && task.configuration.windowConfiguration.getActivityType()
+                            != ACTIVITY_TYPE_HOME);
+            if (taskRunningAndNotHome) {
                 // Since this is an edge case, just cancel and relaunch with default activity
                 // options (since we don't know if there's an associated app icon to launch from)
                 endRunningWindowAnim(true /* cancel */);
@@ -1488,8 +1497,12 @@ public abstract class AbsSwipeUpHandler<T extends StatefulActivity<S>,
 
         if (mGestureState.getEndTarget() == HOME) {
             getOrientationHandler().adjustFloatingIconStartVelocity(velocityPxPerMs);
+            // Take first task ID, if there are multiple we don't have any special home
+            // animation so doesn't matter for splitscreen.. though the "allowEnterPip" might change
+            // depending on which task it is..
             final RemoteAnimationTarget runningTaskTarget = mRecentsAnimationTargets != null
-                    ? mRecentsAnimationTargets.findTask(mGestureState.getRunningTaskId())
+                    ? mRecentsAnimationTargets
+                    .findTask(mGestureState.getTopRunningTaskId())
                     : null;
             final ArrayList<IBinder> cookies = runningTaskTarget != null
                     ? runningTaskTarget.taskInfo.launchCookies
@@ -1518,8 +1531,10 @@ public abstract class AbsSwipeUpHandler<T extends StatefulActivity<S>,
 
                 // grab a screenshot before the PipContentOverlay gets parented on top of the task
                 UI_HELPER_EXECUTOR.execute(() -> {
-                    mTaskSnapshot = mRecentsAnimationController.screenshotTask(
-                            mGestureState.getRunningTaskId());
+                    // Directly use top task, split to pip handled on shell side
+                    final int taskId = mGestureState.getTopRunningTaskId();
+                    mTaskSnapshotCache.put(taskId,
+                            mRecentsAnimationController.screenshotTask(taskId));
                 });
 
                 // let SystemUi reparent the overlay leash as soon as possible
@@ -1981,8 +1996,17 @@ public abstract class AbsSwipeUpHandler<T extends StatefulActivity<S>,
             // If there are no targets, then we don't need to capture anything
             mStateCallback.setStateOnUiThread(STATE_SCREENSHOT_CAPTURED);
         } else {
-            final int runningTaskId = mGestureState.getRunningTaskId();
             boolean finishTransitionPosted = false;
+            // If we already have cached screenshot(s) from running tasks, skip update
+            boolean shouldUpdate = false;
+            int[] runningTaskIds = mGestureState.getRunningTaskIds(mIsSwipeForSplit);
+            for (int id : runningTaskIds) {
+                if (!mTaskSnapshotCache.containsKey(id)) {
+                    shouldUpdate = true;
+                    break;
+                }
+            }
+
             if (mRecentsAnimationController != null) {
                 // Update the screenshot of the task
                 if (mTaskSnapshot == null) {
@@ -2188,16 +2212,27 @@ public abstract class AbsSwipeUpHandler<T extends StatefulActivity<S>,
         if (!mCanceled) {
             TaskView nextTask = mRecentsView == null ? null : mRecentsView.getNextPageTaskView();
             if (nextTask != null) {
-                Task.TaskKey nextTaskKey = nextTask.getTask().key;
-                int taskId = nextTaskKey.id;
-                mGestureState.updateLastStartedTaskId(taskId);
-                boolean hasTaskPreviouslyAppeared = mGestureState.getPreviouslyAppearedTaskIds()
-                        .contains(taskId);
+                int[] taskIds = nextTask.getTaskIds();
+                StringBuilder nextTaskLog = new StringBuilder();
+                for (TaskIdAttributeContainer c : nextTask.getTaskIdAttributeContainers()) {
+                    if (c == null) {
+                        continue;
+                    }
+                    nextTaskLog
+                            .append("[id: ")
+                            .append(c.getTask().key.id)
+                            .append(", pkg: ")
+                            .append(c.getTask().key.getPackageName())
+                            .append("] | ");
+                }
+                mGestureState.updateLastStartedTaskIds(taskIds);
+                boolean hasTaskPreviouslyAppeared = Arrays.stream(taskIds).anyMatch(
+                                taskId -> mGestureState.getPreviouslyAppearedTaskIds()
+                                        .contains(taskId));
                 if (!hasTaskPreviouslyAppeared) {
                     ActiveGestureLog.INSTANCE.trackEvent(EXPECTING_TASK_APPEARED);
                 }
-                ActiveGestureLog.INSTANCE.addLog("Launching task: id=" + taskId
-                        + " pkg=" + nextTaskKey.getPackageName());
+                ActiveGestureLog.INSTANCE.addLog("Launching task: " + nextTaskLog);
                 nextTask.launchTask(success -> {
                     resultCallback.accept(success);
                     if (success) {
@@ -2267,7 +2302,7 @@ public abstract class AbsSwipeUpHandler<T extends StatefulActivity<S>,
     public void onTasksAppeared(RemoteAnimationTarget[] appearedTaskTargets) {
         if (mRecentsAnimationController != null) {
             boolean hasStartedTaskBefore = Arrays.stream(appearedTaskTargets).anyMatch(
-                    targetCompat -> targetCompat.taskId == mGestureState.getLastStartedTaskId());
+                    mGestureState.mLastStartedTaskIdPredicate);
             if (!mStateCallback.hasStates(STATE_GESTURE_COMPLETED) && !hasStartedTaskBefore) {
                 // This is a special case, if a task is started mid-gesture that wasn't a part of a
                 // previous quickswitch task launch, then cancel the animation back to the app
@@ -2280,8 +2315,7 @@ public abstract class AbsSwipeUpHandler<T extends StatefulActivity<S>,
             } else if (handleTaskAppeared(appearedTaskTargets)) {
                 Optional<RemoteAnimationTarget> taskTargetOptional =
                         Arrays.stream(appearedTaskTargets)
-                                .filter(targetCompat ->
-                                        targetCompat.taskId == mGestureState.getLastStartedTaskId())
+                                .filter(mGestureState.mLastStartedTaskIdPredicate)
                                 .findFirst();
                 if (!taskTargetOptional.isPresent()) {
                     ActiveGestureLog.INSTANCE.addLog("No appeared task matching started task id");
@@ -2350,11 +2384,16 @@ public abstract class AbsSwipeUpHandler<T extends StatefulActivity<S>,
      * resume if we finish the controller.
      */
     protected int getLastAppearedTaskIndex() {
-        return mRecentsView == null
-                ? -1
-                : mGestureState.getLastAppearedTaskId() != -1
-                        ? mRecentsView.getTaskIndexForId(mGestureState.getLastAppearedTaskId())
-                        : mRecentsView.getRunningTaskIndex();
+        if (mRecentsView == null) {
+            return -1;
+        }
+
+        OptionalInt firstValidTaskId = Arrays.stream(mGestureState.getLastAppearedTaskIds())
+                .filter(i -> i != -1)
+                .findFirst();
+        return firstValidTaskId.isPresent()
+                ? mRecentsView.getTaskIndexForId(firstValidTaskId.getAsInt())
+                : mRecentsView.getRunningTaskIndex();
     }
 
     /**
@@ -2362,7 +2401,7 @@ public abstract class AbsSwipeUpHandler<T extends StatefulActivity<S>,
      * but before that task appeared.
      */
     protected boolean hasStartedNewTask() {
-        return mGestureState.getLastStartedTaskId() != -1;
+        return mGestureState.getLastStartedTaskIds()[0] != -1;
     }
 
     /**
