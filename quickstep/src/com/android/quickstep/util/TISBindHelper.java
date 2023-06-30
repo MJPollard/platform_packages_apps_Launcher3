@@ -19,6 +19,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
@@ -36,10 +37,10 @@ public class TISBindHelper implements ServiceConnection {
 
     private static final String TAG = "TISBindHelper";
 
-    private static final long BACKOFF_MILLIS = 1000;
+    private static final long BACKOFF_MILLIS = 1000 * Build.HW_TIMEOUT_MULTIPLIER;
 
-    // Max backoff caps at 5 mins
-    private static final long MAX_BACKOFF_MILLIS = 10 * 60 * 1000;
+    // Max backoff caps at 10 mins
+    private static final long MAX_BACKOFF_MILLIS = 10 * 60 * 1000 * Build.HW_TIMEOUT_MULTIPLIER;
 
     private final Handler mHandler = new Handler();
     private final Runnable mConnectionRunnable = this::internalBindToTIS;
