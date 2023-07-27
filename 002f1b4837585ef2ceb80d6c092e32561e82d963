@@ -16,6 +16,23 @@
       "message": "Depends on Ib4cfcdc1da00523e2cd707a5f3c0c8624ab34d4e.",
       "revId": "002f1b4837585ef2ceb80d6c092e32561e82d963",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc5f8a9a_71add7cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1060398
+      },
+      "writtenOn": "2023-07-27T22:07:34Z",
+      "side": 1,
+      "message": "This is an same-process connection, so it should ideally be close to 0 timeout. There might be something else going wrong",
+      "revId": "002f1b4837585ef2ceb80d6c092e32561e82d963",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
