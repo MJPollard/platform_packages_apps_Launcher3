@@ -30,7 +30,6 @@ import static org.junit.Assume.assumeTrue;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.SystemClock;
-import android.platform.test.annotations.IwTest;
 import android.util.Log;
 
 import androidx.test.filters.LargeTest;
@@ -221,7 +220,6 @@ public class TaplTestsLauncher3 extends AbstractLauncherUiTest {
                 false /* tapRight */);
     }
 
-    @IwTest(focusArea = "launcher")
     @Test
     @ScreenRecord // b/202433017
     public void testWorkspace() throws Exception {
@@ -352,7 +350,6 @@ public class TaplTestsLauncher3 extends AbstractLauncherUiTest {
         }
     }
 
-    @IwTest(focusArea = "launcher")
     @Test
     @PortraitLandscape
     @ScreenRecord // b/256898879
