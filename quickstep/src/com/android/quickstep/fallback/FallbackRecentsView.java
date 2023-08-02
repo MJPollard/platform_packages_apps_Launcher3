@@ -125,7 +125,7 @@ public class FallbackRecentsView extends RecentsView<RecentsActivity, RecentsSta
     public void onGestureAnimationEnd() {
         if (mCurrentGestureEndTarget == GestureState.GestureEndTarget.HOME) {
             // Clean-up logic that occurs when recents is no longer in use/visible.
-            reset();
+            reset(false);
         }
         super.onGestureAnimationEnd();
     }
@@ -237,7 +237,7 @@ public class FallbackRecentsView extends RecentsView<RecentsActivity, RecentsSta
     public void onStateTransitionComplete(RecentsState finalState) {
         if (finalState == HOME) {
             // Clean-up logic that occurs when recents is no longer in use/visible.
-            reset();
+            reset(false);
         }
         boolean isOverlayEnabled = finalState == DEFAULT || finalState == MODAL_TASK;
         setOverlayEnabled(isOverlayEnabled);

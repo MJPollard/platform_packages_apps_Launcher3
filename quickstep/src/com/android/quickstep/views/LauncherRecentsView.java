@@ -111,8 +111,8 @@ public class LauncherRecentsView extends RecentsView<QuickstepLauncher, Launcher
     }
 
     @Override
-    public void reset() {
-        super.reset();
+    public void reset(boolean isCancelAnimation) {
+        super.reset(isCancelAnimation);
         setLayoutRotation(Surface.ROTATION_0, Surface.ROTATION_0);
     }
 
@@ -131,7 +131,7 @@ public class LauncherRecentsView extends RecentsView<QuickstepLauncher, Launcher
     public void onStateTransitionComplete(LauncherState finalState) {
         if (finalState == NORMAL || finalState == SPRING_LOADED) {
             // Clean-up logic that occurs when recents is no longer in use/visible.
-            reset();
+            reset(true);
         }
         boolean isOverlayEnabled = finalState == OVERVIEW || finalState == OVERVIEW_MODAL_TASK;
         setOverlayEnabled(isOverlayEnabled);
