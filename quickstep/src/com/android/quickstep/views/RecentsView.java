@@ -1692,6 +1692,10 @@ public abstract class RecentsView<ACTIVITY_TYPE extends StatefulActivity<STATE_T
                         groupTask.mSplitBounds.leftTopTaskId == groupTask.task1.key.id;
                 Task leftTopTask = firstTaskIsLeftTopTask ? groupTask.task1 : groupTask.task2;
                 Task rightBottomTask = firstTaskIsLeftTopTask ? groupTask.task2 : groupTask.task1;
+                runningTaskId[0] =
+                        firstTaskIsLeftTopTask ? groupTask.task1.key.id : groupTask.task2.key.id;
+                runningTaskId[1] =
+                        firstTaskIsLeftTopTask ? groupTask.task2.key.id : groupTask.task1.key.id;
 
                 ((GroupedTaskView) taskView).bind(leftTopTask, rightBottomTask, mOrientationState,
                         groupTask.mSplitBounds);
