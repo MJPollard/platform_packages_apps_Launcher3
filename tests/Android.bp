@@ -21,11 +21,11 @@ package {
 filegroup {
     name: "launcher-tests-src",
     srcs: [
-      "src/**/*.java",
-      "src/**/*.kt"
+        "src/**/*.java",
+        "src/**/*.kt",
     ],
     exclude_srcs: [
-        ":launcher-non-quickstep-tests-src"
+        ":launcher-non-quickstep-tests-src",
     ],
 }
 
@@ -33,8 +33,8 @@ filegroup {
 filegroup {
     name: "launcher-non-quickstep-tests-src",
     srcs: [
-       "src/com/android/launcher3/nonquickstep/**/*.java",
-       "src/com/android/launcher3/nonquickstep/**/*.kt",
+        "src/com/android/launcher3/nonquickstep/**/*.java",
+        "src/com/android/launcher3/nonquickstep/**/*.kt",
     ],
 }
 
@@ -42,35 +42,35 @@ filegroup {
 filegroup {
     name: "launcher-oop-tests-src",
     srcs: [
-      "src/com/android/launcher3/ui/AbstractLauncherUiTest.java",
-      "src/com/android/launcher3/ui/PortraitLandscapeRunner.java",
-      "src/com/android/launcher3/ui/TaplTestsLauncher3.java",
-      "src/com/android/launcher3/util/LauncherLayoutBuilder.java",
-      "src/com/android/launcher3/util/TestUtil.java",
-      "src/com/android/launcher3/util/Wait.java",
-      "src/com/android/launcher3/util/WidgetUtils.java",
-      "src/com/android/launcher3/util/rule/FailureWatcher.java",
-      "src/com/android/launcher3/util/rule/LauncherActivityRule.java",
-      "src/com/android/launcher3/util/rule/ViewCaptureRule.kt",
-      "src/com/android/launcher3/util/rule/SamplerRule.java",
-      "src/com/android/launcher3/util/rule/ScreenRecordRule.java",
-      "src/com/android/launcher3/util/rule/ShellCommandRule.java",
-      "src/com/android/launcher3/util/rule/SimpleActivityRule.java",
-      "src/com/android/launcher3/util/rule/TestStabilityRule.java",
-      "src/com/android/launcher3/util/rule/TISBindRule.java",
-      "src/com/android/launcher3/testcomponent/BaseTestingActivity.java",
-      "src/com/android/launcher3/testcomponent/OtherBaseTestingActivity.java",
-      "src/com/android/launcher3/testcomponent/CustomShortcutConfigActivity.java",
-      "src/com/android/launcher3/testcomponent/TestCommandReceiver.java",
-      "src/com/android/launcher3/testcomponent/TestLauncherActivity.java",
-      "src/com/android/launcher3/testcomponent/ImeTestActivity.java",
+        "src/com/android/launcher3/ui/AbstractLauncherUiTest.java",
+        "src/com/android/launcher3/ui/PortraitLandscapeRunner.java",
+        "src/com/android/launcher3/ui/TaplTestsLauncher3.java",
+        "src/com/android/launcher3/util/LauncherLayoutBuilder.java",
+        "src/com/android/launcher3/util/TestUtil.java",
+        "src/com/android/launcher3/util/Wait.java",
+        "src/com/android/launcher3/util/WidgetUtils.java",
+        "src/com/android/launcher3/util/rule/FailureWatcher.java",
+        "src/com/android/launcher3/util/rule/LauncherActivityRule.java",
+        "src/com/android/launcher3/util/rule/ViewCaptureRule.kt",
+        "src/com/android/launcher3/util/rule/SamplerRule.java",
+        "src/com/android/launcher3/util/rule/ScreenRecordRule.java",
+        "src/com/android/launcher3/util/rule/ShellCommandRule.java",
+        "src/com/android/launcher3/util/rule/SimpleActivityRule.java",
+        "src/com/android/launcher3/util/rule/TestStabilityRule.java",
+        "src/com/android/launcher3/util/rule/TISBindRule.java",
+        "src/com/android/launcher3/testcomponent/BaseTestingActivity.java",
+        "src/com/android/launcher3/testcomponent/OtherBaseTestingActivity.java",
+        "src/com/android/launcher3/testcomponent/CustomShortcutConfigActivity.java",
+        "src/com/android/launcher3/testcomponent/TestCommandReceiver.java",
+        "src/com/android/launcher3/testcomponent/TestLauncherActivity.java",
+        "src/com/android/launcher3/testcomponent/ImeTestActivity.java",
     ],
 }
 
 // Library with all the dependencies for building quickstep
 android_library {
     name: "Launcher3TestLib",
-    srcs: [ ],
+    srcs: [],
     asset_dirs: ["assets"],
     resource_dirs: ["res"],
     static_libs: [
@@ -85,7 +85,7 @@ android_library {
         "androidx.test.uiautomator_uiautomator",
         "mockito-target-inline-minus-junit4",
         "launcher_log_protos_lite",
-        "truth-prebuilt",
+        "truth",
         "platform-test-rules",
     ],
     manifest: "AndroidManifest-common.xml",
@@ -127,10 +127,10 @@ android_test {
 android_library {
     name: "launcher-testing-shared",
     srcs: [
-        "shared/com/android/launcher3/testing/shared/**/*.java"
+        "shared/com/android/launcher3/testing/shared/**/*.java",
     ],
-    resource_dirs: [ ],
+    resource_dirs: [],
     manifest: "shared/AndroidManifest.xml",
     sdk_version: "current",
     min_sdk_version: min_launcher3_sdk_version,
- }
+}
