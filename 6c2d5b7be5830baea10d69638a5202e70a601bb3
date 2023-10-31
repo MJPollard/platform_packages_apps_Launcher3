@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79c4e154_bd167e3a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1592288
+      },
+      "writtenOn": "2023-10-31T20:25:27Z",
+      "side": 1,
+      "message": "Thank you for the CL! I\u0027ve commented in the bug with an alternative approach we used to fix the same issue, along with a patch. Thanks.",
+      "revId": "6c2d5b7be5830baea10d69638a5202e70a601bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
