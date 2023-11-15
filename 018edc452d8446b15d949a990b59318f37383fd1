@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2014dd5_d91f40c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1542845
+      },
+      "writtenOn": "2023-11-15T08:42:22Z",
+      "side": 1,
+      "message": "is it possible to merge this oneliner?",
+      "revId": "018edc452d8446b15d949a990b59318f37383fd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
