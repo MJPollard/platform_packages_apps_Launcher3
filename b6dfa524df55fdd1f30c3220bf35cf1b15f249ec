@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "181765dc_4123e129",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1592288
+      },
+      "writtenOn": "2023-12-04T18:36:11Z",
+      "side": 1,
+      "message": "Hi Chuanghua, I believe this code is already in main. It got merged in some other release branches after Android U, which auto-merges into the main branch.",
+      "revId": "b6dfa524df55fdd1f30c3220bf35cf1b15f249ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
