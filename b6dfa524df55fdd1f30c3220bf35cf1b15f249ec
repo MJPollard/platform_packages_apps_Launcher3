@@ -16,6 +16,24 @@
       "message": "Hi Chuanghua, I believe this code is already in main. It got merged in some other release branches after Android U, which auto-merges into the main branch.",
       "revId": "b6dfa524df55fdd1f30c3220bf35cf1b15f249ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7533a16_b06cc7b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1786490
+      },
+      "writtenOn": "2023-12-06T02:38:35Z",
+      "side": 1,
+      "message": "I have checked the launcher repo for main branch， there no this fix yet.\nhttps://android.googlesource.com/platform/packages/apps/Launcher3/+log/refs/heads/main",
+      "parentUuid": "181765dc_4123e129",
+      "revId": "b6dfa524df55fdd1f30c3220bf35cf1b15f249ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
