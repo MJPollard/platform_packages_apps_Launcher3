@@ -34,6 +34,24 @@
       "parentUuid": "181765dc_4123e129",
       "revId": "b6dfa524df55fdd1f30c3220bf35cf1b15f249ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7813e21_ec63c06f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1786490
+      },
+      "writtenOn": "2023-12-06T02:39:01Z",
+      "side": 1,
+      "message": "\u003e I have checked the launcher repo for main branch， there no this fix yet.\n\u003e https://android.googlesource.com/platform/packages/apps/Launcher3/+log/refs/heads/main",
+      "parentUuid": "c7533a16_b06cc7b8",
+      "revId": "b6dfa524df55fdd1f30c3220bf35cf1b15f249ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
