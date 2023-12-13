@@ -68,6 +68,23 @@
       "parentUuid": "64415fa1_ab02b61d",
       "revId": "71d5d8fda3b83fd7fa22c417e7e43c7f6ce5f569",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16c261a6_5bc78055",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010211
+      },
+      "writtenOn": "2023-12-13T19:40:30Z",
+      "side": 1,
+      "message": "From the code it looks like we already skip handling if mSplitButton (action_split) is null -- any reason the go layout should have the split actions if they aren\u0027t ever going to be shown?",
+      "revId": "71d5d8fda3b83fd7fa22c417e7e43c7f6ce5f569",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
