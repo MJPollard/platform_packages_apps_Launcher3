@@ -85,6 +85,24 @@
       "message": "From the code it looks like we already skip handling if mSplitButton (action_split) is null -- any reason the go layout should have the split actions if they aren\u0027t ever going to be shown?",
       "revId": "71d5d8fda3b83fd7fa22c417e7e43c7f6ce5f569",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6d174f0_818503af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1156808
+      },
+      "writtenOn": "2023-12-13T19:45:24Z",
+      "side": 1,
+      "message": "The button is still shown on devices that inherit Go configs, thus this patch to hide it.",
+      "parentUuid": "16c261a6_5bc78055",
+      "revId": "71d5d8fda3b83fd7fa22c417e7e43c7f6ce5f569",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
