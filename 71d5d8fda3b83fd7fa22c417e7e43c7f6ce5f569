@@ -50,6 +50,24 @@
       "message": "OEM specific customization is the responsibility of individual OEM.\n\nThough in case you are proposing this change as in internal developer, use you internal credentials and sent to internal gerrit first.",
       "revId": "71d5d8fda3b83fd7fa22c417e7e43c7f6ce5f569",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7e1ec62_3670a246",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1156808
+      },
+      "writtenOn": "2023-12-13T19:34:20Z",
+      "side": 1,
+      "message": "This is not an OEM specific customization. I am proposing this change as an external contributor.",
+      "parentUuid": "64415fa1_ab02b61d",
+      "revId": "71d5d8fda3b83fd7fa22c417e7e43c7f6ce5f569",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
