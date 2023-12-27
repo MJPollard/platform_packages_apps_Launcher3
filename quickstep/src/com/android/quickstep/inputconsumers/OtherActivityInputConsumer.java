@@ -125,6 +125,9 @@ public class OtherActivityInputConsumer extends ContextWrapper implements InputC
     // Might be displacement in X or Y, depending on the direction we are swiping from the nav bar.
     private float mStartDisplacement;
 
+    // Is recents animation has been started
+    private boolean mIsRecentsStared;
+
     public OtherActivityInputConsumer(Context base, RecentsAnimationDeviceState deviceState,
             TaskAnimationManager taskAnimationManager, GestureState gestureState,
             boolean isDeferredDownTarget, Consumer<OtherActivityInputConsumer> onCompleteCallback,
@@ -232,12 +235,6 @@ public class OtherActivityInputConsumer extends ContextWrapper implements InputC
                 mDownPos.set(ev.getX(), ev.getY());
                 mLastPos.set(mDownPos);
 
-                // Start the window animation on down to give more time for launcher to draw if the
-                // user didn't start the gesture over the back button
-                if (!mIsDeferredDownTarget) {
-                    startTouchTrackingForWindowAnimation(ev.getEventTime());
-                }
-
                 TraceHelper.INSTANCE.endSection();
                 break;
             }
@@ -273,6 +270,17 @@ public class OtherActivityInputConsumer extends ContextWrapper implements InputC
                 float displacement = getDisplacement(ev);
                 float displacementX = mLastPos.x - mDownPos.x;
                 float displacementY = mLastPos.y - mDownPos.y;
+
+                boolean passedStartRecentsSlop = squaredHypot(displacementX, displacementY)
+                        >= mTouchSlop * mTouchSlop / 2;
+                if (!mIsRecentsStared && passedStartRecentsSlop) {
+                    // Start the window animation on down to give more time for launcher to draw if the
+                    // user didn't start the gesture over the back button
+                    if (!mIsDeferredDownTarget) {
+                        startTouchTrackingForWindowAnimation(ev.getEventTime());
+                    }
+                    mIsRecentsStared = true;
+                }
 
                 if (!mPassedWindowMoveSlop) {
                     if (!mIsDeferredDownTarget) {
