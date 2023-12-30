@@ -120,6 +120,7 @@ public class AppInfo extends ItemInfoWithIcon implements WorkspaceItemFactory {
         intent = new Intent(Intent.ACTION_MAIN)
             .addCategory(Intent.CATEGORY_LAUNCHER)
             .setComponent(componentName)
+            .setPackage(componentName.getPackageName())
             .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                 | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
         setProgressLevel(installInfo);
@@ -158,6 +159,7 @@ public class AppInfo extends ItemInfoWithIcon implements WorkspaceItemFactory {
         return new Intent(Intent.ACTION_MAIN)
                 .addCategory(Intent.CATEGORY_LAUNCHER)
                 .setComponent(cn)
+                .setPackage(cn.getPackageName())
                 .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                         | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
     }
