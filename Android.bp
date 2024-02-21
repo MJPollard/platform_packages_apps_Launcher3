@@ -111,7 +111,6 @@ android_library {
     ],
     resource_dirs: [],
     manifest: "tests/tapl/AndroidManifest.xml",
-    platform_apis: true,
     lint: {
         baseline_filename: "lint-baseline.xml",
     },
@@ -348,7 +347,6 @@ android_library {
         "animationlib",
     ],
     manifest: "quickstep/AndroidManifest.xml",
-    platform_apis: true,
     min_sdk_version: "current",
     lint: {
         baseline_filename: "lint-baseline-launcher3.xml",
